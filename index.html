@@ -58,7 +58,7 @@
       50% { transform: translateY(-20px) rotate(180deg); }
     }
 
-    /* Header */
+    /* Header - Mobile Friendly */
     header {
       position: fixed;
       top: 0;
@@ -88,14 +88,16 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      z-index: 1001;
     }
 
-    nav {
+    /* Desktop Navigation */
+    .desktop-nav {
       display: flex;
       gap: 25px;
     }
 
-    nav a {
+    .desktop-nav a {
       color: var(--text-muted);
       text-decoration: none;
       font-weight: 500;
@@ -107,11 +109,11 @@
       gap: 6px;
     }
 
-    nav a:hover {
+    .desktop-nav a:hover {
       color: var(--text-light);
     }
 
-    nav a::after {
+    .desktop-nav a::after {
       content: '';
       position: absolute;
       bottom: -5px;
@@ -122,8 +124,71 @@
       transition: width 0.3s ease;
     }
 
-    nav a:hover::after {
+    .desktop-nav a:hover::after {
       width: 100%;
+    }
+
+    /* Mobile Navigation */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(26, 29, 41, 0.98);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transform: translateY(-100%);
+      transition: transform 0.4s ease;
+    }
+
+    .mobile-nav.active {
+      transform: translateY(0);
+    }
+
+    .mobile-nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 1.5rem;
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--primary);
+    }
+
+    .mobile-nav a i {
+      width: 30px;
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      font-size: 28px;
+      cursor: pointer;
     }
 
     /* Main content */
@@ -485,25 +550,35 @@
       }
     }
 
+    @media (max-width: 992px) {
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .mobile-nav {
+        display: flex;
+      }
+    }
+
     @media (max-width: 768px) {
+      header {
+        padding: 12px 0;
+      }
+
       .header-content {
         padding: 0 20px;
-        flex-direction: column;
-        gap: 15px;
       }
 
-      nav {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      nav a {
-        font-size: 0.9rem;
+      .logo {
+        font-size: 20px;
       }
 
       main {
-        padding: 150px 20px 60px;
+        padding: 140px 20px 60px;
       }
 
       .avatar {
@@ -572,11 +647,7 @@
 
     @media (max-width: 480px) {
       .header-content {
-        padding: 10px 15px;
-      }
-      
-      nav {
-        gap: 12px;
+        padding: 0 15px;
       }
       
       .tech-stack {
@@ -588,13 +659,37 @@
 <body>
   <div class="bg-animation" id="bgAnimation"></div>
 
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="close-btn" id="closeMenu">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="https://s3.us-east-1.amazonaws.com/alaniacloud.com/resume/TimurDjigkaevDevopsCV.pdf" target="_blank">
+      <i class="fas fa-file-alt"></i> Resume
+    </a>
+    <a href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank">
+      <i class="fas fa-award"></i> Certifications
+    </a>
+    <a href="https://github.com/dzhigkaev" target="_blank">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/djigkaev" target="_blank">
+      <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+    <a href="mailto:timur.djigkaev@gmail.com">
+      <i class="fas fa-envelope"></i> Contact
+    </a>
+  </div>
+
   <header>
     <div class="header-content">
       <div class="logo">
         <i class="fas fa-cloud"></i>
         <span>Timur Djigkaev</span>
       </div>
-      <nav>
+      
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav">
         <a href="https://s3.us-east-1.amazonaws.com/alaniacloud.com/resume/TimurDjigkaevDevopsCV.pdf" target="_blank">
           <i class="fas fa-file-alt"></i> Resume
         </a>
@@ -611,6 +706,11 @@
           <i class="fas fa-envelope"></i> Contact
         </a>
       </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </header>
 
@@ -737,20 +837,32 @@
       }
     }
 
-    // Header scroll effect
-    function handleScroll() {
-      const header = document.querySelector('header');
-      if (window.scrollY > 50) {
-        header.style.background = 'rgba(26, 29, 41, 0.98)';
-      } else {
-        header.style.background = 'rgba(26, 29, 41, 0.95)';
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMenuBtn = document.getElementById('closeMenu');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileNav.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    closeMenuBtn.addEventListener('click', () => {
+      mobileNav.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    // Close menu when clicking outside content
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target === mobileNav) {
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = 'auto';
       }
-    }
+    });
 
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
       createParticles();
-      window.addEventListener('scroll', handleScroll);
     });
   </script>
 </body>
