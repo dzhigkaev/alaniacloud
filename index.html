@@ -137,6 +137,11 @@
       font-size: 24px;
       cursor: pointer;
       z-index: 1001;
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu-btn.active {
+      transform: rotate(90deg);
     }
 
     .mobile-nav {
@@ -169,10 +174,13 @@
       align-items: center;
       gap: 12px;
       transition: all 0.3s ease;
+      padding: 10px 20px;
+      border-radius: 8px;
     }
 
     .mobile-nav a:hover {
       color: var(--primary);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .mobile-nav a i {
@@ -189,6 +197,11 @@
       color: var(--text-light);
       font-size: 28px;
       cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .close-btn:hover {
+      transform: scale(1.1);
     }
 
     /* Main content */
@@ -653,6 +666,11 @@
       .tech-stack {
         justify-content: center;
       }
+      
+      .mobile-nav a {
+        font-size: 1.3rem;
+        padding: 8px 15px;
+      }
     }
   </style>
 </head>
@@ -842,22 +860,26 @@
     const closeMenuBtn = document.getElementById('closeMenu');
     const mobileNav = document.getElementById('mobileNav');
     
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileNav.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
+    function toggleMobileMenu() {
+      mobileNav.classList.toggle('active');
+      mobileMenuBtn.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+    }
     
-    closeMenuBtn.addEventListener('click', () => {
-      mobileNav.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    
+    closeMenuBtn.addEventListener('click', toggleMobileMenu);
 
     // Close menu when clicking outside content
     mobileNav.addEventListener('click', (e) => {
       if (e.target === mobileNav) {
-        mobileNav.classList.remove('active');
-        document.body.style.overflow = 'auto';
+        toggleMobileMenu();
       }
+    });
+
+    // Close menu when clicking on a link
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', toggleMobileMenu);
     });
 
     // Initialize
