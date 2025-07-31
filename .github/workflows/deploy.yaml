@@ -18,7 +18,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        region: us-east-1  # Change if you're in another region
+        aws-region: us-east-1  # Change if you're in another region
 
     - name: Upload to S3
       run: |
