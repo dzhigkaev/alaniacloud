@@ -342,9 +342,8 @@
     .btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 10px;
-      padding: 15px 20px;
+      padding: 15px 30px;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
@@ -353,9 +352,6 @@
       position: relative;
       overflow: hidden;
       border: 2px solid transparent;
-      width: 200px;
-      min-width: 200px;
-      text-align: center;
     }
 
     .btn::before {
@@ -398,29 +394,29 @@
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
 
-    /* Button color schemes - Optimized for dark UI and user-friendliness */
+    /* Button color schemes */
     .btn-resume {
-      background: linear-gradient(45deg, #0a6a56, #074c42);
+      background: linear-gradient(45deg, #a93226, #922b21);
       color: white;
-      box-shadow: 0 10px 30px rgba(10, 106, 86, 0.25);
+      box-shadow: 0 10px 30px rgba(169, 50, 38, 0.3);
     }
 
     .btn-resume:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(10, 106, 86, 0.35);
-      background: linear-gradient(45deg, #074c42, #0a6a56);
+      box-shadow: 0 15px 40px rgba(169, 50, 38, 0.4);
+      background: linear-gradient(45deg, #922b21, #a93226);
     }
 
     .btn-certifications {
-      background: linear-gradient(45deg, #326ce5, #4f8ef7);
+      background: linear-gradient(45deg, #b9770e, #9c640c);
       color: white;
-      box-shadow: 0 10px 30px rgba(50, 108, 229, 0.25);
+      box-shadow: 0 10px 30px rgba(185, 119, 14, 0.3);
     }
 
     .btn-certifications:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(50, 108, 229, 0.35);
-      background: linear-gradient(45deg, #4f8ef7, #326ce5);
+      box-shadow: 0 15px 40px rgba(185, 119, 14, 0.4);
+      background: linear-gradient(45deg, #9c640c, #b9770e);
     }
 
     .btn-github {
@@ -448,28 +444,21 @@
     }
 
     .btn-contact {
-      background: linear-gradient(45deg, #EA4335, #bb001b);
+      background: linear-gradient(45deg, #0a6a56, #08755e);
       color: white;
-      box-shadow: 0 10px 30px rgba(234, 67, 53, 0.25);
+      box-shadow: 0 10px 30px rgba(10, 106, 86, 0.4);
     }
 
     .btn-contact:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(234, 67, 53, 0.35);
-      background: linear-gradient(45deg, #bb001b, #EA4335);
+      box-shadow: 0 15px 40px rgba(10, 106, 86, 0.5);
+      background: linear-gradient(45deg, #08755e, #0a6a56);
     }
 
     /* Icon styles */
     .icon {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
-
-    /* Slightly larger star icon for certifications */
-    .certifications-icon {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       fill: currentColor;
     }
 
@@ -641,7 +630,7 @@
           Download Resume
         </a>
         <a class="btn btn-certifications" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank">
-          <svg class="certifications-icon" viewBox="0 0 24 24">
+          <svg class="icon" viewBox="0 0 24 24">
             <path d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z"/>
           </svg>
           Certifications
@@ -660,7 +649,7 @@
         </a>
         <a class="btn btn-contact" href="mailto:timur.djigkaev@gmail.com">
           <svg class="icon" viewBox="0 0 24 24">
-            <path d="M12 12.713L0 4H24L12 12.713ZM12 13.287L0 5.287V20H24V5.287L12 13.287Z"/>
+            <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
           </svg>
           Contact Me
         </a>
