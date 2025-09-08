@@ -23,8 +23,8 @@
   <title>Timur Djigkaev - DevOps & Cloud Infrastructure Engineer</title>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233498db;stop-opacity:1' /><stop offset='100%' style='stop-color:%232ecc71;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><text x='50' y='70' font-family='Arial, sans-serif' font-size='75' font-weight='bold' text-anchor='middle' fill='white'>∞</text></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233498db;stop-opacity:1' /><stop offset='100%' style='stop-color:%232ecc71;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><text x='50' y='70' font-family='Arial, sans-serif' font-size='75' font-weight='bold' text-anchor='middle' fill='white'>∞</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233498db;stop-opacity:1' /><stop offset='100%' style='stop-color:%232ecc71;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><text x='50' y='80' font-family='Arial, sans-serif' font-size='150' font-weight='bold' text-anchor='middle' fill='white'>∞</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233498db;stop-opacity:1' /><stop offset='100%' style='stop-color:%232ecc71;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><text x='50' y='80' font-family='Arial, sans-serif' font-size='150' font-weight='bold' text-anchor='middle' fill='white'>∞</text></svg>">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -444,10 +444,12 @@
       font-size: 48px;
       color: white;
       opacity: 0.8;
-      z-index: 1;
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
     }
 
-    .avatar img.loaded + .avatar-placeholder {
+    .avatar.image-loaded .avatar-placeholder {
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -1394,13 +1396,14 @@
     // Loading state management
     function handleImageLoad() {
       const avatarImg = document.querySelector('.avatar img');
+      const avatarContainer = document.querySelector('.avatar');
       const placeholder = document.querySelector('.avatar-placeholder');
       
-      if (avatarImg && placeholder) {
+      if (avatarImg && avatarContainer && placeholder) {
         avatarImg.addEventListener('load', function() {
           this.classList.add('loaded');
-          // Hide placeholder when image loads
-          placeholder.style.opacity = '0';
+          // Add class to container to trigger CSS hide of placeholder
+          avatarContainer.classList.add('image-loaded');
         });
         
         // Fallback if image fails to load
@@ -1408,8 +1411,14 @@
           console.warn('Avatar image failed to load');
           this.style.display = 'none';
           // Keep placeholder visible if image fails
-          placeholder.style.opacity = '0.8';
+          avatarContainer.classList.remove('image-loaded');
         });
+        
+        // If image is already loaded (cached), trigger immediately
+        if (avatarImg.complete && avatarImg.naturalHeight !== 0) {
+          avatarImg.classList.add('loaded');
+          avatarContainer.classList.add('image-loaded');
+        }
       }
     }
 
