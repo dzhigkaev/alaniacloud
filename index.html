@@ -3,9 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Timur Djigkaev - DevOps Engineer with 5+ years experience building scalable cloud infrastructure">
-  <title>Timur Djigkaev - DevOps Engineer</title>
+  <meta name="description" content="Timur Djigkaev - DevOps Engineer with 5+ years experience building scalable cloud infrastructure. Specializing in AWS, Kubernetes, Terraform, and MLOps.">
+  <meta name="keywords" content="DevOps Engineer, Cloud Infrastructure, AWS, Kubernetes, Terraform, MLOps, CI/CD, Automation">
+  <meta name="author" content="Timur Djigkaev">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Timur Djigkaev - DevOps & Cloud Infrastructure Engineer">
+  <meta property="og:description" content="DevOps specialist with 5+ years of experience architecting resilient cloud infrastructure. Reduce deployment times by 80%, cut cloud costs by 40%.">
+  <meta property="og:image" content="https://s3.us-east-1.amazonaws.com/alaniacloud.com/assets/Screenshot+2025-07-29+at+9.22.01%E2%80%AFPM.png">
+  <meta property="og:url" content="https://alaniacloud.com">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Timur Djigkaev - DevOps Engineer">
+  <meta name="twitter:description" content="DevOps specialist with 5+ years of experience architecting resilient cloud infrastructure">
+  <meta name="twitter:image" content="https://s3.us-east-1.amazonaws.com/alaniacloud.com/assets/Screenshot+2025-07-29+at+9.22.01%E2%80%AFPM.png">
+  
+  <title>Timur Djigkaev - DevOps & Cloud Infrastructure Engineer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     /* Color Palette */
     :root {
@@ -33,6 +52,58 @@
       min-height: 100vh;
       overflow-x: hidden;
       line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Accessibility improvements */
+    *:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* Reduced motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      
+      .particle {
+        display: none;
+      }
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      :root {
+        --text-light: #ffffff;
+        --text-muted: #e0e0e0;
+        --border: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    /* Skip to main content link for screen readers */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--primary);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 10000;
+      font-weight: 600;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 6px;
     }
 
     /* Animated background particles */ 
@@ -137,11 +208,76 @@
       font-size: 24px;
       cursor: pointer;
       z-index: 1001;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      padding: 8px;
+      border-radius: 4px;
+      position: relative;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-menu-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .mobile-menu-btn.active {
       transform: rotate(90deg);
+    }
+
+    .mobile-menu-btn:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Hamburger menu animation */
+    .hamburger {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: var(--text-light);
+      border-radius: 1px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 0.25s ease-in-out;
+    }
+
+    .hamburger span:nth-child(1) {
+      top: 4px;
+    }
+
+    .hamburger span:nth-child(2) {
+      top: 9px;
+    }
+
+    .hamburger span:nth-child(3) {
+      top: 14px;
+    }
+
+    .mobile-menu-btn.active .hamburger span:nth-child(1) {
+      top: 9px;
+      transform: rotate(135deg);
+    }
+
+    .mobile-menu-btn.active .hamburger span:nth-child(2) {
+      opacity: 0;
+      left: -20px;
+    }
+
+    .mobile-menu-btn.active .hamburger span:nth-child(3) {
+      top: 9px;
+      transform: rotate(-135deg);
     }
 
     .mobile-nav {
@@ -236,11 +372,36 @@
       width: 180px;
       height: 180px;
       border-radius: 50%;
-      background: url('https://s3.us-east-1.amazonaws.com/alaniacloud.com/assets/Screenshot+2025-07-29+at+9.22.01%E2%80%AFPM.png') center/cover;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
       border: 4px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
       animation: pulse 4s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .avatar img.loaded {
+      opacity: 1;
+    }
+
+    .avatar-placeholder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      color: white;
+      opacity: 0.8;
     }
 
     .avatar:hover {
@@ -390,10 +551,102 @@
       line-height: 1.6;
     }
 
-    /* Tech Stack Section */
-    .tech-stack-container {
+    /* Skills Section with Progress Bars */
+    .skills-section {
       margin-bottom: 50px;
       animation: slideInUp 1s ease-out 0.7s both;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .skill-category {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      border-color: rgba(52, 152, 219, 0.4);
+    }
+
+    .skill-category h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-item {
+      margin-bottom: 15px;
+    }
+
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+
+    .skill-level {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .skill-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 3px;
+      width: 0%;
+      transition: width 1.5s ease-in-out;
+      position: relative;
+    }
+
+    .skill-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Tech Stack Section - Simplified */
+    .tech-stack-container {
+      margin-bottom: 50px;
+      animation: slideInUp 1s ease-out 0.8s both;
       max-width: 800px;
       margin: 0 auto;
     }
@@ -675,67 +928,82 @@
   </style>
 </head>
 <body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <div class="bg-animation" id="bgAnimation"></div>
 
   <!-- Mobile Navigation -->
-  <div class="mobile-nav" id="mobileNav">
-    <button class="close-btn" id="closeMenu">
+  <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+    <button class="close-btn" id="closeMenu" aria-label="Close mobile menu">
       <i class="fas fa-times"></i>
     </button>
-    <a href="https://s3.us-east-1.amazonaws.com/alaniacloud.com/resume/TimurDjigkaevDevopsCV.pdf" target="_blank">
-      <i class="fas fa-file-alt"></i> Resume
+    <a href="https://s3.us-east-1.amazonaws.com/alaniacloud.com/resume/TimurDjigkaevDevopsCV.pdf" target="_blank" rel="noopener">
+      <i class="fas fa-file-alt" aria-hidden="true"></i> Resume
     </a>
-    <a href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank">
-      <i class="fas fa-award"></i> Certifications
+    <a href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
+      <i class="fas fa-award" aria-hidden="true"></i> Certifications
     </a>
-    <a href="https://github.com/dzhigkaev" target="_blank">
-      <i class="fab fa-github"></i> GitHub
+    <a href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
+      <i class="fab fa-github" aria-hidden="true"></i> GitHub
     </a>
-    <a href="https://www.linkedin.com/in/djigkaev" target="_blank">
-      <i class="fab fa-linkedin"></i> LinkedIn
+    <a href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
     </a>
     <a href="mailto:timur.djigkaev@gmail.com">
-      <i class="fas fa-envelope"></i> Contact
+      <i class="fas fa-envelope" aria-hidden="true"></i> Contact
     </a>
-  </div>
+  </nav>
 
-  <header>
+  <header role="banner">
     <div class="header-content">
       <div class="logo">
-        <i class="fas fa-cloud"></i>
+        <i class="fas fa-cloud" aria-hidden="true"></i>
         <span>Timur Djigkaev</span>
       </div>
       
       <!-- Desktop Navigation -->
-      <nav class="desktop-nav">
-        <a href="https://s3.us-east-1.amazonaws.com/alaniacloud.com/resume/TimurDjigkaevDevopsCV.pdf" target="_blank">
-          <i class="fas fa-file-alt"></i> Resume
+      <nav class="desktop-nav" role="navigation" aria-label="Main navigation">
+        <a href="https://s3.us-east-1.amazonaws.com/alaniacloud.com/resume/TimurDjigkaevDevopsCV.pdf" target="_blank" rel="noopener">
+          <i class="fas fa-file-alt" aria-hidden="true"></i> Resume
         </a>
-        <a href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank">
-          <i class="fas fa-award"></i> Certifications
+        <a href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
+          <i class="fas fa-award" aria-hidden="true"></i> Certifications
         </a>
-        <a href="https://github.com/dzhigkaev" target="_blank">
-          <i class="fab fa-github"></i> GitHub
+        <a href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
+          <i class="fab fa-github" aria-hidden="true"></i> GitHub
         </a>
-        <a href="https://www.linkedin.com/in/djigkaev" target="_blank">
-          <i class="fab fa-linkedin"></i> LinkedIn
+        <a href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
         </a>
         <a href="mailto:timur.djigkaev@gmail.com">
-          <i class="fas fa-envelope"></i> Contact
+          <i class="fas fa-envelope" aria-hidden="true"></i> Contact
         </a>
       </nav>
       
       <!-- Mobile Menu Button -->
-      <button class="mobile-menu-btn" id="mobileMenuBtn">
-        <i class="fas fa-bars"></i>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open mobile menu" aria-expanded="false">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </button>
     </div>
   </header>
 
-  <main>
+  <main id="main-content" role="main">
     <div class="hero-section">
       <div class="avatar-container">
-        <div class="avatar"></div>
+        <div class="avatar">
+          <div class="avatar-placeholder">
+            <i class="fas fa-user"></i>
+          </div>
+          <img src="https://s3.us-east-1.amazonaws.com/alaniacloud.com/assets/Screenshot+2025-07-29+at+9.22.01%E2%80%AFPM.png" 
+               alt="Timur Djigkaev - DevOps Engineer" 
+               loading="lazy"
+               onload="this.classList.add('loaded')">
+        </div>
       </div>
       
       <h1>DevOps & Cloud Infrastructure Engineer</h1>
@@ -782,18 +1050,144 @@
         </div>
       </div>
       
+      <!-- Skills Section with Progress Bars -->
+      <section class="skills-section">
+        <h3 class="section-title">Technical Skills</h3>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4><i class="fas fa-cloud" aria-hidden="true"></i> Cloud & Infrastructure</h4>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>AWS</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="95"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Kubernetes</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="90"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Terraform</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="88"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Docker</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="92"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-code-branch" aria-hidden="true"></i> DevOps & Automation</h4>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>CI/CD Pipelines</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="93"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>GitHub Actions</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="87"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Jenkins</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="85"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>MLOps</span>
+                <span class="skill-level">Intermediate</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="78"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h4><i class="fas fa-code" aria-hidden="true"></i> Programming & Scripting</h4>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Python</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="86"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Bash/Shell</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="89"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>YAML/JSON</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="94"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>SQL</span>
+                <span class="skill-level">Intermediate</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="75"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <div class="tech-stack-container">
         <div class="tech-stack">
-          <span class="tech-tag"><i class="fab fa-aws"></i> AWS</span>
-          <span class="tech-tag"><i class="fas fa-cube"></i> Kubernetes</span>
-          <span class="tech-tag"><i class="fab fa-docker"></i> Docker</span>
-          <span class="tech-tag"><i class="fas fa-code-branch"></i> Terraform</span>
-          <span class="tech-tag"><i class="fab fa-github"></i> GitHub Actions</span>
-          <span class="tech-tag"><i class="fas fa-cogs"></i> Jenkins</span>
-          <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
-          <span class="tech-tag"><i class="fas fa-brain"></i> MLOps</span>
-          <span class="tech-tag"><i class="fas fa-microchip"></i> AI/ML</span>
-          <span class="tech-tag"><i class="fas fa-terminal"></i> Bash</span>
+          <span class="tech-tag"><i class="fab fa-aws" aria-hidden="true"></i> AWS</span>
+          <span class="tech-tag"><i class="fas fa-cube" aria-hidden="true"></i> Kubernetes</span>
+          <span class="tech-tag"><i class="fab fa-docker" aria-hidden="true"></i> Docker</span>
+          <span class="tech-tag"><i class="fas fa-code-branch" aria-hidden="true"></i> Terraform</span>
+          <span class="tech-tag"><i class="fab fa-github" aria-hidden="true"></i> GitHub Actions</span>
+          <span class="tech-tag"><i class="fas fa-cogs" aria-hidden="true"></i> Jenkins</span>
+          <span class="tech-tag"><i class="fab fa-python" aria-hidden="true"></i> Python</span>
+          <span class="tech-tag"><i class="fas fa-brain" aria-hidden="true"></i> MLOps</span>
+          <span class="tech-tag"><i class="fas fa-microchip" aria-hidden="true"></i> AI/ML</span>
+          <span class="tech-tag"><i class="fas fa-terminal" aria-hidden="true"></i> Bash</span>
         </div>
       </div>
       
@@ -834,14 +1228,21 @@
   </footer>
 
   <script>
-    // Create animated background particles
+    // Performance and accessibility optimizations
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.innerWidth <= 768;
+    
+    // Create animated background particles with performance optimization
     function createParticles() {
+      if (prefersReducedMotion) return;
+      
       const container = document.getElementById('bgAnimation');
-      const particleCount = 30;
+      const particleCount = isMobile ? 15 : 25; // Reduced count for mobile
       
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
+        particle.setAttribute('aria-hidden', 'true');
         
         const size = Math.random() * 4 + 2;
         particle.style.width = size + 'px';
@@ -855,20 +1256,42 @@
       }
     }
 
-    // Mobile menu functionality
+    // Enhanced mobile menu functionality with accessibility
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const closeMenuBtn = document.getElementById('closeMenu');
     const mobileNav = document.getElementById('mobileNav');
     
     function toggleMobileMenu() {
+      const isOpen = mobileNav.classList.contains('active');
+      
       mobileNav.classList.toggle('active');
       mobileMenuBtn.classList.toggle('active');
-      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+      
+      // Update ARIA attributes
+      mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
+      mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Open mobile menu' : 'Close mobile menu');
+      
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = !isOpen ? 'hidden' : 'auto';
+      
+      // Focus management
+      if (!isOpen) {
+        closeMenuBtn.focus();
+      } else {
+        mobileMenuBtn.focus();
+      }
+    }
+    
+    // Keyboard navigation support
+    function handleKeyDown(e) {
+      if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+        toggleMobileMenu();
+      }
     }
     
     mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    
     closeMenuBtn.addEventListener('click', toggleMobileMenu);
+    document.addEventListener('keydown', handleKeyDown);
 
     // Close menu when clicking outside content
     mobileNav.addEventListener('click', (e) => {
@@ -882,9 +1305,97 @@
       link.addEventListener('click', toggleMobileMenu);
     });
 
-    // Initialize
+    // Animate skill progress bars when they come into view
+    function animateSkillBars() {
+      const skillBars = document.querySelectorAll('.skill-progress');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const progressBar = entry.target;
+            const width = progressBar.getAttribute('data-width');
+            
+            // Delay animation slightly for better effect
+            setTimeout(() => {
+              progressBar.style.width = width + '%';
+            }, 200);
+            
+            observer.unobserve(progressBar);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      skillBars.forEach(bar => observer.observe(bar));
+    }
+
+    // Smooth scroll for internal links
+    function initSmoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    }
+
+    // Loading state management
+    function handleImageLoad() {
+      const avatarImg = document.querySelector('.avatar img');
+      if (avatarImg) {
+        avatarImg.addEventListener('load', function() {
+          this.classList.add('loaded');
+        });
+        
+        // Fallback if image fails to load
+        avatarImg.addEventListener('error', function() {
+          console.warn('Avatar image failed to load');
+          this.style.display = 'none';
+        });
+      }
+    }
+
+    // Performance monitoring
+    function logPerformance() {
+      if ('performance' in window) {
+        window.addEventListener('load', () => {
+          const loadTime = performance.now();
+          console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
+        });
+      }
+    }
+
+    // Initialize all functionality
     document.addEventListener('DOMContentLoaded', function() {
       createParticles();
+      animateSkillBars();
+      initSmoothScroll();
+      handleImageLoad();
+      logPerformance();
+      
+      // Add loading class removal after content loads
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+      }, 100);
+    });
+
+    // Handle window resize for responsive particles
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // Recreate particles if screen size changes significantly
+        const container = document.getElementById('bgAnimation');
+        const currentMobile = window.innerWidth <= 768;
+        if (currentMobile !== isMobile) {
+          container.innerHTML = '';
+          createParticles();
+        }
+      }, 250);
     });
   </script>
 </body>
