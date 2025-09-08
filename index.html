@@ -23,8 +23,8 @@
   <title>Timur Djigkaev - DevOps & Cloud Infrastructure Engineer</title>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233498db;stop-opacity:1' /><stop offset='100%' style='stop-color:%232ecc71;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='60' font-weight='bold' text-anchor='middle' fill='white'>∞</text></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233498db;stop-opacity:1' /><stop offset='100%' style='stop-color:%232ecc71;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='60' font-weight='bold' text-anchor='middle' fill='white'>∞</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233498db;stop-opacity:1' /><stop offset='100%' style='stop-color:%232ecc71;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><text x='50' y='70' font-family='Arial, sans-serif' font-size='75' font-weight='bold' text-anchor='middle' fill='white'>∞</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233498db;stop-opacity:1' /><stop offset='100%' style='stop-color:%232ecc71;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><text x='50' y='70' font-family='Arial, sans-serif' font-size='75' font-weight='bold' text-anchor='middle' fill='white'>∞</text></svg>">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,6 +67,38 @@
       border-radius: 4px;
     }
 
+    /* Remove any unwanted outlines/borders */
+    * {
+      outline: none !important;
+      border: none;
+    }
+
+    /* Specifically target common elements that might show blue outlines */
+    a, button, input, textarea, select {
+      outline: none !important;
+      border: none;
+    }
+
+    a:focus, button:focus, input:focus, textarea:focus, select:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Re-apply focus outlines only when needed */
+    *:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* Remove blue line/border artifacts */
+    body, html {
+      border: none !important;
+      outline: none !important;
+      margin: 0;
+      padding: 0;
+    }
+
     /* Reduced motion for users who prefer it */
     @media (prefers-reduced-motion: reduce) {
       *,
@@ -95,8 +127,8 @@
     /* Skip to main content link for screen readers */
     .skip-link {
       position: absolute;
-      top: -40px;
-      left: 6px;
+      top: -100px;
+      left: -100px;
       background: var(--primary);
       color: white;
       padding: 8px;
@@ -104,11 +136,16 @@
       border-radius: 4px;
       z-index: 10000;
       font-weight: 600;
-      transition: top 0.3s;
+      transition: all 0.3s;
+      opacity: 0;
+      pointer-events: none;
     }
 
     .skip-link:focus {
       top: 6px;
+      left: 6px;
+      opacity: 1;
+      pointer-events: auto;
     }
 
     /* Animated background particles */ 
