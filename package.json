@@ -1,0 +1,25 @@
+{
+  "name": "alaniacloud",
+  "version": "1.0.0",
+  "description": "Welcome to the source code of my personal portfolio website: **[AlaniaCloud](https://www.alaniacloud.com)** — a fully static site hosted on **AWS S3** and served globally via **CloudFront**.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dzhigkaev/alaniacloud.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dzhigkaev/alaniacloud/issues"
+  },
+  "homepage": "https://github.com/dzhigkaev/alaniacloud#readme",
+  "dependencies": {
+    "@playwright/test": "^1.58.2",
+    "playwright": "^1.58.2"
+  }
+}
