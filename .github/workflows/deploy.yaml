@@ -5,19 +5,26 @@ on:
     branches:
       - main
 
+# Gap #6: least-privilege token. id-token:write is required for OIDC (Gap #1).
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+    # Gap #5: pinned to commit SHA (immutable), not a mutable tag.
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
+    # Gap #1: OIDC. No long-lived keys — GitHub mints a short-lived token,
+    # AWS hands back temporary credentials for the role below.
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v2
+      uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4.0.2
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
         aws-region: us-east-1
 
     - name: Upload to S3
@@ -26,11 +33,10 @@ jobs:
         aws s3 sync ./assets s3://alaniacloud.com/assets
         aws s3 sync ./resume s3://alaniacloud.com/resume
 
+    # Gap #5: dropped the third-party chetan/invalidate-cloudfront-action
+    # in favour of one AWS CLI call (already present in the runner).
     - name: Invalidate CloudFront Cache
-      uses: chetan/invalidate-cloudfront-action@v2
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: us-east-1
-        DISTRIBUTION: ${{ secrets.YOUR_CLOUDFRONT_DIST_ID }}
-        PATHS: "/*"
+      run: |
+        aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.YOUR_CLOUDFRONT_DIST_ID }} \
+          --paths "/*"
