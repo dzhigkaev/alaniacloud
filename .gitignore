@@ -34,4 +34,6 @@ Icon?
 
 # GitHub-specific
 .env
-*.log
+
+# Claude Code local project instructions (keep private)
+CLAUDE.md
