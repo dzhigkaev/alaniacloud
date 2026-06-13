@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # npm devDependencies (Playwright, etc.)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # GitHub Actions used in workflows (keeps SHA-pinned actions fresh)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
