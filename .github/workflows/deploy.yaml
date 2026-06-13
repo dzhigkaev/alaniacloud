@@ -29,9 +29,9 @@ jobs:
 
     - name: Upload to S3
       run: |
-        aws s3 cp index.html s3://alaniacloud.com/index.html
-        aws s3 sync ./assets s3://alaniacloud.com/assets
-        aws s3 sync ./resume s3://alaniacloud.com/resume
+        aws s3 cp index.html s3://alaniacloud/index.html
+        aws s3 sync ./assets s3://alaniacloud/assets
+        aws s3 sync ./resume s3://alaniacloud/resume
 
     # Gap #5: dropped the third-party chetan/invalidate-cloudfront-action
     # in favour of one AWS CLI call (already present in the runner).
