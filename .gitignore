@@ -37,3 +37,6 @@ Icon?
 
 # Claude Code local project instructions (keep private)
 CLAUDE.md
+
+# Claude Code local config & skills (keep private)
+.claude/
