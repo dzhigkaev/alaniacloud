@@ -20,6 +20,6 @@
   "homepage": "https://github.com/dzhigkaev/alaniacloud#readme",
   "dependencies": {
     "@playwright/test": "^1.60.0",
-    "playwright": "^1.60.0"
+    "playwright": "^1.61.1"
   }
 }
