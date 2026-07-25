@@ -22,7 +22,7 @@ jobs:
     # Gap #1: OIDC. No long-lived keys — GitHub mints a short-lived token,
     # AWS hands back temporary credentials for the role below.
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@e7f100cf4c008499ea8adda475de1042d6975c7b # v6.2.0
+      uses: aws-actions/configure-aws-credentials@e6de054238d6b7531b4efff3b6587d9aade6a06c # v6.2.3
       with:
         role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
         aws-region: us-east-1
