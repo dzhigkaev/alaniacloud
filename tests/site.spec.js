@@ -2,6 +2,7 @@
 const { test, expect } = require('@playwright/test');
 
 const PHONE = { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true };
+const TABLET = { viewport: { width: 768, height: 1024 } };
 const DESKTOP = { viewport: { width: 1280, height: 800 } };
 const WIDTHS = [375, 390, 430, 768, 1024, 1280, 1440];
 
@@ -68,9 +69,23 @@ test.describe('page health', () => {
   });
 });
 
-for (const [layout, options] of /** @type {const} */ ([['phone', PHONE], ['desktop', DESKTOP]])) {
+for (const [layout, options] of /** @type {const} */ ([['phone', PHONE], ['tablet', TABLET], ['desktop', DESKTOP]])) {
   test.describe(`${layout} layout`, () => {
     test.use(options);
+
+    test('skip link appears on focus without covering the tab bar', async ({ page }) => {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.goto('/');
+      const skip = page.getByRole('link', { name: 'Skip to main content' });
+      await expect(skip).not.toBeInViewport();
+      await skip.focus();
+      await expect(skip).toBeInViewport({ ratio: 1 });
+      const a = await skip.boundingBox();
+      const b = await page.locator('#tabbar').boundingBox();
+      if (!a || !b) throw new Error('skip link or tab bar not rendered');
+      const overlap = a.x < b.x + b.width && b.x < a.x + a.width && a.y < b.y + b.height && b.y < a.y + a.height;
+      expect(overlap).toBe(false);
+    });
 
     test('tab bar scrolls to each section and marks it current', async ({ page }) => {
       await page.goto('/');
