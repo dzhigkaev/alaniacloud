@@ -182,7 +182,7 @@ for (const [layout, options] of /** @type {const} */ ([['phone', PHONE], ['table
         await card.click();
         await expect(page.getByRole('dialog', { name: 'EKS Autoscaling & Progressive Delivery' })).toBeVisible();
         await expect(sheet).toContainText('Node scaling driven by CloudWatch alarms');
-        await expect(page.getByRole('button', { name: 'Close' })).toBeFocused();
+        await expect(page.getByRole('heading', { name: 'EKS Autoscaling & Progressive Delivery', level: 2 })).toBeFocused();
         await expect(page.locator('html')).toHaveClass(/sheet-open/);
       };
       const expectClosed = async () => {
@@ -204,12 +204,16 @@ for (const [layout, options] of /** @type {const} */ ([['phone', PHONE], ['table
       await expectClosed();
     });
 
-    test('focus stays inside the open sheet', async ({ page }) => {
+    test('focus stays inside the open sheet', async ({ page, browserName }) => {
+      // Safari's default Tab skips buttons and links; Option+Tab reaches them
+      const tab = browserName === 'webkit' ? 'Alt+Tab' : 'Tab';
       await page.goto('/');
       await page.getByRole('button', { name: 'Monitoring Migration & Cloud Cost Reduction' }).click();
       await expect(page.locator('#sheet')).toBeVisible();
+      await page.keyboard.press(tab);
+      await expect(page.getByRole('button', { name: 'Close' })).toBeFocused();
       for (let i = 0; i < 4; i++) {
-        await page.keyboard.press('Tab');
+        await page.keyboard.press(tab);
         const inside = await page.evaluate(() => {
           const el = document.activeElement;
           return el === document.body || !!el?.closest('#sheet');

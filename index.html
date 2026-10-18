@@ -329,6 +329,7 @@
   .grabber{width:36px;height:5px;border-radius:3px;background:var(--tertiary);margin:0 auto 10px}
   .sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:6px 2px 16px}
   .sheet-head h2{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+  .sheet-head h2:focus{outline:none} /* focused only so screen readers start at the title */
   .close{
     width:32px;height:32px;border-radius:50%;border:0;background:var(--fill);color:var(--secondary);
     display:grid;place-items:center;cursor:pointer;flex:none
@@ -723,7 +724,7 @@
   <div class="sheet-inner">
     <div class="grabber" aria-hidden="true"></div>
     <div class="sheet-head">
-      <h2 id="sheetTitle">Project details</h2>
+      <h2 id="sheetTitle" tabindex="-1">Project details</h2>
       <button class="close" id="closeSheet" type="button" aria-label="Close">
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
@@ -852,7 +853,9 @@
     document.documentElement.classList.add('sheet-open');
     void sheet.offsetWidth; // commit the off-screen position so the slide-in animates
     sheet.classList.add('is-open');
-    closeBtn.focus();
+    // Start at the title: screen readers read the case study from the top, and Safari
+    // doesn't draw a focus ring on the close button after a tap or click
+    sheetTitle.focus();
   }
 
   function closeSheet() {
