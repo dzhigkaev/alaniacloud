@@ -45,14 +45,15 @@
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script>document.documentElement.classList.add('js')</script>
+<script>if (window.HTMLDialogElement) document.documentElement.classList.add('js')</script>
 <style>
   /* ===== iOS system tokens ===== */
   :root{
     --bg:#F2F2F7;
     --card:#FFFFFF;
     --label:#000000;
-    --secondary:rgba(60,60,67,.62);
+    --secondary:rgba(60,60,67,.78);        /* iOS uses .6; .78 keeps 4.5:1 on cards */
+    --secondary-strong:rgba(60,60,67,.88); /* text placed directly on the wallpaper */
     --tertiary:rgba(60,60,67,.32);
     --separator:rgba(60,60,67,.18);
     --fill:rgba(120,120,128,.12);
@@ -63,7 +64,11 @@
     --indigo:#5856D6;
     --red:#FF3B30;
     --teal:#30B0C7;
-    --glass:rgba(255,255,255,.58);
+    /* text-safe accents (WCAG AA); the vivid system colors above are for fills */
+    --tint:#0066CC; --green-ink:#1F7A35; --orange-ink:#B25000;
+    --glass:rgba(255,255,255,.72);
+    --glass-solid:rgba(255,255,255,.94);   /* when blur is unavailable or unwanted */
+    --tab-pill:rgba(120,120,128,.12); --tab-active:#005FC2; /* selected tab sits on the pill, over glass */
     --glass-strong:rgba(255,255,255,.78);
     --glass-edge:rgba(255,255,255,.85);
     --glass-shadow:0 10px 40px rgba(0,0,0,.10), 0 1px 3px rgba(0,0,0,.06);
@@ -80,11 +85,12 @@
   @media (prefers-color-scheme: dark){
     :root{
       --bg:#000000; --card:#1C1C1E; --label:#FFFFFF;
-      --secondary:rgba(235,235,245,.62); --tertiary:rgba(235,235,245,.3);
+      --secondary:rgba(235,235,245,.62); --secondary-strong:rgba(235,235,245,.75); --tertiary:rgba(235,235,245,.3);
       --separator:rgba(84,84,88,.55); --fill:rgba(120,120,128,.24);
       --blue:#0A84FF; --green:#30D158; --orange:#FF9F0A; --purple:#BF5AF2;
       --indigo:#5E5CE6; --red:#FF453A; --teal:#40C8E0;
-      --glass:rgba(38,38,42,.52); --glass-strong:rgba(44,44,48,.78);
+      --tint:#409CFF; --green-ink:#30D158; --orange-ink:#FF9F0A; --tab-pill:rgba(120,120,128,.16); --tab-active:#7AB8FF;
+      --glass:rgba(38,38,42,.72); --glass-strong:rgba(44,44,48,.78); --glass-solid:rgba(44,44,48,.96);
       --glass-edge:rgba(255,255,255,.14);
       --glass-shadow:0 10px 40px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.4);
       --elevated:#1C1C1E; --elevated-card:#2C2C2E;
@@ -93,7 +99,7 @@
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;scroll-padding-top:70px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  html{scroll-behavior:smooth;scroll-padding-top:70px;scrollbar-gutter:stable;-webkit-text-size-adjust:100%;text-size-adjust:100%}
   html.sheet-open{overflow:hidden}
   body{
     font-family:var(--font);background:var(--bg);color:var(--label);
@@ -111,7 +117,7 @@
   .sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
   .skip-link{
     position:fixed;z-index:100;left:16px;top:calc(env(safe-area-inset-top) + 10px);
-    padding:10px 16px;border-radius:999px;background:var(--card);color:var(--blue);font-weight:600;
+    padding:10px 16px;border-radius:999px;background:var(--card);color:var(--tint);font-weight:600;
     box-shadow:var(--glass-shadow);transform:translateY(-200%);transition:transform .2s;
   }
   .skip-link:focus{transform:none}
@@ -157,12 +163,15 @@
   }
   .navbar.scrolled::before{opacity:1}
   .navbar-inner{max-width:var(--content);width:100%;display:flex;align-items:center;justify-content:space-between;height:32px}
-  .nav-title{font-weight:600;font-size:17px;opacity:0;transform:translateY(6px);transition:all .25s}
+  .nav-title{font-weight:600;font-size:17px;opacity:0;transform:translateY(6px);transition:opacity .25s, transform .25s}
   .navbar.scrolled .nav-title{opacity:1;transform:none}
   .nav-btn{
     height:34px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;
-    font-size:15px;font-weight:600;color:var(--blue);
+    font-size:15px;font-weight:600;color:var(--tint);
   }
+  /* inside the glass bar the button drops its own glass */
+  .navbar.scrolled .nav-btn{background:transparent;border-color:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .navbar.scrolled .nav-btn::after{display:none}
   .nav-spacer{width:80px}
 
   /* ===== Hero ===== */
@@ -172,7 +181,7 @@
     border:3px solid var(--card);box-shadow:0 8px 30px rgba(0,0,0,.18);background:var(--fill);
   }
   .large-title{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
-  .subtitle{font-size:17px;color:var(--secondary);margin-top:6px}
+  .subtitle{font-size:17px;color:var(--secondary-strong);margin-top:6px}
   .status{
     display:inline-flex;align-items:center;gap:6px;margin-top:12px;
     font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;color:var(--secondary)
@@ -183,7 +192,7 @@
   .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
   .action{
     border-radius:var(--radius-md);padding:12px 4px 10px;display:flex;flex-direction:column;
-    align-items:center;gap:6px;color:var(--blue);font-size:12px;font-weight:500;
+    align-items:center;gap:6px;color:var(--tint);font-size:12px;font-weight:500;
     transition:transform .15s;
   }
   .action:active{transform:scale(.94)}
@@ -194,13 +203,13 @@
   .widget{border-radius:var(--radius-lg);padding:14px;text-align:left}
   .widget .num{font-family:var(--rounded);font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1}
   .widget .lbl{font-size:12px;color:var(--secondary);margin-top:6px;font-weight:500;line-height:1.25}
-  .w-blue .num{color:var(--blue)} .w-green .num{color:var(--green)} .w-orange .num{color:var(--orange)}
+  .w-blue .num{color:var(--tint)} .w-green .num{color:var(--green-ink)} .w-orange .num{color:var(--orange-ink)}
 
   /* ===== Sections ===== */
   section{margin-top:36px}
   .section-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 4px 10px}
   .section-title{font-size:22px;font-weight:700;letter-spacing:-.015em}
-  .section-note{font-size:15px;color:var(--secondary)}
+  .section-note{font-size:15px;color:var(--secondary-strong)}
 
   .card{background:var(--card);border-radius:var(--radius-lg)}
   .about{padding:16px 18px;font-size:16px;line-height:1.5}
@@ -226,9 +235,9 @@
   .row.top .icon{margin-top:2px}
 
   /* ===== Project cards ===== */
-  [data-accent="blue"]{--accent:var(--blue)}
-  [data-accent="green"]{--accent:var(--green)}
-  [data-accent="orange"]{--accent:var(--orange)}
+  [data-accent="blue"]{--accent:var(--tint)}
+  [data-accent="green"]{--accent:var(--green-ink)}
+  [data-accent="orange"]{--accent:var(--orange-ink)}
   .projects{display:grid;gap:12px}
   .project{
     position:relative;display:flex;flex-direction:column;
@@ -245,7 +254,7 @@
   .metric{background:var(--fill);border-radius:12px;padding:8px 12px}
   .metric b{font-family:var(--rounded);font-size:20px;display:block;line-height:1.1;color:var(--accent)}
   .metric span{font-size:11px;color:var(--secondary);font-weight:500}
-  .more{display:none;align-items:center;justify-content:space-between;margin-top:auto;padding-top:14px;color:var(--blue);font-size:15px;font-weight:500}
+  .more{display:none;align-items:center;justify-content:space-between;margin-top:auto;padding-top:14px;color:var(--tint);font-size:15px;font-weight:500}
   .js .more{display:flex}
   .more svg{width:14px;height:14px}
   .project-details{margin-top:14px}
@@ -288,7 +297,7 @@
     display:flex;gap:2px;padding:5px;border-radius:999px;
   }
   .tabbar::before{ /* sliding pill, positioned by JS */
-    content:"";position:absolute;top:5px;bottom:5px;left:0;border-radius:999px;background:var(--fill);z-index:0;
+    content:"";position:absolute;top:5px;bottom:5px;left:0;border-radius:999px;background:var(--tab-pill);z-index:0;
     width:var(--pill-w,0px);transform:translateX(var(--pill-x,0px));
   }
   .tabbar.ready::before{transition:transform .45s cubic-bezier(.3,1.35,.5,1), width .45s}
@@ -298,7 +307,7 @@
     position:relative;z-index:1;transition:color .2s
   }
   .tab svg{width:22px;height:22px}
-  .tab[aria-current="true"]{color:var(--blue)}
+  .tab[aria-current="true"]{color:var(--tab-active)}
 
   /* ===== Bottom sheet (native <dialog>) ===== */
   .sheet{
@@ -328,12 +337,12 @@
   .sheet .metrics{margin-top:6px}
   .outcome{border-left:3px solid var(--green)}
 
-  .footer{max-width:calc(var(--content) + 2 * var(--gutter));margin:36px auto 0;padding:0 var(--pad-r) 0 var(--pad-l);text-align:center;color:var(--secondary);font-size:13px}
+  .footer{max-width:calc(var(--content) + 2 * var(--gutter));margin:36px auto 0;padding:0 var(--pad-r) 0 var(--pad-l);text-align:center;color:var(--secondary-strong);font-size:13px}
 
-  :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  :focus-visible{outline:2px solid var(--tint);outline-offset:2px}
   .row:focus-visible,.seg:focus-visible{outline-offset:-3px}
   .project-open:focus-visible{outline:none}
-  .project-open:focus-visible::after{outline:2px solid var(--blue);outline-offset:2px}
+  .project-open:focus-visible::after{outline:2px solid var(--tint);outline-offset:2px}
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after,::backdrop{transition:none!important;animation:none!important;scroll-behavior:auto!important}
   }
@@ -343,12 +352,42 @@
     .large-title{font-size:30px}
   }
 
+  /* ===== Glass fallbacks ===== */
+  /* No backdrop-filter support: translucent surfaces would just look washed out */
+  @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+    :root{--glass:var(--glass-solid);--glass-strong:var(--glass-solid)}
+  }
+  @media (prefers-reduced-transparency:reduce){
+    :root{--glass:var(--glass-solid);--glass-strong:var(--glass-solid)}
+    .wallpaper{display:none}
+  }
+  @media (prefers-contrast:more){
+    :root{--secondary:var(--label);--secondary-strong:var(--label);--glass:var(--glass-solid);--glass-strong:var(--glass-solid);--glass-edge:var(--separator)}
+    .card,.list,.project,.widget,.action{outline:1px solid var(--separator);outline-offset:-1px}
+  }
+  /* Windows high contrast: surfaces keep an outline, selected pills use system colors */
+  @media (forced-colors:active){
+    .card,.list,.project,.chip,.metric,.segmented{outline:1px solid transparent;outline-offset:-1px}
+    .tabbar::before,.segmented::before{forced-color-adjust:none;background:Highlight}
+    .tab[aria-current="true"],.seg[aria-selected="true"]{forced-color-adjust:none;color:HighlightText}
+  }
+  /* on desktop the list rows are separate cards, so they get the outline, not the grid */
+  @media (min-width:1024px) and (prefers-contrast:more){
+    .list{outline:0}
+    .list .row{outline:1px solid var(--separator);outline-offset:-1px}
+  }
+  @media (min-width:1024px) and (forced-colors:active){
+    .list{outline:0}
+    .list .row{outline:1px solid transparent;outline-offset:-1px}
+  }
+
   /* ===== Hover (pointer devices only; touch keeps the iOS press states) ===== */
   @media (hover:hover){
     a.row:hover{background-image:linear-gradient(var(--fill),var(--fill))}
-    .action:hover{background:var(--glass-strong)}
-    .nav-btn:hover,.close:hover{background:var(--fill)}
-    .tab:not([aria-current]):hover,.seg[aria-selected="false"]:hover{color:var(--blue)}
+    .action:hover,.nav-btn:hover{background:var(--glass-strong)}
+    .navbar.scrolled .nav-btn:hover{background:var(--fill)}
+    .close:hover{color:var(--label)}
+    .tab:not([aria-current]):hover,.seg[aria-selected="false"]:hover{color:var(--tint)}
     .js .project:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.10)}
   }
 
@@ -446,7 +485,7 @@
       </a>
     </nav>
 
-    <a class="nav-btn" href="mailto:timur.djigkaev@gmail.com" aria-label="Contact by email">Contact</a>
+    <a class="nav-btn glass" href="mailto:timur.djigkaev@gmail.com" aria-label="Contact by email">Contact</a>
   </div>
 </header>
 
@@ -692,6 +731,8 @@
 <script>
 (() => {
   'use strict';
+  // Browsers without <dialog> (set in <head>) keep the plain static page
+  if (!document.documentElement.classList.contains('js')) return;
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const scrollBehavior = () => (reduceMotion.matches ? 'auto' : 'smooth');
 
