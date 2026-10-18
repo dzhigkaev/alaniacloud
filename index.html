@@ -67,8 +67,12 @@
     --glass-strong:rgba(255,255,255,.78);
     --glass-edge:rgba(255,255,255,.85);
     --glass-shadow:0 10px 40px rgba(0,0,0,.10), 0 1px 3px rgba(0,0,0,.06);
+    --elevated:#F2F2F7; --elevated-card:#FFFFFF; /* sheets */
     --blob1:#7AB8FF; --blob2:#C79BFF; --blob3:#8EE3C8;
     --radius-xl:28px; --radius-lg:22px; --radius-md:14px;
+    --gutter:16px; --content:688px;
+    --pad-l:max(var(--gutter), env(safe-area-inset-left));
+    --pad-r:max(var(--gutter), env(safe-area-inset-right));
     --font:-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Inter, system-ui, sans-serif;
     --rounded:ui-rounded, "SF Pro Rounded", -apple-system, system-ui, sans-serif;
     --mono:ui-monospace, "SF Mono", Menlo, monospace;
@@ -83,6 +87,7 @@
       --glass:rgba(38,38,42,.52); --glass-strong:rgba(44,44,48,.78);
       --glass-edge:rgba(255,255,255,.14);
       --glass-shadow:0 10px 40px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.4);
+      --elevated:#1C1C1E; --elevated-card:#2C2C2E;
       --blob1:#1E4C8F; --blob2:#4B2A7A; --blob3:#145A4A;
     }
   }
@@ -133,22 +138,25 @@
     mix-blend-mode:soft-light;
   }
 
-  .wrap{max-width:720px;margin:0 auto;padding:0 16px}
+  .wrap{max-width:calc(var(--content) + 2 * var(--gutter));margin:0 auto;padding:0 var(--pad-r) 0 var(--pad-l)}
 
   /* ===== Navigation bar ===== */
   .navbar{
     position:fixed;top:0;left:0;right:0;z-index:50;
-    padding:calc(env(safe-area-inset-top) + 10px) 16px 10px;
+    padding:calc(env(safe-area-inset-top) + 10px) var(--pad-r) 10px var(--pad-l);
     display:flex;justify-content:center;
-    transition:background .3s, border-color .3s, backdrop-filter .3s;
-    border-bottom:.5px solid transparent;
   }
-  .navbar.scrolled{
+  /* The glass lives on a pseudo-element: a backdrop-filter on the header itself
+     would become the containing block of the fixed tab bar inside it */
+  .navbar::before{
+    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
     background:var(--glass-strong);
     -webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);
-    border-bottom-color:var(--separator);
+    border-bottom:.5px solid var(--separator);
+    opacity:0;transition:opacity .3s;
   }
-  .navbar-inner{max-width:720px;width:100%;display:flex;align-items:center;justify-content:space-between;height:32px}
+  .navbar.scrolled::before{opacity:1}
+  .navbar-inner{max-width:var(--content);width:100%;display:flex;align-items:center;justify-content:space-between;height:32px}
   .nav-title{font-weight:600;font-size:17px;opacity:0;transform:translateY(6px);transition:all .25s}
   .navbar.scrolled .nav-title{opacity:1;transform:none}
   .nav-btn{
@@ -204,7 +212,7 @@
   .row{display:flex;align-items:center;gap:12px;padding:11px 16px;position:relative;min-height:52px;transition:background .15s}
   .row:first-child{border-radius:var(--radius-lg) var(--radius-lg) 0 0}
   .row:last-child{border-radius:0 0 var(--radius-lg) var(--radius-lg)}
-  a.row:active{background:var(--fill)}
+  a.row:active{background-image:linear-gradient(var(--fill),var(--fill))}
   .row + .row::before{content:"";position:absolute;top:0;right:0;left:60px;height:.5px;background:var(--separator)}
   .icon{
     width:32px;height:32px;border-radius:8px;flex:none;display:grid;place-items:center;color:#fff;
@@ -248,7 +256,7 @@
   .chip{font-size:13px;font-weight:500;padding:5px 11px;border-radius:999px;background:var(--fill)}
 
   /* ===== Segmented control ===== */
-  .segmented-scroll{display:none;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 4px}
+  .segmented-scroll{display:none;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--pad-r)) 0 calc(-1 * var(--pad-l));padding:2px var(--pad-r) 4px var(--pad-l)}
   .js .segmented-scroll{display:block}
   .segmented-scroll::-webkit-scrollbar{display:none}
   .segmented{
@@ -297,7 +305,7 @@
     position:fixed;inset:auto 0 0;margin:0 auto;
     width:min(720px,100%);max-width:100%;max-height:88vh;max-height:88dvh;
     padding:0;border:0;overflow-y:auto;overscroll-behavior:contain;
-    background:var(--bg);color:var(--label);border-radius:30px 30px 0 0;
+    background:var(--elevated);color:var(--label);border-radius:30px 30px 0 0;
     box-shadow:0 -10px 40px rgba(0,0,0,.2);
     transform:translateY(105%);
     transition:transform .45s cubic-bezier(.2,.9,.25,1);
@@ -314,13 +322,13 @@
     display:grid;place-items:center;cursor:pointer;flex:none
   }
   .close svg{width:13px;height:13px}
-  .sheet .card{padding:16px 18px;margin-bottom:12px}
+  .sheet .card{background:var(--elevated-card);padding:16px 18px;margin-bottom:12px}
   .label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--secondary);margin-bottom:6px}
   .sheet .card p:not(.label){font-size:16px;line-height:1.5}
   .sheet .metrics{margin-top:6px}
   .outcome{border-left:3px solid var(--green)}
 
-  .footer{max-width:720px;margin:36px auto 0;padding:0 16px;text-align:center;color:var(--secondary);font-size:13px}
+  .footer{max-width:calc(var(--content) + 2 * var(--gutter));margin:36px auto 0;padding:0 var(--pad-r) 0 var(--pad-l);text-align:center;color:var(--secondary);font-size:13px}
 
   :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
   .row:focus-visible,.seg:focus-visible{outline-offset:-3px}
@@ -334,8 +342,79 @@
     .tab{width:66px}
     .large-title{font-size:30px}
   }
-  @media (min-width:760px){
-    .hero{padding-top:100px}
+
+  /* ===== Hover (pointer devices only; touch keeps the iOS press states) ===== */
+  @media (hover:hover){
+    a.row:hover{background-image:linear-gradient(var(--fill),var(--fill))}
+    .action:hover{background:var(--glass-strong)}
+    .nav-btn:hover,.close:hover{background:var(--fill)}
+    .tab:not([aria-current]):hover,.seg[aria-selected="false"]:hover{color:var(--blue)}
+    .js .project:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.10)}
+  }
+
+  /* ===== Tablet and up: the tab bar moves to the top (iPadOS 26) ===== */
+  @media (min-width:768px){
+    :root{--gutter:24px;--content:720px}
+    html{scroll-padding-top:84px}
+    body{padding-bottom:48px}
+    .navbar{padding-top:calc(env(safe-area-inset-top) + 12px);padding-bottom:12px}
+    .navbar-inner{height:44px}
+    .nav-spacer{display:none}
+    .tabbar{top:calc(env(safe-area-inset-top) + 12px);bottom:auto;padding:4px}
+    .tabbar::before{top:4px;bottom:4px}
+    .tab{width:auto;height:36px;flex-direction:row;gap:6px;padding:0 14px;font-size:14px}
+    .tab svg{width:18px;height:18px}
+    /* once the nav bar is glass, the capsule sits in it without a second layer of glass */
+    .navbar.scrolled .tabbar{background:transparent;border-color:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+    .navbar.scrolled .tabbar::after{display:none}
+    .hero{padding-top:calc(env(safe-area-inset-top) + 104px)}
+    .large-title{font-size:40px}
+    .projects{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .project:last-child:nth-child(odd){grid-column:1 / -1}
+
+    /* project details: centered form sheet instead of a bottom sheet */
+    .sheet{
+      inset:0;margin:auto;width:min(640px, calc(100% - 64px));
+      max-height:min(85vh, 880px);max-height:min(85dvh, 880px);border-radius:28px;
+      box-shadow:0 30px 80px rgba(0,0,0,.3);
+      opacity:0;transform:translateY(24px) scale(.96);
+      transition:transform .35s cubic-bezier(.2,.9,.25,1), opacity .25s;
+    }
+    .sheet.is-open{opacity:1;transform:none}
+    .sheet-inner{padding:24px 24px 28px}
+    .grabber{display:none}
+  }
+
+  /* ===== Desktop: two-column intro, card grids ===== */
+  @media (min-width:1024px){
+    :root{--gutter:32px;--content:1120px}
+    html{scroll-padding-top:88px}
+    section{margin-top:56px}
+    .intro{
+      display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);
+      grid-template-areas:"hero about" "hero widgets";
+      column-gap:56px;row-gap:16px;align-items:start;
+      padding-top:calc(env(safe-area-inset-top) + 112px);
+    }
+    .hero{grid-area:hero;align-self:center;padding-top:0;text-align:left}
+    .avatar{width:128px;height:128px;margin:0 0 22px}
+    .large-title{font-size:48px}
+    .subtitle{font-size:20px}
+    .actions{max-width:440px}
+    .intro-about{grid-area:about;margin-top:0}
+    .widgets{grid-area:widgets;margin-top:0}
+
+    /* inset grouped lists become grids of cards */
+    .list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;background:none;border-radius:0;overflow:visible}
+    .list .row,.list .row:first-child,.list .row:last-child{background-color:var(--card);border-radius:var(--radius-lg);padding:16px}
+    .list .row + .row::before{display:none}
+    #expertise .row-title{font-weight:600}
+
+    .projects{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .project:last-child:nth-child(odd){grid-column:auto}
+  }
+  @media (min-width:1440px){
+    :root{--content:1200px}
   }
 </style>
 </head>
@@ -350,25 +429,26 @@
   <div class="navbar-inner">
     <div class="nav-spacer"></div>
     <div class="nav-title">Timur Djigkaev</div>
-    <a class="nav-btn" href="mailto:timur.djigkaev@gmail.com">Contact</a>
+
+    <!-- ===== Floating Liquid Glass tab bar: bottom on phones, top center from 768px ===== -->
+    <nav class="tabbar glass" id="tabbar" aria-label="Sections">
+      <a class="tab" href="#profile" aria-current="true">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Profile
+      </a>
+      <a class="tab" href="#projects">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>Projects
+      </a>
+      <a class="tab" href="#skills">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 16.5l9 5 9-5"/></svg>Skills
+      </a>
+      <a class="tab" href="#contact">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>Contact
+      </a>
+    </nav>
+
+    <a class="nav-btn" href="mailto:timur.djigkaev@gmail.com" aria-label="Contact by email">Contact</a>
   </div>
 </header>
-
-<!-- ===== Floating Liquid Glass tab bar ===== -->
-<nav class="tabbar glass" id="tabbar" aria-label="Sections">
-  <a class="tab" href="#profile" aria-current="true">
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Profile
-  </a>
-  <a class="tab" href="#projects">
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>Projects
-  </a>
-  <a class="tab" href="#skills">
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 16.5l9 5 9-5"/></svg>Skills
-  </a>
-  <a class="tab" href="#contact">
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>Contact
-  </a>
-</nav>
 
 <main class="wrap" id="main-content" tabindex="-1">
 
@@ -376,7 +456,7 @@
   <div class="intro" id="profile">
     <div class="hero">
       <picture>
-        <source type="image/webp" srcset="assets/profile-160.webp 160w, assets/profile-320.webp 320w, assets/profile-480.webp 480w" sizes="116px">
+        <source type="image/webp" srcset="assets/profile-160.webp 160w, assets/profile-320.webp 320w, assets/profile-480.webp 480w" sizes="(min-width: 1024px) 128px, 116px">
         <img class="avatar" src="assets/profile-320.jpg" width="116" height="116" alt="Timur Djigkaev - DevOps and Platform Engineer" fetchpriority="high" decoding="async">
       </picture>
       <h1 class="large-title">Timur Djigkaev</h1>
