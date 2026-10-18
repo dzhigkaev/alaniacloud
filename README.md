@@ -42,7 +42,8 @@ supply-chain best practices:
 - **Hardened CI.** GitHub Actions are **pinned to commit SHAs** (not mutable
   tags), the workflow runs with a minimal `permissions:` block, and no
   third-party action handles AWS credentials.
-- **Subresource Integrity (SRI)** on third-party CDN assets.
+- **No third-party assets.** Icons are inline SVG and text uses the system
+  font stack, so the page loads nothing from outside its own origin.
 - **Automated updates** via Dependabot (npm + GitHub Actions, weekly).
 - **Responsible disclosure** policy in [`SECURITY.md`](SECURITY.md).
 
@@ -53,9 +54,15 @@ supply-chain best practices:
 ```bash
 ├── index.html                    # The site: HTML + CSS + JS, all inline
 ├── assets/
-│   └── profile.png               # Profile image
+│   ├── profile.png               # Profile image (also the social preview image)
+│   ├── profile-*.webp, *.jpg     # Resized avatar for the page
+│   └── favicon.svg, favicon-32.png, apple-touch-icon.png
 ├── resume/
 │   └── TimurDjigkaevDevopsCV.pdf  # Resume
+├── tests/
+│   ├── site.spec.js               # Playwright smoke tests (npm test)
+│   └── serve.js                   # Local server with the production CSP and headers
+├── playwright.config.js
 ├── .github/
 │   ├── workflows/deploy.yaml      # CI/CD: OIDC deploy to S3 + CloudFront invalidation
 │   └── dependabot.yml             # Weekly dependency & action updates
@@ -75,6 +82,21 @@ python -m http.server 8000
 ```
 
 All markup, styles, and scripts live in `index.html`.
+
+### Tests
+
+```bash
+npm ci
+npx playwright install chromium webkit
+npm test
+```
+
+`npm test` runs Playwright smoke tests in Chromium and WebKit against
+`tests/serve.js`, a small static server that sends the same CSP and security
+headers as CloudFront and serves only the paths the deploy uploads. The tests
+cover section navigation, the skills tabs, the project sheet (close button,
+Esc, backdrop, swipe), horizontal overflow from 375 to 1440 px wide, broken
+links, and console or CSP errors.
 
 ---
 
