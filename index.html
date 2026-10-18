@@ -17,6 +17,7 @@
 <meta name="twitter:title" content="Timur Djigkaev - DevOps &amp; Platform Engineer">
 <meta name="twitter:description" content="DevOps / Platform Engineer with 5+ years on AWS, Kubernetes (EKS), Terraform. CI/CD, GitOps, security, cloud cost optimization.">
 <meta name="twitter:image" content="https://www.alaniacloud.com/assets/profile.png">
+<meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <script type="application/ld+json">
@@ -44,6 +45,7 @@
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script>document.documentElement.classList.add('js')</script>
 <style>
   /* ===== iOS system tokens ===== */
   :root{
@@ -86,7 +88,8 @@
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html{scroll-behavior:smooth;scroll-padding-top:70px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  html.sheet-open{overflow:hidden}
   body{
     font-family:var(--font);background:var(--bg);color:var(--label);
     -webkit-font-smoothing:antialiased;line-height:1.4;letter-spacing:-.01em;
@@ -94,7 +97,19 @@
     overflow-x:hidden;
   }
   a{color:inherit;text-decoration:none}
-  svg{display:block}
+  a,button{-webkit-tap-highlight-color:transparent}
+  button{font:inherit;color:inherit}
+  ul{list-style:none}
+  svg,picture{display:block}
+  main:focus{outline:none}
+
+  .sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+  .skip-link{
+    position:fixed;z-index:100;left:16px;top:calc(env(safe-area-inset-top) + 10px);
+    padding:10px 16px;border-radius:999px;background:var(--card);color:var(--blue);font-weight:600;
+    box-shadow:var(--glass-shadow);transform:translateY(-200%);transition:transform .2s;
+  }
+  .skip-link:focus{transform:none}
 
   /* Ambient wallpaper so the glass has something to refract */
   .wallpaper{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
@@ -145,7 +160,7 @@
   /* ===== Hero ===== */
   .hero{padding-top:calc(env(safe-area-inset-top) + 64px);text-align:center}
   .avatar{
-    width:116px;height:116px;border-radius:50%;margin:0 auto 16px;object-fit:cover;
+    display:block;width:116px;height:116px;border-radius:50%;margin:0 auto 18px;object-fit:cover;
     border:3px solid var(--card);box-shadow:0 8px 30px rgba(0,0,0,.18);background:var(--fill);
   }
   .large-title{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
@@ -154,7 +169,7 @@
     display:inline-flex;align-items:center;gap:6px;margin-top:12px;
     font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;color:var(--secondary)
   }
-  .status i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(52,199,89,.25)}
+  .status .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(52,199,89,.25)}
 
   /* Contacts-style quick actions */
   .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
@@ -174,76 +189,88 @@
   .w-blue .num{color:var(--blue)} .w-green .num{color:var(--green)} .w-orange .num{color:var(--orange)}
 
   /* ===== Sections ===== */
-  section{margin-top:36px;scroll-margin-top:70px}
+  section{margin-top:36px}
   .section-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 4px 10px}
   .section-title{font-size:22px;font-weight:700;letter-spacing:-.015em}
   .section-note{font-size:15px;color:var(--secondary)}
-  .footnote{font-size:13px;color:var(--secondary);margin:8px 16px 0;line-height:1.35}
 
   .card{background:var(--card);border-radius:var(--radius-lg)}
   .about{padding:16px 18px;font-size:16px;line-height:1.5}
   .about strong{font-weight:600}
+  .about-more{margin-top:10px;color:var(--secondary)}
 
   /* ===== Inset grouped list (Settings style) ===== */
   .list{background:var(--card);border-radius:var(--radius-lg);overflow:hidden}
   .row{display:flex;align-items:center;gap:12px;padding:11px 16px;position:relative;min-height:52px;transition:background .15s}
-  a.row:active,button.row:active{background:var(--fill)}
+  .row:first-child{border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+  .row:last-child{border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+  a.row:active{background:var(--fill)}
   .row + .row::before{content:"";position:absolute;top:0;right:0;left:60px;height:.5px;background:var(--separator)}
   .icon{
     width:32px;height:32px;border-radius:8px;flex:none;display:grid;place-items:center;color:#fff;
   }
   .icon svg{width:19px;height:19px}
   .row-body{flex:1;min-width:0}
-  .row-title{font-size:17px;line-height:1.25}
+  .row-title{font-size:17px;font-weight:400;line-height:1.25}
   .row-sub{font-size:14px;color:var(--secondary);margin-top:2px;line-height:1.35}
   .chev{color:var(--tertiary);width:14px;height:14px;flex:none}
   .row.top{align-items:flex-start}
   .row.top .icon{margin-top:2px}
-  button.row{width:100%;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer}
 
   /* ===== Project cards ===== */
+  [data-accent="blue"]{--accent:var(--blue)}
+  [data-accent="green"]{--accent:var(--green)}
+  [data-accent="orange"]{--accent:var(--orange)}
   .projects{display:grid;gap:12px}
   .project{
-    background:var(--card);border-radius:var(--radius-xl);padding:18px;cursor:pointer;
-    border:0;text-align:left;font:inherit;color:inherit;width:100%;
+    position:relative;display:flex;flex-direction:column;
+    background:var(--card);border-radius:var(--radius-xl);padding:18px;
     transition:transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s;
   }
-  .project:active{transform:scale(.98)}
-  .project-top{display:flex;gap:12px;align-items:center}
-  .project h3{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
-  .project .eyebrow{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--secondary)}
-  .project p{font-size:15px;color:var(--secondary);margin-top:10px;line-height:1.45}
+  .js .project:active{transform:scale(.98)}
+  .project .eyebrow{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--accent)}
+  .project h3{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.25;margin-top:4px}
+  .project-open{border:0;background:none;padding:0;font:inherit;letter-spacing:inherit;color:inherit;text-align:left;cursor:pointer}
+  .js .project-open::after{content:"";position:absolute;inset:0;border-radius:var(--radius-xl)}
+  .project .summary{font-size:15px;color:var(--secondary);margin-top:10px;line-height:1.45}
   .metrics{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
   .metric{background:var(--fill);border-radius:12px;padding:8px 12px}
-  .metric b{font-family:var(--rounded);font-size:20px;display:block;line-height:1.1}
+  .metric b{font-family:var(--rounded);font-size:20px;display:block;line-height:1.1;color:var(--accent)}
   .metric span{font-size:11px;color:var(--secondary);font-weight:500}
-  .more{display:flex;align-items:center;justify-content:space-between;margin-top:14px;color:var(--blue);font-size:15px;font-weight:500}
+  .more{display:none;align-items:center;justify-content:space-between;margin-top:auto;padding-top:14px;color:var(--blue);font-size:15px;font-weight:500}
+  .js .more{display:flex}
   .more svg{width:14px;height:14px}
+  .project-details{margin-top:14px}
+  .project-details .card{background:var(--fill);padding:14px 16px;margin-top:8px}
+  .js .project-details{display:none}
 
   .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
   .chip{font-size:13px;font-weight:500;padding:5px 11px;border-radius:999px;background:var(--fill)}
 
   /* ===== Segmented control ===== */
-  .segmented-scroll{overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 4px}
+  .segmented-scroll{display:none;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 4px}
+  .js .segmented-scroll{display:block}
   .segmented-scroll::-webkit-scrollbar{display:none}
   .segmented{
     display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:var(--fill);
     position:relative;white-space:nowrap
   }
+  .segmented::before{ /* sliding pill, positioned by JS */
+    content:"";position:absolute;z-index:0;top:3px;bottom:3px;left:0;border-radius:999px;background:var(--card);
+    width:var(--pill-w,0px);transform:translateX(var(--pill-x,0px));
+    box-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);
+  }
+  .segmented.ready::before{transition:transform .35s cubic-bezier(.3,1.3,.5,1), width .35s cubic-bezier(.3,1.3,.5,1)}
   .seg{
     position:relative;z-index:1;border:0;background:none;font:inherit;font-size:14px;font-weight:500;
     padding:7px 14px;border-radius:999px;color:var(--label);cursor:pointer;transition:color .2s
   }
-  .seg-pill{
-    position:absolute;z-index:0;top:3px;bottom:3px;border-radius:999px;background:var(--card);
-    box-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);
-    transition:left .35s cubic-bezier(.3,1.3,.5,1), width .35s cubic-bezier(.3,1.3,.5,1)
-  }
   .skills-panel{padding:18px;margin-top:10px}
-  .skills-panel h4{font-size:15px;font-weight:600;color:var(--secondary);display:flex;align-items:center;gap:8px}
+  .js .skills-panel:not(.is-active){display:none}
+  .js .skills-panel.is-active{animation:fade .35s ease}
+  .skills-panel h3{font-size:15px;font-weight:600;color:var(--secondary)}
   .skills-panel .chips{margin-top:12px}
   .skills-panel .chip{font-size:15px;padding:7px 13px}
-  .fade{animation:fade .35s ease}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
   /* ===== Floating tab bar ===== */
@@ -252,30 +279,33 @@
     bottom:calc(env(safe-area-inset-bottom) + 14px);z-index:60;
     display:flex;gap:2px;padding:5px;border-radius:999px;
   }
+  .tabbar::before{ /* sliding pill, positioned by JS */
+    content:"";position:absolute;top:5px;bottom:5px;left:0;border-radius:999px;background:var(--fill);z-index:0;
+    width:var(--pill-w,0px);transform:translateX(var(--pill-x,0px));
+  }
+  .tabbar.ready::before{transition:transform .45s cubic-bezier(.3,1.35,.5,1), width .45s}
   .tab{
     width:76px;height:54px;border-radius:999px;display:flex;flex-direction:column;align-items:center;
     justify-content:center;gap:3px;font-size:10px;font-weight:600;color:var(--label);
     position:relative;z-index:1;transition:color .2s
   }
   .tab svg{width:22px;height:22px}
-  .tab.active{color:var(--blue)}
-  .tab-pill{
-    position:absolute;top:5px;bottom:5px;border-radius:999px;background:var(--fill);z-index:0;
-    transition:left .45s cubic-bezier(.3,1.35,.5,1), width .45s;
-  }
+  .tab[aria-current="true"]{color:var(--blue)}
 
-  /* ===== Bottom sheet ===== */
-  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.32);opacity:0;pointer-events:none;transition:opacity .3s;z-index:80}
-  .scrim.open{opacity:1;pointer-events:auto}
+  /* ===== Bottom sheet (native <dialog>) ===== */
   .sheet{
-    position:fixed;left:50%;bottom:0;z-index:90;width:min(720px,100%);
-    max-height:88vh;overflow-y:auto;transform:translate(-50%,105%);
-    background:var(--bg);border-radius:30px 30px 0 0;
-    padding:8px 16px calc(28px + env(safe-area-inset-bottom));
-    transition:transform .45s cubic-bezier(.2,.9,.25,1);
+    position:fixed;inset:auto 0 0;margin:0 auto;
+    width:min(720px,100%);max-width:100%;max-height:88vh;max-height:88dvh;
+    padding:0;border:0;overflow-y:auto;overscroll-behavior:contain;
+    background:var(--bg);color:var(--label);border-radius:30px 30px 0 0;
     box-shadow:0 -10px 40px rgba(0,0,0,.2);
+    transform:translateY(105%);
+    transition:transform .45s cubic-bezier(.2,.9,.25,1);
   }
-  .sheet.open{transform:translate(-50%,0)}
+  .sheet.is-open{transform:none}
+  .sheet::backdrop{background:rgba(0,0,0,.32);opacity:0;transition:opacity .3s}
+  .sheet.is-open::backdrop{opacity:1}
+  .sheet-inner{padding:8px 16px calc(28px + env(safe-area-inset-bottom))}
   .grabber{width:36px;height:5px;border-radius:3px;background:var(--tertiary);margin:0 auto 10px}
   .sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:6px 2px 16px}
   .sheet-head h2{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
@@ -285,14 +315,20 @@
   }
   .close svg{width:13px;height:13px}
   .sheet .card{padding:16px 18px;margin-bottom:12px}
-  .sheet .label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--secondary);margin-bottom:6px}
-  .sheet .card p{font-size:16px;line-height:1.5}
+  .label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--secondary);margin-bottom:6px}
+  .sheet .card p:not(.label){font-size:16px;line-height:1.5}
+  .sheet .metrics{margin-top:6px}
   .outcome{border-left:3px solid var(--green)}
 
-  footer{text-align:center;color:var(--secondary);font-size:13px;margin-top:36px}
+  .footer{max-width:720px;margin:36px auto 0;padding:0 16px;text-align:center;color:var(--secondary);font-size:13px}
 
-  :focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:8px}
-  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .row:focus-visible,.seg:focus-visible{outline-offset:-3px}
+  .project-open:focus-visible{outline:none}
+  .project-open:focus-visible::after{outline:2px solid var(--blue);outline-offset:2px}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after,::backdrop{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+  }
   @media (max-width:380px){
     .widget .num{font-size:24px}
     .tab{width:66px}
@@ -300,15 +336,14 @@
   }
   @media (min-width:760px){
     .hero{padding-top:100px}
-    .projects{grid-template-columns:1fr}
   }
 </style>
 </head>
 <body>
 
-<div class="wallpaper" aria-hidden="true"><span></span><span></span><span></span></div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
-<a href="#main-content" style="position:absolute;left:-9999px">Skip to main content</a>
+<div class="wallpaper" aria-hidden="true"><span></span><span></span><span></span></div>
 
 <!-- Navigation bar: transparent at top, glass when scrolled -->
 <header class="navbar" id="navbar">
@@ -319,31 +354,49 @@
   </div>
 </header>
 
-<main class="wrap" id="main-content">
+<!-- ===== Floating Liquid Glass tab bar ===== -->
+<nav class="tabbar glass" id="tabbar" aria-label="Sections">
+  <a class="tab" href="#profile" aria-current="true">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Profile
+  </a>
+  <a class="tab" href="#projects">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>Projects
+  </a>
+  <a class="tab" href="#skills">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 16.5l9 5 9-5"/></svg>Skills
+  </a>
+  <a class="tab" href="#contact">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>Contact
+  </a>
+</nav>
+
+<main class="wrap" id="main-content" tabindex="-1">
 
   <!-- ===== Profile ===== -->
-  <section class="hero" id="profile" style="margin-top:0">
-    <picture>
-      <source type="image/webp" srcset="assets/profile-160.webp 160w, assets/profile-320.webp 320w, assets/profile-480.webp 480w" sizes="116px">
-      <img class="avatar" src="assets/profile-320.jpg" width="116" height="116" alt="Timur Djigkaev - DevOps and Platform Engineer" fetchpriority="high" decoding="async">
-    </picture>
-    <h1 class="large-title">Timur Djigkaev</h1>
-    <div class="subtitle">DevOps &amp; Platform Engineer</div>
-    <div class="status glass"><i></i>AWS · Kubernetes · Terraform</div>
+  <div class="intro" id="profile">
+    <div class="hero">
+      <picture>
+        <source type="image/webp" srcset="assets/profile-160.webp 160w, assets/profile-320.webp 320w, assets/profile-480.webp 480w" sizes="116px">
+        <img class="avatar" src="assets/profile-320.jpg" width="116" height="116" alt="Timur Djigkaev - DevOps and Platform Engineer" fetchpriority="high" decoding="async">
+      </picture>
+      <h1 class="large-title">Timur Djigkaev</h1>
+      <p class="subtitle">DevOps &amp; Platform Engineer</p>
+      <p class="status glass"><span class="dot" aria-hidden="true"></span>AWS · Kubernetes · Terraform</p>
 
-    <div class="actions">
-      <a class="action glass" href="resume/TimurDjigkaevDevopsCV.pdf">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Resume
-      </a>
-      <a class="action glass" href="mailto:timur.djigkaev@gmail.com">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg>Mail
-      </a>
-      <a class="action glass" href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg>GitHub
-      </a>
-      <a class="action glass" href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>LinkedIn
-      </a>
+      <div class="actions">
+        <a class="action glass" href="resume/TimurDjigkaevDevopsCV.pdf" target="_blank" rel="noopener">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Resume
+        </a>
+        <a class="action glass" href="mailto:timur.djigkaev@gmail.com">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg>Mail
+        </a>
+        <a class="action glass" href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg>GitHub
+        </a>
+        <a class="action glass" href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>LinkedIn
+        </a>
+      </div>
     </div>
 
     <div class="widgets">
@@ -351,40 +404,40 @@
       <div class="widget glass w-green"><div class="num">30%</div><div class="lbl">Cloud Cost Reduction</div></div>
       <div class="widget glass w-orange"><div class="num">50%</div><div class="lbl">Faster Deployments</div></div>
     </div>
-  </section>
 
-  <!-- ===== About ===== -->
-  <section aria-labelledby="about-h">
-    <div class="section-head"><h2 class="section-title" id="about-h">About</h2></div>
-    <div class="card about">
-      <p><strong>Five years building and running production infrastructure on AWS:</strong> Kubernetes on EKS, Terraform, and CI/CD.</p>
-      <p style="margin-top:10px;color:var(--secondary)">I build CI/CD pipelines with GitHub Actions and Jenkins, operate EKS clusters, and automate infrastructure with Terraform and Helm. Security is part of the daily work: least-privilege IAM, Kubernetes RBAC, Secrets Manager, and TLS across all environments. I monitor with Prometheus and Grafana, keep cloud costs in check, and use AI tooling (GitHub Copilot, Claude Code, MCP integrations) in real infrastructure workflows.</p>
-    </div>
-  </section>
+    <!-- ===== About ===== -->
+    <section class="intro-about" aria-labelledby="about-h">
+      <div class="section-head"><h2 class="section-title" id="about-h">About</h2></div>
+      <div class="card about">
+        <p><strong>Five years building and running production infrastructure on AWS:</strong> Kubernetes on EKS, Terraform, and CI/CD.</p>
+        <p class="about-more">I build CI/CD pipelines with GitHub Actions and Jenkins, operate EKS clusters, and automate infrastructure with Terraform and Helm. Security is part of the daily work: least-privilege IAM, Kubernetes RBAC, Secrets Manager, and TLS across all environments. I monitor with Prometheus and Grafana, keep cloud costs in check, and use AI tooling (GitHub Copilot, Claude Code, MCP integrations) in real infrastructure workflows.</p>
+      </div>
+    </section>
+  </div>
 
   <!-- ===== Core Expertise (Settings-style list) ===== -->
-  <section aria-labelledby="exp-h">
+  <section id="expertise" aria-labelledby="exp-h">
     <div class="section-head"><h2 class="section-title" id="exp-h">Core Expertise</h2></div>
     <div class="list">
       <div class="row top">
-        <div class="icon" style="background:var(--blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div>
+        <div class="icon" style="background:var(--blue)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div>
         <div class="row-body">
-          <div class="row-title">Platform &amp; DevOps Engineering</div>
-          <div class="row-sub">EKS cluster operations and Terraform-based infrastructure with GitOps delivery through GitHub Actions. Helm for workload packaging, Argo CD and Argo Rollouts for blue/green and canary releases on high-traffic services.</div>
+          <h3 class="row-title">Platform &amp; DevOps Engineering</h3>
+          <p class="row-sub">EKS cluster operations and Terraform-based infrastructure with GitOps delivery through GitHub Actions. Helm for workload packaging, Argo CD and Argo Rollouts for blue/green and canary releases on high-traffic services.</p>
         </div>
       </div>
       <div class="row top">
-        <div class="icon" style="background:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="icon" style="background:var(--green)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <div class="row-body">
-          <div class="row-title">Security &amp; Observability</div>
-          <div class="row-sub">Least-privilege IAM, Kubernetes RBAC, AWS Secrets Manager with External Secrets, TLS everywhere, and WAF in front of public endpoints. Monitoring with Prometheus, Grafana, and Datadog, plus on-call incident response on the SEV team, triaging and resolving SEV-1 and SEV-3 production incidents across internal and external applications.</div>
+          <h3 class="row-title">Security &amp; Observability</h3>
+          <p class="row-sub">Least-privilege IAM, Kubernetes RBAC, AWS Secrets Manager with External Secrets, TLS everywhere, and WAF in front of public endpoints. Monitoring with Prometheus, Grafana, and Datadog, plus on-call incident response on the SEV team, triaging and resolving SEV-1 and SEV-3 production incidents across internal and external applications.</p>
         </div>
       </div>
       <div class="row top">
-        <div class="icon" style="background:var(--purple)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
+        <div class="icon" style="background:var(--purple)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
         <div class="row-body">
-          <div class="row-title">AI-Assisted Engineering</div>
-          <div class="row-sub">GitHub Copilot and Claude Code in day-to-day development, plus custom MCP integrations for troubleshooting and documentation. AI tooling applied to real infrastructure work, with a human reviewing every change.</div>
+          <h3 class="row-title">AI-Assisted Engineering</h3>
+          <p class="row-sub">GitHub Copilot and Claude Code in day-to-day development, plus custom MCP integrations for troubleshooting and documentation. AI tooling applied to real infrastructure work, with a human reviewing every change.</p>
         </div>
       </div>
     </div>
@@ -392,37 +445,111 @@
 
   <!-- ===== Projects ===== -->
   <section id="projects" aria-labelledby="proj-h">
-    <div class="section-head"><h2 class="section-title" id="proj-h">Projects</h2><span class="section-note">3</span></div>
-    <div class="projects" id="projectList"></div>
+    <div class="section-head"><h2 class="section-title" id="proj-h">Projects</h2><span class="section-note" aria-hidden="true">3</span></div>
+    <div class="projects">
+
+      <article class="project" data-accent="blue">
+        <p class="eyebrow">Kubernetes · Delivery</p>
+        <h3><button class="project-open" type="button" aria-haspopup="dialog">EKS Autoscaling &amp; Progressive Delivery</button></h3>
+        <p class="summary">Pending-pod issues resolved, fewer failed releases, a multi-AZ database tier with automated backups, and canary or blue/green as the default path for high-traffic services.</p>
+        <ul class="chips" aria-label="Stack"><li class="chip">EKS</li><li class="chip">Cluster Autoscaler</li><li class="chip">Argo Rollouts</li><li class="chip">Helm</li><li class="chip">+3<span class="sr-only"> more</span></li></ul>
+        <div class="more" aria-hidden="true"><span>Read case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+        <div class="project-details">
+          <div class="card"><p class="label">Problem</p><p>Node scaling driven by CloudWatch alarms could not keep up with heavy workloads. Pods sat in Pending while capacity caught up, and releases to high-traffic services carried real risk.</p></div>
+          <div class="card"><p class="label">What I Built</p><p>Replaced CloudWatch-based node scaling with Cluster Autoscaler on EKS. Set up blue/green and canary deployments for high-traffic services, and automated the release path with GitHub Actions, AWS ECR, and Helm. Migrated single-instance RDS databases to Aurora PostgreSQL multi-AZ for higher availability and automated backups. Infrastructure changes go through Terraform modules and GitOps, not manual steps.</p></div>
+          <div class="card outcome"><p class="label">Outcome</p><p>Pending-pod issues resolved, fewer failed releases, a multi-AZ database tier with automated backups, and canary or blue/green as the default path for high-traffic services.</p></div>
+          <div class="card"><p class="label">Stack</p><ul class="chips"><li class="chip">EKS</li><li class="chip">Cluster Autoscaler</li><li class="chip">Argo Rollouts</li><li class="chip">Helm</li><li class="chip">AWS ECR</li><li class="chip">GitHub Actions</li><li class="chip">Aurora PostgreSQL</li></ul></div>
+        </div>
+      </article>
+
+      <article class="project" data-accent="green">
+        <p class="eyebrow">Infrastructure as Code</p>
+        <h3><button class="project-open" type="button" aria-haspopup="dialog">3-Tier Service Review System on AWS</button></h3>
+        <div class="metrics"><div class="metric"><b>80%</b><span>less manual build time</span></div><div class="metric"><b>50%</b><span>faster deployments</span></div><div class="metric"><b>0</b><span>environment drift</span></div></div>
+        <ul class="chips" aria-label="Stack"><li class="chip">Terraform</li><li class="chip">VPC</li><li class="chip">ALB</li><li class="chip">ASG</li><li class="chip">+2<span class="sr-only"> more</span></li></ul>
+        <div class="more" aria-hidden="true"><span>Read case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+        <div class="project-details">
+          <div class="card"><p class="label">Problem</p><p>Environments were built by hand: slow, inconsistent, and drifting apart between dev, stage, and prod. Frontend and backend deployments were manual and error-prone.</p></div>
+          <div class="card"><p class="label">What I Built</p><p>Reusable Terraform modules for the full stack (VPC, ALB, Auto Scaling, RDS, S3), so any environment can be rebuilt from code. Jenkins CI/CD pipelines for frontend and backend services.</p></div>
+          <div class="card"><p class="label">Results</p><div class="metrics"><div class="metric"><b>80%</b><span>less manual build time</span></div><div class="metric"><b>50%</b><span>faster deployments</span></div><div class="metric"><b>0</b><span>environment drift</span></div></div></div>
+          <div class="card"><p class="label">Stack</p><ul class="chips"><li class="chip">Terraform</li><li class="chip">VPC</li><li class="chip">ALB</li><li class="chip">ASG</li><li class="chip">RDS</li><li class="chip">Jenkins</li></ul></div>
+        </div>
+      </article>
+
+      <article class="project" data-accent="orange">
+        <p class="eyebrow">Observability · FinOps</p>
+        <h3><button class="project-open" type="button" aria-haspopup="dialog">Monitoring Migration &amp; Cloud Cost Reduction</button></h3>
+        <div class="metrics"><div class="metric"><b>30%</b><span>monthly AWS cost reduction</span></div><div class="metric"><b>2→1</b><span>monitoring stacks after migration</span></div></div>
+        <ul class="chips" aria-label="Stack"><li class="chip">Prometheus</li><li class="chip">Grafana</li><li class="chip">Helm</li><li class="chip">EKS</li><li class="chip">+2<span class="sr-only"> more</span></li></ul>
+        <div class="more" aria-hidden="true"><span>Read case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+        <div class="project-details">
+          <div class="card"><p class="label">Problem</p><p>Datadog licensing costs grew with the fleet, and the AWS bill carried obvious waste: oversized instances and autoscaling groups that were never tuned.</p></div>
+          <div class="card"><p class="label">What I Built</p><p>Migrated monitoring from Datadog to Prometheus and Grafana on EKS using custom Helm charts. Rightsized AWS resources and tuned ASG autoscaling policies across environments.</p></div>
+          <div class="card"><p class="label">Results</p><div class="metrics"><div class="metric"><b>30%</b><span>monthly AWS cost reduction</span></div><div class="metric"><b>2→1</b><span>monitoring stacks after migration</span></div></div></div>
+          <div class="card"><p class="label">Stack</p><ul class="chips"><li class="chip">Prometheus</li><li class="chip">Grafana</li><li class="chip">Helm</li><li class="chip">EKS</li><li class="chip">Datadog</li><li class="chip">ASG</li></ul></div>
+        </div>
+      </article>
+
+    </div>
   </section>
 
   <!-- ===== Technical Depth ===== -->
   <section id="skills" aria-labelledby="skills-h">
     <div class="section-head"><h2 class="section-title" id="skills-h">Technical Depth</h2></div>
     <div class="segmented-scroll">
-      <div class="segmented" id="segmented" role="tablist"><div class="seg-pill" id="segPill"></div></div>
+      <div class="segmented" id="segmented" role="tablist" aria-label="Skill areas">
+        <button class="seg" type="button" role="tab" id="tab-aws" aria-controls="panel-aws" aria-selected="true">AWS</button>
+        <button class="seg" type="button" role="tab" id="tab-k8s" aria-controls="panel-k8s" aria-selected="false" tabindex="-1">Kubernetes</button>
+        <button class="seg" type="button" role="tab" id="tab-iac" aria-controls="panel-iac" aria-selected="false" tabindex="-1">IaC &amp; CI/CD</button>
+        <button class="seg" type="button" role="tab" id="tab-obs" aria-controls="panel-obs" aria-selected="false" tabindex="-1">Observability</button>
+        <button class="seg" type="button" role="tab" id="tab-sec" aria-controls="panel-sec" aria-selected="false" tabindex="-1">Security</button>
+        <button class="seg" type="button" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="false" tabindex="-1">Scripting &amp; AI</button>
+      </div>
     </div>
-    <div class="card skills-panel" id="skillsPanel"></div>
+    <div class="card skills-panel is-active" id="panel-aws" role="tabpanel" aria-labelledby="tab-aws" tabindex="0">
+      <h3>AWS · 14 skills</h3>
+      <ul class="chips"><li class="chip">EC2</li><li class="chip">S3</li><li class="chip">RDS</li><li class="chip">Aurora PostgreSQL</li><li class="chip">VPC</li><li class="chip">ALB</li><li class="chip">Lambda</li><li class="chip">API Gateway</li><li class="chip">ECR</li><li class="chip">CloudFormation</li><li class="chip">CloudWatch</li><li class="chip">SSM</li><li class="chip">WAF</li><li class="chip">Cost optimization</li></ul>
+    </div>
+    <div class="card skills-panel" id="panel-k8s" role="tabpanel" aria-labelledby="tab-k8s" tabindex="0">
+      <h3>Kubernetes · 10 skills</h3>
+      <ul class="chips"><li class="chip">EKS</li><li class="chip">Docker</li><li class="chip">Helm</li><li class="chip">Argo CD</li><li class="chip">Argo Rollouts</li><li class="chip">Cluster Autoscaler</li><li class="chip">HPA</li><li class="chip">RBAC</li><li class="chip">External Secrets</li><li class="chip">Network policies</li></ul>
+    </div>
+    <div class="card skills-panel" id="panel-iac" role="tabpanel" aria-labelledby="tab-iac" tabindex="0">
+      <h3>IaC &amp; CI/CD · 7 skills</h3>
+      <ul class="chips"><li class="chip">Terraform</li><li class="chip">Terraform Cloud</li><li class="chip">CloudFormation</li><li class="chip">Ansible</li><li class="chip">GitHub Actions</li><li class="chip">Jenkins</li><li class="chip">Git</li></ul>
+    </div>
+    <div class="card skills-panel" id="panel-obs" role="tabpanel" aria-labelledby="tab-obs" tabindex="0">
+      <h3>Observability · 7 skills</h3>
+      <ul class="chips"><li class="chip">Prometheus</li><li class="chip">Grafana</li><li class="chip">Datadog</li><li class="chip">Kibana</li><li class="chip">CloudWatch</li><li class="chip">Alerting</li><li class="chip">Production troubleshooting</li></ul>
+    </div>
+    <div class="card skills-panel" id="panel-sec" role="tabpanel" aria-labelledby="tab-sec" tabindex="0">
+      <h3>Security · 6 skills</h3>
+      <ul class="chips"><li class="chip">IAM least-privilege</li><li class="chip">Kubernetes RBAC</li><li class="chip">AWS Secrets Manager</li><li class="chip">External Secrets</li><li class="chip">TLS</li><li class="chip">WAF</li></ul>
+    </div>
+    <div class="card skills-panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" tabindex="0">
+      <h3>Scripting &amp; AI · 8 skills</h3>
+      <ul class="chips"><li class="chip">Python</li><li class="chip">Bash</li><li class="chip">SQL</li><li class="chip">Java</li><li class="chip">Linux</li><li class="chip">GitHub Copilot</li><li class="chip">Claude Code</li><li class="chip">MCP integrations</li></ul>
+    </div>
   </section>
 
   <!-- ===== Certifications ===== -->
-  <section aria-labelledby="cert-h">
+  <section id="certifications" aria-labelledby="cert-h">
     <div class="section-head"><h2 class="section-title" id="cert-h">Certifications</h2></div>
     <div class="list">
       <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-        <div class="icon" style="background:var(--indigo)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="icon" style="background:var(--indigo)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
         <div class="row-body"><div class="row-title">CKAD: Certified Kubernetes Application Developer</div><div class="row-sub">Cloud Native Computing Foundation · 2025</div></div>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-        <div class="icon" style="background:var(--purple)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="icon" style="background:var(--purple)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
         <div class="row-body"><div class="row-title">HashiCorp Certified: Terraform Associate (003)</div><div class="row-sub">HashiCorp · 2025</div></div>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-        <div class="icon" style="background:var(--orange)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="icon" style="background:var(--orange)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
         <div class="row-body"><div class="row-title">AWS Certified Solutions Architect - Associate</div><div class="row-sub">Amazon Web Services · 2023</div></div>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
     </div>
   </section>
@@ -432,224 +559,246 @@
     <div class="section-head"><h2 class="section-title" id="contact-h">Get in Touch</h2></div>
     <div class="list">
       <a class="row" href="mailto:timur.djigkaev@gmail.com">
-        <div class="icon" style="background:var(--blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <div class="icon" style="background:var(--blue)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg></div>
         <div class="row-body"><div class="row-title">Contact Me</div><div class="row-sub">timur.djigkaev@gmail.com</div></div>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://t.me/osgrusa" target="_blank" rel="noopener">
-        <div class="icon" style="background:#2AABEE"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.8 2.5 11.2l6.1 2.2 1.9 6.2 3-3.4 4.7 3.6z"/><path d="M8.6 13.4 18 7"/></svg></div>
+        <div class="icon" style="background:#2AABEE"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.8 2.5 11.2l6.1 2.2 1.9 6.2 3-3.4 4.7 3.6z"/><path d="M8.6 13.4 18 7"/></svg></div>
         <div class="row-body"><div class="row-title">Telegram</div><div class="row-sub">@osgrusa</div></div>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
-      <a class="row" href="resume/TimurDjigkaevDevopsCV.pdf">
-        <div class="icon" style="background:var(--red)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div>
+      <a class="row" href="resume/TimurDjigkaevDevopsCV.pdf" download>
+        <div class="icon" style="background:var(--red)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div>
         <div class="row-body"><div class="row-title">Download Resume</div><div class="row-sub">PDF</div></div>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-        <div class="icon" style="background:var(--indigo)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="icon" style="background:var(--indigo)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
         <div class="row-body"><div class="row-title">View Certifications</div><div class="row-sub">Credly</div></div>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
-        <div class="icon" style="background:#3A3A3C"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div>
+        <div class="icon" style="background:#3A3A3C"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div>
         <div class="row-body"><div class="row-title">GitHub Profile</div><div class="row-sub">github.com/dzhigkaev</div></div>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
-        <div class="icon" style="background:var(--teal)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
+        <div class="icon" style="background:var(--teal)"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
         <div class="row-body"><div class="row-title">LinkedIn</div><div class="row-sub">in/djigkaev</div></div>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
     </div>
   </section>
 
-  <footer>© 2026 Timur Djigkaev. All rights reserved.</footer>
 </main>
 
-<!-- ===== Floating Liquid Glass tab bar ===== -->
-<nav class="tabbar glass" id="tabbar" aria-label="Sections">
-  <div class="tab-pill" id="tabPill"></div>
-  <a class="tab active" href="#profile" data-target="profile">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Profile
-  </a>
-  <a class="tab" href="#projects" data-target="projects">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>Projects
-  </a>
-  <a class="tab" href="#skills" data-target="skills">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 16.5l9 5 9-5"/></svg>Skills
-  </a>
-  <a class="tab" href="#contact" data-target="contact">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>Contact
-  </a>
-</nav>
+<footer class="footer">© 2026 Timur Djigkaev. All rights reserved.</footer>
 
-<!-- ===== Bottom sheet for project details ===== -->
-<div class="scrim" id="scrim"></div>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
-  <div class="grabber"></div>
-  <div class="sheet-head">
-    <h2 id="sheetTitle"></h2>
-    <button class="close" id="closeSheet" aria-label="Close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
+<!-- ===== Project details: bottom sheet (native modal dialog) ===== -->
+<dialog class="sheet" id="sheet" aria-labelledby="sheetTitle">
+  <div class="sheet-inner">
+    <div class="grabber" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="sheetTitle">Project details</h2>
+      <button class="close" id="closeSheet" type="button" aria-label="Close">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div id="sheetBody"></div>
   </div>
-  <div id="sheetBody"></div>
-</div>
+</dialog>
 
 <script>
-  // ===== Data (like a Swift model) =====
-  const projects = [
-    {
-      title: "EKS Autoscaling & Progressive Delivery",
-      eyebrow: "Kubernetes · Delivery",
-      color: "var(--blue)",
-      tags: ["EKS","Cluster Autoscaler","Argo Rollouts","Helm","AWS ECR","GitHub Actions","Aurora PostgreSQL"],
-      problem: "Node scaling driven by CloudWatch alarms could not keep up with heavy workloads. Pods sat in Pending while capacity caught up, and releases to high-traffic services carried real risk.",
-      built: "Replaced CloudWatch-based node scaling with Cluster Autoscaler on EKS. Set up blue/green and canary deployments for high-traffic services, and automated the release path with GitHub Actions, AWS ECR, and Helm. Migrated single-instance RDS databases to Aurora PostgreSQL multi-AZ for higher availability and automated backups. Infrastructure changes go through Terraform modules and GitOps, not manual steps.",
-      outcome: "Pending-pod issues resolved, fewer failed releases, a multi-AZ database tier with automated backups, and canary or blue/green as the default path for high-traffic services.",
-      metrics: []
-    },
-    {
-      title: "3-Tier Service Review System on AWS",
-      eyebrow: "Infrastructure as Code",
-      color: "var(--green)",
-      tags: ["Terraform","VPC","ALB","ASG","RDS","Jenkins"],
-      problem: "Environments were built by hand: slow, inconsistent, and drifting apart between dev, stage, and prod. Frontend and backend deployments were manual and error-prone.",
-      built: "Reusable Terraform modules for the full stack (VPC, ALB, Auto Scaling, RDS, S3), so any environment can be rebuilt from code. Jenkins CI/CD pipelines for frontend and backend services.",
-      outcome: "",
-      metrics: [["80%","less manual build time"],["50%","faster deployments"],["0","environment drift"]]
-    },
-    {
-      title: "Monitoring Migration & Cloud Cost Reduction",
-      eyebrow: "Observability · FinOps",
-      color: "var(--orange)",
-      tags: ["Prometheus","Grafana","Helm","EKS","Datadog","ASG"],
-      problem: "Datadog licensing costs grew with the fleet, and the AWS bill carried obvious waste: oversized instances and autoscaling groups that were never tuned.",
-      built: "Migrated monitoring from Datadog to Prometheus and Grafana on EKS using custom Helm charts. Rightsized AWS resources and tuned ASG autoscaling policies across environments.",
-      outcome: "",
-      metrics: [["30%","monthly AWS cost reduction"],["2→1","monitoring stacks after migration"]]
-    }
-  ];
+(() => {
+  'use strict';
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const scrollBehavior = () => (reduceMotion.matches ? 'auto' : 'smooth');
 
-  const skills = {
-    "AWS": ["EC2","S3","RDS","Aurora PostgreSQL","VPC","ALB","Lambda","API Gateway","ECR","CloudFormation","CloudWatch","SSM","WAF","Cost optimization"],
-    "Kubernetes": ["EKS","Docker","Helm","Argo CD","Argo Rollouts","Cluster Autoscaler","HPA","RBAC","External Secrets","Network policies"],
-    "IaC & CI/CD": ["Terraform","Terraform Cloud","CloudFormation","Ansible","GitHub Actions","Jenkins","Git"],
-    "Observability": ["Prometheus","Grafana","Datadog","Kibana","CloudWatch","Alerting","Production troubleshooting"],
-    "Security": ["IAM least-privilege","Kubernetes RBAC","AWS Secrets Manager","External Secrets","TLS","WAF"],
-    "Scripting & AI": ["Python","Bash","SQL","Java","Linux","GitHub Copilot","Claude Code","MCP integrations"]
-  };
+  // iOS Safari only applies :active (press feedback) when a touch listener exists
+  document.addEventListener('touchstart', () => {}, { passive: true });
 
-  const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
-  const chev = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>';
+  // Sliding pills (tab bar, segmented control) are pseudo-elements driven by CSS variables
+  function movePill(container, el) {
+    container.style.setProperty('--pill-x', el.offsetLeft + 'px');
+    container.style.setProperty('--pill-w', el.offsetWidth + 'px');
+  }
 
-  // ===== Project cards =====
-  const list = document.getElementById("projectList");
-  projects.forEach((p, i) => {
-    const btn = document.createElement("button");
-    btn.className = "project";
-    btn.setAttribute("aria-haspopup","dialog");
-    const preview = p.metrics.length
-      ? `<div class="metrics">${p.metrics.map(m=>`<div class="metric"><b style="color:${p.color}">${esc(m[0])}</b><span>${esc(m[1])}</span></div>`).join("")}</div>`
-      : `<p>${esc(p.outcome)}</p>`;
-    btn.innerHTML = `
-      <div class="eyebrow" style="color:${p.color}">${esc(p.eyebrow)}</div>
-      <h3 style="margin-top:4px">${esc(p.title)}</h3>
-      ${preview}
-      <div class="chips">${p.tags.slice(0,4).map(t=>`<span class="chip">${esc(t)}</span>`).join("")}${p.tags.length>4?`<span class="chip">+${p.tags.length-4}</span>`:""}</div>
-      <div class="more"><span>Read case study</span>${chev}</div>`;
-    btn.addEventListener("click", () => openSheet(i));
-    list.appendChild(btn);
+  // ===== Nav bar: glass once the large title scrolls away =====
+  const nav = document.getElementById('navbar');
+  const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 140);
+
+  // ===== Tab bar: active state + scroll-spy =====
+  const tabbar = document.getElementById('tabbar');
+  const tabs = [...tabbar.querySelectorAll('.tab')];
+  const targets = tabs.map((t) => document.querySelector(t.hash));
+  let currentTab = -1;
+
+  function setTab(i) {
+    if (i === currentTab) return;
+    currentTab = i;
+    tabs.forEach((t, j) => (j === i ? t.setAttribute('aria-current', 'true') : t.removeAttribute('aria-current')));
+    movePill(tabbar, tabs[i]);
+  }
+
+  function spy() {
+    const line = window.innerHeight * 0.35;
+    let i = 0;
+    targets.forEach((s, j) => { if (s.getBoundingClientRect().top <= line) i = j; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) i = targets.length - 1;
+    setTab(i);
+  }
+
+  // After a tab click, hold the clicked state until the smooth scroll settles
+  let spyPaused = false, resumeTimer;
+  function pauseSpy(ms) {
+    spyPaused = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { spyPaused = false; }, ms);
+  }
+  tabs.forEach((t, i) => t.addEventListener('click', () => { setTab(i); pauseSpy(400); }));
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      updateNav();
+      if (spyPaused) pauseSpy(150); else spy();
+    });
+  }, { passive: true });
+
+  // ===== Segmented control (WAI-ARIA tabs, automatic activation) =====
+  const seg = document.getElementById('segmented');
+  const segScroll = seg.parentElement;
+  const segTabs = [...seg.querySelectorAll('[role="tab"]')];
+  const panels = segTabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+  let currentSkill = 0;
+
+  // Scroll only the horizontal strip so the page itself never jumps
+  function revealInStrip(el) {
+    const box = segScroll.getBoundingClientRect(), r = el.getBoundingClientRect(), pad = 16;
+    let dx = 0;
+    if (r.left < box.left + pad) dx = r.left - box.left - pad;
+    else if (r.right > box.right - pad) dx = r.right - box.right + pad;
+    if (dx) segScroll.scrollBy({ left: dx, behavior: scrollBehavior() });
+  }
+
+  function selectSkill(i, focus) {
+    currentSkill = i;
+    segTabs.forEach((t, j) => {
+      t.setAttribute('aria-selected', String(j === i));
+      t.tabIndex = j === i ? 0 : -1;
+      panels[j].classList.toggle('is-active', j === i);
+    });
+    movePill(seg, segTabs[i]);
+    if (focus) segTabs[i].focus({ preventScroll: true });
+    revealInStrip(segTabs[i]);
+  }
+
+  segTabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectSkill(i));
+    t.addEventListener('keydown', (e) => {
+      const last = segTabs.length - 1;
+      const next = { ArrowRight: i === last ? 0 : i + 1, ArrowLeft: i === 0 ? last : i - 1, Home: 0, End: last }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      selectSkill(next, true);
+    });
   });
 
-  // ===== Sheet =====
-  const sheet = document.getElementById("sheet"), scrim = document.getElementById("scrim");
-  let lastFocus = null;
-  function openSheet(i){
-    const p = projects[i];
-    lastFocus = document.activeElement;
-    document.getElementById("sheetTitle").textContent = p.title;
-    document.getElementById("sheetBody").innerHTML = `
-      <div class="card"><div class="label">Problem</div><p>${esc(p.problem)}</p></div>
-      <div class="card"><div class="label">What I Built</div><p>${esc(p.built)}</p></div>
-      ${p.metrics.length ? `<div class="card"><div class="label">Results</div><div class="metrics" style="margin-top:6px">${p.metrics.map(m=>`<div class="metric"><b style="color:${p.color}">${esc(m[0])}</b><span>${esc(m[1])}</span></div>`).join("")}</div></div>` : ""}
-      ${p.outcome ? `<div class="card outcome"><div class="label">Outcome</div><p>${esc(p.outcome)}</p></div>` : ""}
-      <div class="card"><div class="label">Stack</div><div class="chips">${p.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div></div>`;
+  // ===== Project sheet =====
+  const sheet = document.getElementById('sheet');
+  const sheetTitle = document.getElementById('sheetTitle');
+  const sheetBody = document.getElementById('sheetBody');
+  const closeBtn = document.getElementById('closeSheet');
+  const phone = matchMedia('(max-width: 767px)');
+  let opener = null;
+
+  function openSheet(article, btn) {
+    if (sheet.open) return;
+    opener = btn;
+    sheetTitle.textContent = btn.textContent;
+    sheet.dataset.accent = article.dataset.accent;
+    sheetBody.replaceChildren(...[...article.querySelector('.project-details').children].map((n) => n.cloneNode(true)));
+    sheet.showModal();
     sheet.scrollTop = 0;
-    sheet.classList.add("open"); scrim.classList.add("open");
-    document.body.style.overflow = "hidden";
-    document.getElementById("closeSheet").focus();
+    document.documentElement.classList.add('sheet-open');
+    void sheet.offsetWidth; // commit the off-screen position so the slide-in animates
+    sheet.classList.add('is-open');
+    closeBtn.focus();
   }
-  function closeSheet(){
-    sheet.classList.remove("open"); scrim.classList.remove("open");
-    document.body.style.overflow = "";
-    if (lastFocus) lastFocus.focus();
-  }
-  scrim.addEventListener("click", closeSheet);
-  document.getElementById("closeSheet").addEventListener("click", closeSheet);
-  document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
 
-  // Swipe down to dismiss
-  let startY = null;
-  sheet.addEventListener("touchstart", e => { if (sheet.scrollTop <= 0) startY = e.touches[0].clientY; }, {passive:true});
-  sheet.addEventListener("touchmove", e => {
+  function closeSheet() {
+    if (!sheet.open || !sheet.classList.contains('is-open')) return;
+    sheet.classList.remove('is-open');
+    const ms = parseFloat(getComputedStyle(sheet).transitionDuration) * 1000 || 0;
+    if (!ms) { sheet.close(); return; }
+    const done = () => { clearTimeout(timer); sheet.removeEventListener('transitionend', onEnd); sheet.close(); };
+    const onEnd = (e) => { if (e.target === sheet && !e.pseudoElement) done(); };
+    const timer = setTimeout(done, ms + 80);
+    sheet.addEventListener('transitionend', onEnd);
+  }
+
+  // Single cleanup path for every way the dialog can close
+  sheet.addEventListener('close', () => {
+    sheet.classList.remove('is-open');
+    sheet.style.transform = sheet.style.transition = '';
+    document.documentElement.classList.remove('sheet-open');
+    if (opener) opener.focus({ preventScroll: true });
+    opener = null;
+  });
+  sheet.addEventListener('cancel', (e) => { e.preventDefault(); closeSheet(); }); // Esc, animated
+  closeBtn.addEventListener('click', closeSheet);
+
+  // Backdrop click lands on the <dialog> itself (content lives in .sheet-inner)
+  let downOnBackdrop = false;
+  sheet.addEventListener('pointerdown', (e) => { downOnBackdrop = e.target === sheet; });
+  sheet.addEventListener('click', (e) => { if (downOnBackdrop && e.target === sheet) closeSheet(); });
+
+  // Swipe down to dismiss (bottom sheet only, when scrolled to the top)
+  let startY = null, dy = 0;
+  sheet.addEventListener('touchstart', (e) => {
+    startY = phone.matches && sheet.scrollTop <= 0 ? e.touches[0].clientY : null;
+    dy = 0;
+  }, { passive: true });
+  sheet.addEventListener('touchmove', (e) => {
     if (startY === null) return;
-    const dy = e.touches[0].clientY - startY;
-    if (dy > 0){ sheet.style.transition = "none"; sheet.style.transform = `translate(-50%, ${dy}px)`; }
-  }, {passive:true});
-  sheet.addEventListener("touchend", e => {
+    dy = e.touches[0].clientY - startY;
+    if (dy < -4) { startY = null; sheet.style.transform = sheet.style.transition = ''; return; }
+    if (dy <= 0) return;
+    if (e.cancelable) e.preventDefault();
+    sheet.style.transition = 'none';
+    sheet.style.transform = `translateY(${dy}px)`;
+  }, { passive: false });
+  const endDrag = (e) => {
     if (startY === null) return;
-    const dy = e.changedTouches[0].clientY - startY;
-    sheet.style.transition = ""; sheet.style.transform = "";
-    if (dy > 110) closeSheet();
     startY = null;
+    sheet.style.transform = sheet.style.transition = '';
+    if (e.type === 'touchend' && dy > Math.min(120, sheet.offsetHeight / 4)) closeSheet();
+  };
+  sheet.addEventListener('touchend', endDrag);
+  sheet.addEventListener('touchcancel', endDrag);
+
+  document.querySelectorAll('.project').forEach((article) => {
+    const btn = article.querySelector('.project-open');
+    btn.addEventListener('click', () => openSheet(article, btn));
   });
 
-  // ===== Segmented control =====
-  const seg = document.getElementById("segmented"), segPill = document.getElementById("segPill"), panel = document.getElementById("skillsPanel");
-  const keys = Object.keys(skills);
-  keys.forEach((k, i) => {
-    const b = document.createElement("button");
-    b.className = "seg"; b.textContent = k; b.setAttribute("role","tab");
-    b.addEventListener("click", () => selectSkill(i));
-    seg.appendChild(b);
+  // ===== Init =====
+  updateNav();
+  spy();
+  movePill(seg, segTabs[currentSkill]);
+  new ResizeObserver(() => {
+    movePill(tabbar, tabs[currentTab]);
+    movePill(seg, segTabs[currentSkill]);
+  }).observe(document.documentElement);
+  requestAnimationFrame(() => {
+    tabbar.classList.add('ready');
+    seg.classList.add('ready');
   });
-  function selectSkill(i){
-    const btns = seg.querySelectorAll(".seg");
-    btns.forEach((b,j)=>b.setAttribute("aria-selected", j===i));
-    const b = btns[i];
-    segPill.style.left = b.offsetLeft + "px";
-    segPill.style.width = b.offsetWidth + "px";
-    b.scrollIntoView({behavior:"smooth", inline:"nearest", block:"nearest"});
-    panel.innerHTML = `<div class="fade"><h4>${esc(keys[i])} · ${skills[keys[i]].length} skills</h4><div class="chips">${skills[keys[i]].map(s=>`<span class="chip">${esc(s)}</span>`).join("")}</div></div>`;
-  }
-  // wait for fonts/layout before measuring
-  window.addEventListener("load", () => selectSkill(0));
-  selectSkill(0);
-
-  // ===== Nav bar on scroll =====
-  const nav = document.getElementById("navbar");
-  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 140);
-  window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
-
-  // ===== Tab bar active state =====
-  const tabs = [...document.querySelectorAll(".tab")], tabPill = document.getElementById("tabPill");
-  function setTab(id){
-    tabs.forEach(t => t.classList.toggle("active", t.dataset.target === id));
-    const a = tabs.find(t => t.dataset.target === id);
-    if (a){ tabPill.style.left = a.offsetLeft + "px"; tabPill.style.width = a.offsetWidth + "px"; }
-  }
-  setTab("profile");
-  window.addEventListener("load", () => setTab("profile"));
-  const targets = tabs.map(t => document.getElementById(t.dataset.target));
-  window.addEventListener("scroll", () => {
-    const y = window.scrollY + window.innerHeight * 0.35;
-    let current = "profile";
-    targets.forEach(s => { if (s && s.offsetTop <= y) current = s.id; });
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = "contact";
-    setTab(current);
-  }, {passive:true});
+})();
 </script>
 </body>
 </html>
