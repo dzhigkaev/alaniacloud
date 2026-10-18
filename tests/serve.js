@@ -36,10 +36,18 @@ const TYPES = {
   '.webp': 'image/webp',
   '.ico': 'image/x-icon',
   '.pdf': 'application/pdf',
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
 };
 
 function deployed(rel) {
-  return rel === 'index.html' || rel.startsWith('assets/') || rel.startsWith('resume/');
+  return (
+    rel === 'index.html' ||
+    rel === 'robots.txt' ||
+    rel === 'sitemap.xml' ||
+    rel.startsWith('assets/') ||
+    rel.startsWith('resume/')
+  );
 }
 
 const server = http.createServer((req, res) => {

@@ -1,0 +1,7 @@
+# alaniacloud.com — all crawlers welcome, including AI crawlers
+# (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, etc.).
+# Everything here is public; there are no private paths to hide.
+User-agent: *
+Allow: /
+
+Sitemap: https://alaniacloud.com/sitemap.xml

@@ -53,6 +53,8 @@ supply-chain best practices:
 
 ```bash
 ├── index.html                    # The site: HTML + CSS + JS, all inline
+├── robots.txt                    # Crawler rules (all bots, incl. AI, allowed)
+├── sitemap.xml                   # Sitemap for search engines
 ├── assets/
 │   ├── profile.png               # Profile image (also the social preview image)
 │   ├── profile-*.webp, *.jpg     # Resized avatar for the page

@@ -305,6 +305,16 @@ test.describe('content and links', () => {
     await expect(telegram).toContainText('@Djigkaev');
   });
 
+  test('serves robots.txt and sitemap.xml', async ({ request }) => {
+    const robots = await request.get('robots.txt');
+    expect(robots.status()).toBe(200);
+    expect(await robots.text()).toContain('Sitemap: https://alaniacloud.com/sitemap.xml');
+    const sitemap = await request.get('sitemap.xml');
+    expect(sitemap.status()).toBe(200);
+    expect(sitemap.headers()['content-type']).toContain('xml');
+    expect(await sitemap.text()).toContain('<loc>https://alaniacloud.com/</loc>');
+  });
+
   test('keeps the profile facts from the previous site', async ({ page }) => {
     await page.goto('/');
     const text = await page.locator('body').innerText();
