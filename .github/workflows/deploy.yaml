@@ -30,6 +30,8 @@ jobs:
     - name: Upload to S3
       run: |
         aws s3 cp index.html s3://alaniacloud/index.html
+        aws s3 cp robots.txt s3://alaniacloud/robots.txt --content-type "text/plain"
+        aws s3 cp sitemap.xml s3://alaniacloud/sitemap.xml --content-type "application/xml"
         aws s3 sync ./assets s3://alaniacloud/assets
         aws s3 sync ./resume s3://alaniacloud/resume
 

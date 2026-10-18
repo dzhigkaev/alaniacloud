@@ -4,7 +4,8 @@
   "description": "Welcome to the source code of my personal portfolio website: **[AlaniaCloud](https://www.alaniacloud.com)** — a fully static site hosted on **AWS S3** and served globally via **CloudFront**.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "serve": "node tests/serve.js"
   },
   "repository": {
     "type": "git",

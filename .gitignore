@@ -10,6 +10,10 @@ Thumbs.db
 # Log files
 *.log
 
+# Playwright output
+test-results/
+playwright-report/
+
 # AWS credentials (never commit your AWS config)
 .aws/
 *.pem

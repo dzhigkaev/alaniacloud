@@ -1,1252 +1,922 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Timur Djigkaev - DevOps / Platform Engineer with 5+ years on AWS, Kubernetes (EKS), and Terraform. CI/CD with GitHub Actions and Jenkins, GitOps with Argo CD, security hardening (IAM, RBAC, Secrets Manager, TLS), Prometheus/Grafana monitoring, 30% cloud cost reduction.">
-  <meta name="keywords" content="DevOps Engineer, Platform Engineer, SRE, Site Reliability Engineer, AWS, EKS, Kubernetes, Terraform, Docker, Helm, Argo CD, Argo Rollouts, GitHub Actions, Jenkins, Cluster Autoscaler, Prometheus, Grafana, IAM, RBAC, Secrets Manager, Cloud Cost Optimization, CI/CD, Infrastructure as Code, MCP, Timur Djigkaev">
-  <meta name="author" content="Timur Djigkaev">
-  <link rel="canonical" href="https://alaniacloud.com/">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Timur Djigkaev - DevOps & Platform Engineer">
-  <meta property="og:description" content="DevOps / Platform Engineer with 5+ years on AWS, Kubernetes (EKS), and Terraform. CI/CD pipelines, GitOps delivery, security hardening, and a 30% cloud cost reduction.">
-  <meta property="og:image" content="https://www.alaniacloud.com/assets/profile.png">
-  <meta property="og:url" content="https://alaniacloud.com">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Timur Djigkaev - DevOps & Platform Engineer">
-  <meta name="twitter:description" content="DevOps / Platform Engineer with 5+ years on AWS, Kubernetes (EKS), Terraform. CI/CD, GitOps, security, cloud cost optimization.">
-  <meta name="twitter:image" content="https://www.alaniacloud.com/assets/profile.png">
-
-  <title>Timur Djigkaev | DevOps &amp; Platform Engineer - AWS, Kubernetes, Terraform</title>
-
-  <!-- Structured data for Google -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Timur Djigkaev",
-    "jobTitle": "DevOps / Platform Engineer",
-    "url": "https://alaniacloud.com",
-    "email": "mailto:timur.djigkaev@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Chicago",
-      "addressRegion": "IL",
-      "addressCountry": "US"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/djigkaev",
-      "https://github.com/dzhigkaev",
-      "https://www.credly.com/users/timur-dzhigkaev"
-    ],
-    "knowsAbout": ["AWS", "Kubernetes", "EKS", "Terraform", "Docker", "Helm", "CI/CD", "GitHub Actions", "Jenkins", "Prometheus", "Grafana", "DevOps", "Platform Engineering", "Cloud Security"]
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Timur Djigkaev | DevOps &amp; Platform Engineer - AWS &amp; Kubernetes</title>
+<link rel="canonical" href="https://alaniacloud.com/">
+<meta name="author" content="Timur Djigkaev">
+<meta name="description" content="Timur Djigkaev - DevOps / Platform Engineer with 5+ years on AWS, Kubernetes (EKS), and Terraform. CI/CD with GitHub Actions and Jenkins, GitOps with Argo CD, security hardening (IAM, RBAC, Secrets Manager, TLS), Prometheus/Grafana monitoring, 30% cloud cost reduction.">
+<meta name="keywords" content="DevOps Engineer, Platform Engineer, SRE, Site Reliability Engineer, AWS, EKS, Kubernetes, Terraform, Docker, Helm, Argo CD, Argo Rollouts, GitHub Actions, Jenkins, Cluster Autoscaler, Prometheus, Grafana, IAM, RBAC, Secrets Manager, Cloud Cost Optimization, CI/CD, Infrastructure as Code, MCP, Timur Djigkaev">
+<meta property="og:title" content="Timur Djigkaev - DevOps &amp; Platform Engineer">
+<meta property="og:description" content="DevOps / Platform Engineer with 5+ years on AWS, Kubernetes (EKS), and Terraform. CI/CD pipelines, GitOps delivery, security hardening, and a 30% cloud cost reduction.">
+<meta property="og:image" content="https://www.alaniacloud.com/assets/profile.png">
+<meta property="og:url" content="https://alaniacloud.com">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Timur Djigkaev - DevOps &amp; Platform Engineer">
+<meta name="twitter:description" content="DevOps / Platform Engineer with 5+ years on AWS, Kubernetes (EKS), Terraform. CI/CD, GitOps, security, cloud cost optimization.">
+<meta name="twitter:image" content="https://www.alaniacloud.com/assets/profile.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Timur Djigkaev",
+  "jobTitle": "DevOps / Platform Engineer",
+  "url": "https://alaniacloud.com",
+  "email": "mailto:timur.djigkaev@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Chicago",
+    "addressRegion": "IL",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/djigkaev",
+    "https://github.com/dzhigkaev",
+    "https://www.credly.com/users/timur-dzhigkaev"
+  ],
+  "knowsAbout": ["AWS", "Kubernetes", "EKS", "Terraform", "Docker", "Helm", "CI/CD", "GitHub Actions", "Jenkins", "Prometheus", "Grafana", "DevOps", "Platform Engineering", "Cloud Security"]
+}
+</script>
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script>if (window.HTMLDialogElement) document.documentElement.classList.add('js')</script>
+<style>
+  /* ===== iOS system tokens ===== */
+  :root{
+    --bg:#F2F2F7;
+    --card:#FFFFFF;
+    --label:#000000;
+    --secondary:rgba(60,60,67,.78);        /* iOS uses .6; .78 keeps 4.5:1 on cards */
+    --secondary-strong:rgba(60,60,67,.88); /* text placed directly on the wallpaper */
+    --tertiary:rgba(60,60,67,.32);
+    --separator:rgba(60,60,67,.18);
+    --fill:rgba(120,120,128,.12);
+    --blue:#007AFF;
+    /* text-safe accent (WCAG AA); the vivid --blue above is for fills */
+    --tint:#0066CC;
+    --glass:rgba(255,255,255,.72);
+    --glass-solid:rgba(255,255,255,.94);   /* when blur is unavailable or unwanted */
+    --tab-pill:rgba(120,120,128,.12); --tab-active:#005FC2; /* selected tab sits on the pill, over glass */
+    --seg-active:#0066CC; /* selected skill segment: white text on it stays above 4.5:1 */
+    --glass-strong:rgba(255,255,255,.78);
+    --glass-edge:rgba(255,255,255,.85);
+    --glass-shadow:0 10px 40px rgba(0,0,0,.10), 0 1px 3px rgba(0,0,0,.06);
+    --elevated:#F2F2F7; --elevated-card:#FFFFFF; /* sheets */
+    --blob1:#7AB8FF; --blob2:#C79BFF; --blob3:#8EE3C8;
+    --radius-xl:28px; --radius-lg:22px; --radius-md:14px;
+    --gutter:16px; --content:688px;
+    --pad-l:max(var(--gutter), env(safe-area-inset-left));
+    --pad-r:max(var(--gutter), env(safe-area-inset-right));
+    --font:-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Inter, system-ui, sans-serif;
+    --rounded:ui-rounded, "SF Pro Rounded", -apple-system, system-ui, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
   }
-  </script>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='devopsGrad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23007ACC;stop-opacity:1' /><stop offset='50%' style='stop-color:%231E3A8A;stop-opacity:1' /><stop offset='100%' style='stop-color:%23FF6B35;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23devopsGrad)'/><text x='50' y='80' font-family='Arial, sans-serif' font-size='150' font-weight='900' text-anchor='middle' fill='white' stroke='%23000000' stroke-width='1'>∞</text></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='devopsGrad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23007ACC;stop-opacity:1' /><stop offset='50%' style='stop-color:%231E3A8A;stop-opacity:1' /><stop offset='100%' style='stop-color:%23FF6B35;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23devopsGrad)'/><text x='50' y='80' font-family='Arial, sans-serif' font-size='150' font-weight='900' text-anchor='middle' fill='white' stroke='%23000000' stroke-width='1'>∞</text></svg>">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0"
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --primary: #5e6ad2;
-      --dark-bg: #1a1a2e;
-      --darker-bg: #0f0f12;
-      --card-bg: rgba(26, 26, 46, 0.88);
-      --text-light: #f1f0ff;
-      --text-muted: #a0a0b8;
-      --border: rgba(45, 45, 61, 0.85);
-      --mono: ui-monospace, 'Cascadia Code', 'Consolas', monospace;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    *:focus { outline: none; }
-
-    *:focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-    @media (prefers-contrast: high) {
-      :root {
-        --text-light: #ffffff;
-        --text-muted: #e0e0e0;
-        --border: rgba(255, 255, 255, 0.4);
-      }
-    }
-
-    .skip-link {
-      position: absolute;
-      top: -100px;
-      left: -100px;
-      background: var(--primary);
-      color: white;
-      padding: 8px 12px;
-      text-decoration: none;
-      border-radius: 4px;
-      z-index: 10000;
-      font-weight: 600;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .skip-link:focus {
-      top: 6px;
-      left: 6px;
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: var(--darker-bg);
-      background-image:
-        radial-gradient(circle, rgba(94, 106, 210, 0.07) 1px, transparent 1px),
-        linear-gradient(160deg, var(--darker-bg) 0%, var(--dark-bg) 60%, #0f0f1a 100%);
-      background-size: 32px 32px, 100% 100%;
-      color: var(--text-light);
-      min-height: 100vh;
-      overflow-x: hidden;
-      line-height: 1.6;
-      scroll-behavior: smooth;
-    }
-
-    /* ─── Header ─── */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 14px 0;
-      background: rgba(10, 10, 14, 0.97);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 30px;
-    }
-
-    .logo {
-      font-size: 19px;
-      font-weight: 600;
-      color: var(--text-light);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 1001;
-    }
-
-    .logo i { color: var(--primary); }
-
-    .desktop-nav {
-      display: flex;
-      gap: 24px;
-    }
-
-    .desktop-nav a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s ease;
-    }
-
-    .desktop-nav a:hover { color: var(--text-light); }
-
-    /* Mobile nav */
-    .mobile-menu-btn {
-      display: none;
-      background: transparent;
-      color: var(--text-light);
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 1001;
-      padding: 8px;
-      border-radius: 4px;
-      width: 44px;
-      height: 44px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mobile-menu-btn:hover { background: rgba(255, 255, 255, 0.08); }
-
-    .hamburger {
-      width: 20px;
-      height: 20px;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      display: block;
-      position: absolute;
-      height: 2px;
-      width: 100%;
-      background: var(--text-light);
-      border-radius: 1px;
-      left: 0;
-      transition: 0.25s ease-in-out;
-    }
-
-    .hamburger span:nth-child(1) { top: 4px; }
-    .hamburger span:nth-child(2) { top: 9px; }
-    .hamburger span:nth-child(3) { top: 14px; }
-
-    .mobile-menu-btn.active .hamburger span:nth-child(1) { top: 9px; transform: rotate(135deg); }
-    .mobile-menu-btn.active .hamburger span:nth-child(2) { opacity: 0; left: -20px; }
-    .mobile-menu-btn.active .hamburger span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
-
-    .mobile-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 10, 14, 0.98);
-      backdrop-filter: blur(12px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      transform: translateY(-100%);
-      transition: transform 0.35s ease;
-    }
-
-    .mobile-nav.active { transform: translateY(0); }
-
-    .mobile-nav a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-size: 1.4rem;
-      margin: 12px 0;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      transition: color 0.2s;
-    }
-
-    .mobile-nav a:hover { color: var(--primary); }
-    .mobile-nav a i { width: 28px; text-align: center; }
-
-    .close-btn {
-      position: absolute;
-      top: 28px;
-      right: 28px;
-      background: transparent;
-      color: var(--text-light);
-      font-size: 26px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .close-btn:hover { transform: scale(1.1); }
-
-    /* ─── Main ─── */
-    main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 140px 30px 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    /* ─── Hero ─── */
-    .hero-section {
-      width: 100%;
-      max-width: 860px;
-      margin: 0 auto 70px;
-      text-align: center;
-    }
-
-    .avatar-container {
-      margin-bottom: 28px;
-      display: inline-block;
-    }
-
-    .avatar {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, var(--primary), #2d1b69);
-      border: 3px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
-      animation: pulse 4s ease-in-out infinite;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .avatar img.loaded { opacity: 1; }
-
-    .avatar-placeholder {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 46px;
-      color: white;
-      opacity: 0.8;
-      z-index: 2;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .avatar.image-loaded .avatar-placeholder { opacity: 0; }
-
-    .avatar:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 8px 28px rgba(0,0,0,0.45), 0 0 0 0 rgba(52,152,219,0.3); }
-      50%       { box-shadow: 0 8px 28px rgba(0,0,0,0.45), 0 0 0 12px rgba(52,152,219,0); }
-    }
-
-    .availability-signal {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(46, 204, 113, 0.08);
-      border: 1px solid rgba(46, 204, 113, 0.22);
-      color: #4ade80;
-      font-size: 0.82rem;
-      font-weight: 500;
-      padding: 5px 14px;
-      border-radius: 20px;
-      margin-bottom: 24px;
-      animation: slideInUp 0.8s ease-out both;
-    }
-
-    .available-dot {
-      width: 7px;
-      height: 7px;
-      background: #4ade80;
-      border-radius: 50%;
-      flex-shrink: 0;
-      animation: blink 2s ease-in-out infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.35; }
-    }
-
-    h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text-light);
-      animation: slideInUp 1s ease-out;
-      line-height: 1.2;
-    }
-
-    .subtitle {
-      font-size: clamp(1rem, 2.2vw, 1.15rem);
-      font-weight: 400;
-      color: var(--text-muted);
-      margin: 0 auto 20px;
-      max-width: 620px;
-      animation: slideInUp 1s ease-out 0.2s both;
-    }
-
-    .description {
-      max-width: 640px;
-      font-size: 0.96rem;
-      line-height: 1.78;
-      color: var(--text-muted);
-      margin: 0 auto 44px;
-      animation: slideInUp 1s ease-out 0.4s both;
-    }
-
-    /* Stats */
-    .stats-section {
-      display: flex;
-      justify-content: center;
-      gap: 56px;
-      animation: slideInUp 1s ease-out 0.5s both;
-    }
-
-    .stat-item { text-align: center; }
-
-    .stat-number {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--text-light);
-      display: block;
-      font-family: var(--mono);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 5px;
-      display: block;
-    }
-
-    /* ─── Section structure ─── */
-    .section-block {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 70px;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 1.55rem;
-      font-weight: 700;
-      margin-bottom: 36px;
-      color: var(--text-light);
-      position: relative;
-      display: inline-block;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 36px;
-      height: 2px;
-      background: var(--primary);
-      border-radius: 2px;
-    }
-
-    /* ─── Expertise Cards ─── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
-
-    .service-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 22px;
-      text-align: left;
-      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .service-card:hover {
-      border-color: rgba(52, 152, 219, 0.32);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
-    }
-
-    .service-icon {
-      font-size: 1.35rem;
-      margin-bottom: 14px;
-      display: block;
-      color: var(--primary);
-    }
-
-    .service-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: var(--text-light);
-    }
-
-    .service-desc {
-      font-size: 0.89rem;
-      color: var(--text-muted);
-      line-height: 1.72;
-    }
-
-    /* ─── Projects ─── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
-      text-align: left;
-    }
-
-    .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
-      border-color: rgba(52, 152, 219, 0.28);
-    }
-
-    .project-title {
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: var(--text-light);
-      line-height: 1.35;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .project-tag {
-      background: rgba(52, 152, 219, 0.07);
-      border: 1px solid rgba(52, 152, 219, 0.18);
-      color: #7dd3fc;
-      font-size: 0.7rem;
-      font-weight: 500;
-      padding: 3px 8px;
-      border-radius: 10px;
-      font-family: var(--mono);
-    }
-
-    .project-body {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      flex: 1;
-    }
-
-    .project-row-label {
-      font-size: 0.67rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 2px;
-    }
-
-    .project-text {
-      font-size: 0.87rem;
-      color: var(--text-muted);
-      line-height: 1.62;
-    }
-
-    .project-impact {
-      display: flex;
-      gap: 12px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-
-    .project-metric {
-      flex: 1;
-      min-width: 70px;
-      text-align: center;
-    }
-
-    .project-metric-number {
-      display: block;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #8b9cf4;
-      line-height: 1.1;
-      font-family: var(--mono);
-      letter-spacing: -0.02em;
-    }
-
-    .project-metric-label {
-      font-size: 0.69rem;
-      color: var(--text-muted);
-      line-height: 1.35;
-      margin-top: 3px;
-    }
-
-    /* ─── Technical Depth (table) ─── */
-    .skills-table {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      text-align: left;
-    }
-
-    .skill-row {
-      display: grid;
-      grid-template-columns: 170px 1fr;
-      padding: 14px 22px;
-      border-bottom: 1px solid var(--border);
-      gap: 24px;
-      align-items: baseline;
-      transition: background 0.2s;
-    }
-
-    .skill-row:last-child { border-bottom: none; }
-
-    .skill-row:hover { background: rgba(52, 152, 219, 0.04); }
-
-    .skill-name {
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: var(--text-light);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .skill-name i {
-      color: var(--primary);
-      width: 14px;
-      font-size: 0.8rem;
-    }
-
-    .skill-tools {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      font-family: var(--mono);
-      line-height: 1.65;
-    }
-
-    /* ─── Certifications ─── */
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .cert-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 22px 16px;
-      transition: border-color 0.25s ease, transform 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    .cert-card:hover {
-      border-color: rgba(52, 152, 219, 0.38);
-      transform: translateY(-4px);
-    }
-
-    .cert-icon-wrap {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      background: rgba(52, 152, 219, 0.1);
-      color: var(--primary);
-    }
-
-    .cert-name {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-light);
-      line-height: 1.35;
-    }
-
-    .cert-issuer {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* ─── Buttons ─── */
-    .cta-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      animation: slideInUp 1s ease-out 0.8s both;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      opacity: 0.9;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-    }
-
-    .btn:active { transform: translateY(0); }
-
-    .btn-resume         { background: #7f1d1d; color: white; }
-    .btn-certifications { background: #78350f; color: white; }
-    .btn-github         { background: #1f2937; color: white; }
-    .btn-linkedin       { background: #1e3a5f; color: white; }
-    .btn-contact        { background: #064e3b; color: white; }
-
-    /* ─── Footer ─── */
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      margin-top: 40px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-text {
-      color: var(--text-muted);
-      font-size: 0.84rem;
-    }
-
-    .section-spacer { height: 30px; }
-
-    /* ─── Animations ─── */
-    @keyframes slideInUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── Responsive ─── */
-    @media (min-width: 1024px) {
-      main { padding: 140px 60px 80px; }
-    }
-
-    @media (max-width: 992px) {
-      .desktop-nav { display: none; }
-      .mobile-menu-btn { display: flex; }
-    }
-
-    @media (max-width: 768px) {
-      header { padding: 12px 0; }
-      .header-content { padding: 0 20px; }
-      main { padding: 130px 20px 60px; }
-      .avatar { width: 140px; height: 140px; }
-      .stats-section { gap: 36px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .skill-row { grid-template-columns: 140px 1fr; gap: 16px; }
-      .cta-buttons { gap: 10px; }
-    }
-
-    @media (max-width: 600px) {
-      .stats-section { gap: 28px; }
-      .cta-buttons { flex-direction: column; align-items: center; }
-      .btn { width: 240px; justify-content: center; }
-      .cert-grid { grid-template-columns: repeat(2, 1fr); }
-      .skill-row { grid-template-columns: 1fr; gap: 4px; }
-    }
-
-    @media (max-width: 480px) {
-      .header-content { padding: 0 15px; }
-      .mobile-nav a { font-size: 1.25rem; }
-      .cert-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#000000; --card:#1C1C1E; --label:#FFFFFF;
+      --secondary:rgba(235,235,245,.62); --secondary-strong:rgba(235,235,245,.75); --tertiary:rgba(235,235,245,.3);
+      --separator:rgba(84,84,88,.55); --fill:rgba(120,120,128,.24);
+      --blue:#0A84FF;
+      --tint:#409CFF; --tab-pill:rgba(120,120,128,.16); --tab-active:#7AB8FF; --seg-active:#0071E3;
+      --glass:rgba(38,38,42,.72); --glass-strong:rgba(44,44,48,.78); --glass-solid:rgba(44,44,48,.96);
+      --glass-edge:rgba(255,255,255,.14);
+      --glass-shadow:0 10px 40px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.4);
+      --elevated:#1C1C1E; --elevated-card:#2C2C2E;
+      --blob1:#1E4C8F; --blob2:#4B2A7A; --blob3:#145A4A;
+    }
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:70px;scrollbar-gutter:stable;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  html.sheet-open{overflow:hidden}
+  body{
+    font-family:var(--font);background:var(--bg);color:var(--label);
+    -webkit-font-smoothing:antialiased;line-height:1.4;letter-spacing:-.01em;
+    padding-bottom:calc(120px + env(safe-area-inset-bottom));
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  a,button{-webkit-tap-highlight-color:transparent}
+  button{font:inherit;color:inherit}
+  ul{list-style:none}
+  svg,picture{display:block}
+  main:focus{outline:none}
+
+  .sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+  .skip-link{
+    position:fixed;z-index:100;left:16px;top:-80px;
+    padding:10px 16px;border-radius:999px;background:var(--card);color:var(--tint);font-weight:600;
+    box-shadow:var(--glass-shadow);transition:top .2s;
+  }
+  .skip-link:focus{top:calc(env(safe-area-inset-top) + 10px)}
+
+  /* Ambient wallpaper so the glass has something to refract */
+  .wallpaper{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+  .wallpaper span{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55}
+  .wallpaper span:nth-child(1){width:520px;height:520px;background:var(--blob1);top:-160px;left:-140px}
+  .wallpaper span:nth-child(2){width:460px;height:460px;background:var(--blob2);top:30%;right:-180px}
+  .wallpaper span:nth-child(3){width:420px;height:420px;background:var(--blob3);bottom:-160px;left:10%}
+
+  /* ===== Liquid Glass material ===== */
+  .glass{
+    background:var(--glass);
+    -webkit-backdrop-filter:blur(24px) saturate(180%);
+    backdrop-filter:blur(24px) saturate(180%);
+    border:1px solid var(--glass-edge);
+    box-shadow:var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.35);
+    position:relative;
+  }
+  .glass::after{ /* specular highlight */
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:linear-gradient(160deg, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 38%);
+    mix-blend-mode:soft-light;
+  }
+
+  .wrap{max-width:calc(var(--content) + 2 * var(--gutter));margin:0 auto;padding:0 var(--pad-r) 0 var(--pad-l)}
+
+  /* ===== Navigation bar ===== */
+  .navbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:calc(env(safe-area-inset-top) + 10px) var(--pad-r) 10px var(--pad-l);
+    display:flex;justify-content:center;
+  }
+  /* The glass lives on a pseudo-element: a backdrop-filter on the header itself
+     would become the containing block of the fixed tab bar inside it */
+  .navbar::before{
+    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:var(--glass-strong);
+    -webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);
+    border-bottom:.5px solid var(--separator);
+    opacity:0;transition:opacity .3s;
+  }
+  .navbar.scrolled::before{opacity:1}
+  .navbar-inner{max-width:var(--content);width:100%;display:flex;align-items:center;justify-content:space-between;height:32px}
+  .nav-title{font-weight:600;font-size:17px;opacity:0;transform:translateY(6px);transition:opacity .25s, transform .25s}
+  .navbar.scrolled .nav-title{opacity:1;transform:none}
+  .nav-btn{
+    height:34px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;
+    font-size:15px;font-weight:600;color:var(--tint);
+  }
+  /* inside the glass bar the button drops its own glass */
+  .navbar.scrolled .nav-btn{background:transparent;border-color:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .navbar.scrolled .nav-btn::after{display:none}
+  .nav-spacer{width:80px}
+
+  /* ===== Hero ===== */
+  .hero{padding-top:calc(env(safe-area-inset-top) + 64px);text-align:center}
+  .avatar{
+    display:block;width:116px;height:116px;border-radius:50%;margin:0 auto 18px;object-fit:cover;
+    border:3px solid var(--card);box-shadow:0 8px 30px rgba(0,0,0,.18);background:var(--fill);
+  }
+  .large-title{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+  .subtitle{font-size:17px;color:var(--secondary-strong);margin-top:6px}
+  .status{
+    display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+    font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;color:var(--secondary)
+  }
+  .status .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(0,122,255,.25)}
+
+  /* Contacts-style quick actions */
+  .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+  .action{
+    border-radius:var(--radius-md);padding:12px 4px 10px;display:flex;flex-direction:column;
+    align-items:center;gap:6px;color:var(--tint);font-size:12px;font-weight:500;
+    transition:transform .15s;
+  }
+  .action:active{transform:scale(.94)}
+  .action svg{width:24px;height:24px}
+
+  /* ===== Widgets ===== */
+  .widgets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+  .widget{border-radius:var(--radius-lg);padding:14px;text-align:left}
+  .widget .num{font-family:var(--rounded);font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--tint)}
+  .widget .lbl{font-size:12px;color:var(--secondary);margin-top:6px;font-weight:500;line-height:1.25}
+
+  /* ===== Sections ===== */
+  section{margin-top:36px}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 4px 10px}
+  .section-title{font-size:22px;font-weight:700;letter-spacing:-.015em}
+
+  .card{background:var(--card);border-radius:var(--radius-lg)}
+  .about{padding:16px 18px;font-size:16px;line-height:1.5}
+  .about strong{font-weight:600}
+  .about-more{margin-top:10px;color:var(--secondary)}
+
+  /* ===== Inset grouped list (Settings style) ===== */
+  .list{background:var(--card);border-radius:var(--radius-lg);overflow:hidden}
+  .row{display:flex;align-items:center;gap:12px;padding:11px 16px;position:relative;min-height:52px;transition:background .15s}
+  .row:first-child{border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+  .row:last-child{border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+  a.row:active{background-image:linear-gradient(var(--fill),var(--fill))}
+  .row + .row::before{content:"";position:absolute;top:0;right:0;left:60px;height:.5px;background:var(--separator)}
+  .icon{
+    width:32px;height:32px;border-radius:8px;flex:none;display:grid;place-items:center;color:#fff;background:var(--blue);
+  }
+  .icon svg{width:19px;height:19px}
+  .row-body{flex:1;min-width:0}
+  .row-title{font-size:17px;font-weight:400;line-height:1.25}
+  .row-sub{font-size:14px;color:var(--secondary);margin-top:2px;line-height:1.35}
+  .chev{color:var(--tertiary);width:14px;height:14px;flex:none}
+  .row.top{align-items:flex-start}
+  .row.top .icon{margin-top:2px}
+
+  /* ===== Project cards ===== */
+  .projects{display:grid;gap:12px}
+  .project{
+    position:relative;display:flex;flex-direction:column;
+    background:var(--card);border-radius:var(--radius-xl);padding:18px;
+    transition:transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s;
+  }
+  .js .project:active{transform:scale(.98)}
+  .project .eyebrow{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tint)}
+  .project h3{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.25;margin-top:4px}
+  .project-open{border:0;background:none;padding:0;font:inherit;letter-spacing:inherit;color:inherit;text-align:left;cursor:pointer}
+  .js .project-open::after{content:"";position:absolute;inset:0;border-radius:var(--radius-xl)}
+  .project .summary{font-size:15px;color:var(--secondary);margin-top:10px;line-height:1.45}
+  .metrics{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .metric{background:var(--fill);border-radius:12px;padding:8px 12px}
+  .metric b{font-family:var(--rounded);font-size:20px;display:block;line-height:1.1;color:var(--tint)}
+  .metric span{font-size:11px;color:var(--secondary);font-weight:500}
+  .more{display:none;align-items:center;justify-content:space-between;margin-top:auto;padding-top:14px;color:var(--tint);font-size:15px;font-weight:500}
+  .js .more{display:flex}
+  .more svg{width:14px;height:14px}
+  .project-details{margin-top:14px}
+  .project-details .card{background:var(--fill);padding:14px 16px;margin-top:8px}
+  .js .project-details{display:none}
+
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .chip{font-size:13px;font-weight:500;padding:5px 11px;border-radius:999px;background:var(--fill)}
+
+  /* ===== Segmented control ===== */
+  .segmented-scroll{display:none;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--pad-r)) 0 calc(-1 * var(--pad-l));padding:2px var(--pad-r) 4px var(--pad-l)}
+  .js .segmented-scroll{display:block}
+  .segmented-scroll::-webkit-scrollbar{display:none}
+  .segmented{
+    display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:var(--fill);
+    position:relative;white-space:nowrap
+  }
+  .segmented::before{ /* sliding pill, positioned by JS */
+    content:"";position:absolute;z-index:0;top:3px;bottom:3px;left:0;border-radius:999px;background:var(--seg-active);
+    width:var(--pill-w,0px);transform:translateX(var(--pill-x,0px));
+    box-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);
+  }
+  .segmented.ready::before{transition:transform .35s cubic-bezier(.3,1.3,.5,1), width .35s cubic-bezier(.3,1.3,.5,1)}
+  .seg{
+    position:relative;z-index:1;border:0;background:none;font:inherit;font-size:14px;font-weight:500;
+    padding:7px 14px;border-radius:999px;color:var(--label);cursor:pointer;transition:color .2s
+  }
+  .seg[aria-selected="true"]{color:#fff}
+  .skills-panel{padding:18px;margin-top:10px}
+  .js .skills-panel:not(.is-active){display:none}
+  .js .skills-panel.is-active{animation:fade .35s ease}
+  .skills-panel h3{font-size:15px;font-weight:600;color:var(--secondary)}
+  .skills-panel .chips{margin-top:12px}
+  /* with JS, the selected segment already names the group */
+  .js .skills-panel h3{display:none}
+  .js .skills-panel .chips{margin-top:0}
+  .skills-panel .chip{font-size:15px;padding:7px 13px}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* ===== Floating tab bar ===== */
+  .tabbar{
+    position:fixed;left:50%;transform:translateX(-50%);
+    bottom:calc(env(safe-area-inset-bottom) + 14px);z-index:60;
+    display:flex;gap:2px;padding:5px;border-radius:999px;
+  }
+  .tabbar::before{ /* sliding pill, positioned by JS */
+    content:"";position:absolute;top:5px;bottom:5px;left:0;border-radius:999px;background:var(--tab-pill);z-index:0;
+    width:var(--pill-w,0px);transform:translateX(var(--pill-x,0px));
+  }
+  .tabbar.ready::before{transition:transform .45s cubic-bezier(.3,1.35,.5,1), width .45s}
+  .tab{
+    width:76px;height:54px;border-radius:999px;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:3px;font-size:10px;font-weight:600;color:var(--label);
+    position:relative;z-index:1;transition:color .2s
+  }
+  .tab svg{width:22px;height:22px}
+  .tab[aria-current="true"]{color:var(--tab-active)}
+
+  /* ===== Bottom sheet (native <dialog>) ===== */
+  .sheet{
+    position:fixed;inset:auto 0 0;margin:0 auto;
+    width:min(720px,100%);max-width:100%;max-height:88vh;max-height:88dvh;
+    padding:0;border:0;overflow-y:auto;overscroll-behavior:contain;
+    background:var(--elevated);color:var(--label);border-radius:30px 30px 0 0;
+    box-shadow:0 -10px 40px rgba(0,0,0,.2);
+    transform:translateY(105%);
+    transition:transform .45s cubic-bezier(.2,.9,.25,1);
+  }
+  .sheet.is-open{transform:none}
+  .sheet::backdrop{background:rgba(0,0,0,.32);opacity:0;transition:opacity .3s}
+  .sheet.is-open::backdrop{opacity:1}
+  .sheet-inner{padding:8px 16px calc(28px + env(safe-area-inset-bottom))}
+  .grabber{width:36px;height:5px;border-radius:3px;background:var(--tertiary);margin:0 auto 10px}
+  .sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:6px 2px 16px}
+  .sheet-head h2{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+  .sheet-head h2:focus{outline:none} /* focused only so screen readers start at the title */
+  .close{
+    width:32px;height:32px;border-radius:50%;border:0;background:var(--fill);color:var(--secondary);
+    display:grid;place-items:center;cursor:pointer;flex:none
+  }
+  .close svg{width:13px;height:13px}
+  .sheet .card{background:var(--elevated-card);padding:16px 18px;margin-bottom:12px}
+  .label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--secondary);margin-bottom:6px}
+  .sheet .card p:not(.label){font-size:16px;line-height:1.5}
+  .sheet .metrics{margin-top:6px}
+  .outcome .label{color:var(--tint)}
+
+  .footer{max-width:calc(var(--content) + 2 * var(--gutter));margin:36px auto 0;padding:0 var(--pad-r) 0 var(--pad-l);text-align:center;color:var(--secondary-strong);font-size:13px}
+
+  :focus-visible{outline:2px solid var(--tint);outline-offset:2px}
+  .row:focus-visible,.seg:focus-visible{outline-offset:-3px}
+  .seg[aria-selected="true"]:focus-visible{outline-color:#fff} /* the ring sits on the blue pill */
+  .project-open:focus-visible{outline:none}
+  .project-open:focus-visible::after{outline:2px solid var(--tint);outline-offset:2px}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after,::backdrop{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+  }
+  @media (max-width:380px){
+    .widget .num{font-size:24px}
+    .tab{width:66px}
+    .large-title{font-size:30px}
+  }
+
+  /* ===== Glass fallbacks ===== */
+  /* No backdrop-filter support: translucent surfaces would just look washed out */
+  @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+    :root{--glass:var(--glass-solid);--glass-strong:var(--glass-solid)}
+  }
+  @media (prefers-reduced-transparency:reduce){
+    :root{--glass:var(--glass-solid);--glass-strong:var(--glass-solid)}
+    .wallpaper{display:none}
+  }
+  @media (prefers-contrast:more){
+    :root{--secondary:var(--label);--secondary-strong:var(--label);--glass:var(--glass-solid);--glass-strong:var(--glass-solid);--glass-edge:var(--separator)}
+    .card,.list,.project,.widget,.action{outline:1px solid var(--separator);outline-offset:-1px}
+  }
+  /* Windows high contrast: surfaces keep an outline, selected pills use system colors */
+  @media (forced-colors:active){
+    .card,.list,.project,.chip,.metric,.segmented{outline:1px solid transparent;outline-offset:-1px}
+    .tabbar::before,.segmented::before{forced-color-adjust:none;background:Highlight}
+    .tab[aria-current="true"],.seg[aria-selected="true"]{forced-color-adjust:none;color:HighlightText}
+  }
+  /* on desktop the list rows are separate cards, so they get the outline, not the grid */
+  @media (min-width:1024px) and (prefers-contrast:more){
+    .list{outline:0}
+    .list .row{outline:1px solid var(--separator);outline-offset:-1px}
+  }
+  @media (min-width:1024px) and (forced-colors:active){
+    .list{outline:0}
+    .list .row{outline:1px solid transparent;outline-offset:-1px}
+  }
+
+  /* ===== Hover (pointer devices only; touch keeps the iOS press states) ===== */
+  @media (hover:hover){
+    a.row:hover{background-image:linear-gradient(var(--fill),var(--fill))}
+    .action:hover,.nav-btn:hover{background:var(--glass-strong)}
+    .navbar.scrolled .nav-btn:hover{background:var(--fill)}
+    .close:hover{color:var(--label)}
+    .tab:not([aria-current]):hover,.seg[aria-selected="false"]:hover{color:var(--tint)}
+    .js .project:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.10)}
+  }
+
+  /* ===== Tablet and up: the tab bar moves to the top (iPadOS 26) ===== */
+  @media (min-width:768px){
+    :root{--gutter:24px;--content:720px}
+    html{scroll-padding-top:84px}
+    body{padding-bottom:48px}
+    .navbar{padding-top:calc(env(safe-area-inset-top) + 12px);padding-bottom:12px}
+    .navbar-inner{height:44px}
+    .nav-spacer{display:none}
+    .skip-link:focus{top:calc(env(safe-area-inset-top) + 80px)} /* below the bar, clear of the centered tabs */
+    .tabbar{top:calc(env(safe-area-inset-top) + 12px);bottom:auto;padding:4px}
+    .tabbar::before{top:4px;bottom:4px}
+    .tab{width:auto;height:36px;flex-direction:row;gap:6px;padding:0 14px;font-size:14px}
+    .tab svg{width:18px;height:18px}
+    /* once the nav bar is glass, the capsule sits in it without a second layer of glass */
+    .navbar.scrolled .tabbar{background:transparent;border-color:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+    .navbar.scrolled .tabbar::after{display:none}
+    .hero{padding-top:calc(env(safe-area-inset-top) + 104px)}
+    .large-title{font-size:40px}
+    .projects{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .project:last-child:nth-child(odd){grid-column:1 / -1}
+
+    /* project details: centered form sheet instead of a bottom sheet */
+    .sheet{
+      inset:0;margin:auto;width:min(640px, calc(100% - 64px));
+      max-height:min(85vh, 880px);max-height:min(85dvh, 880px);border-radius:28px;
+      box-shadow:0 30px 80px rgba(0,0,0,.3);
+      opacity:0;transform:translateY(24px) scale(.96);
+      transition:transform .35s cubic-bezier(.2,.9,.25,1), opacity .25s;
+    }
+    .sheet.is-open{opacity:1;transform:none}
+    .sheet-inner{padding:24px 24px 28px}
+    .grabber{display:none}
+  }
+
+  /* ===== Desktop: two-column intro, card grids ===== */
+  @media (min-width:1024px){
+    :root{--gutter:32px;--content:1120px}
+    html{scroll-padding-top:88px}
+    section{margin-top:56px}
+    .intro{
+      display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);
+      grid-template-areas:"hero about" "hero widgets";
+      column-gap:56px;row-gap:16px;align-items:start;
+      padding-top:calc(env(safe-area-inset-top) + 112px);
+    }
+    .hero{grid-area:hero;align-self:center;padding-top:0;text-align:left}
+    .avatar{width:128px;height:128px;margin:0 0 22px}
+    .large-title{font-size:48px}
+    .subtitle{font-size:20px}
+    .actions{max-width:440px}
+    .intro-about{grid-area:about;margin-top:0}
+    .widgets{grid-area:widgets;margin-top:0}
+
+    /* inset grouped lists become grids of cards */
+    .list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;background:none;border-radius:0;overflow:visible}
+    .list .row,.list .row:first-child,.list .row:last-child{background-color:var(--card);border-radius:var(--radius-lg);padding:16px}
+    .list .row + .row::before{display:none}
+    #expertise .row-title{font-weight:600}
+
+    .projects{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .project:last-child:nth-child(odd){grid-column:auto}
+  }
+  @media (min-width:1440px){
+    :root{--content:1200px}
+  }
+</style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Mobile Navigation -->
-  <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
-    <button class="close-btn" id="closeMenu" aria-label="Close mobile menu">
-      <i class="fas fa-times"></i>
-    </button>
-    <a href="#projects">
-      <i class="fas fa-folder-open" aria-hidden="true"></i> Projects
-    </a>
-    <a href="/resume/TimurDjigkaevDevopsCV.pdf" target="_blank" rel="noopener">
-      <i class="fas fa-file-alt" aria-hidden="true"></i> Resume
-    </a>
-    <a href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-      <i class="fas fa-award" aria-hidden="true"></i> Certifications
-    </a>
-    <a href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
-      <i class="fab fa-github" aria-hidden="true"></i> GitHub
-    </a>
-    <a href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
-      <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
-    </a>
-    <a href="mailto:timur.djigkaev@gmail.com">
-      <i class="fas fa-envelope" aria-hidden="true"></i> Contact
-    </a>
-  </nav>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <header role="banner">
-    <div class="header-content">
-      <div class="logo">
-        <i class="fas fa-cloud" aria-hidden="true"></i>
-        <span>Timur Djigkaev</span>
+<div class="wallpaper" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<!-- Navigation bar: transparent at top, glass when scrolled -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <div class="nav-spacer"></div>
+    <div class="nav-title">Timur Djigkaev</div>
+
+    <!-- ===== Floating Liquid Glass tab bar: bottom on phones, top center from 768px ===== -->
+    <nav class="tabbar glass" id="tabbar" aria-label="Sections">
+      <a class="tab" href="#profile" aria-current="true">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Profile
+      </a>
+      <a class="tab" href="#projects">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>Projects
+      </a>
+      <a class="tab" href="#skills">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 16.5l9 5 9-5"/></svg>Skills
+      </a>
+      <a class="tab" href="#contact">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>Contact
+      </a>
+    </nav>
+
+    <a class="nav-btn glass" href="resume/TimurDjigkaevDevopsCV.pdf" target="_blank" rel="noopener">Resume</a>
+  </div>
+</header>
+
+<main class="wrap" id="main-content" tabindex="-1">
+
+  <!-- ===== Profile ===== -->
+  <div class="intro" id="profile">
+    <div class="hero">
+      <picture>
+        <source type="image/webp" srcset="assets/profile-160.webp 160w, assets/profile-320.webp 320w, assets/profile-480.webp 480w" sizes="(min-width: 1024px) 128px, 116px">
+        <img class="avatar" src="assets/profile-320.jpg" width="116" height="116" alt="Timur Djigkaev - DevOps and Platform Engineer" fetchpriority="high" decoding="async">
+      </picture>
+      <h1 class="large-title">Timur Djigkaev</h1>
+      <p class="subtitle">DevOps &amp; Platform Engineer</p>
+      <p class="status glass"><span class="dot" aria-hidden="true"></span>AWS · Kubernetes · Terraform</p>
+
+      <div class="actions">
+        <a class="action glass" href="resume/TimurDjigkaevDevopsCV.pdf" target="_blank" rel="noopener">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Resume
+        </a>
+        <a class="action glass" href="mailto:timur.djigkaev@gmail.com">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg>Mail
+        </a>
+        <a class="action glass" href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg>GitHub
+        </a>
+        <a class="action glass" href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>LinkedIn
+        </a>
       </div>
+    </div>
 
-      <nav class="desktop-nav" role="navigation" aria-label="Main navigation">
-        <a href="#projects">
-          <i class="fas fa-folder-open" aria-hidden="true"></i> Projects
-        </a>
-        <a href="/resume/TimurDjigkaevDevopsCV.pdf" target="_blank" rel="noopener">
-          <i class="fas fa-file-alt" aria-hidden="true"></i> Resume
-        </a>
-        <a href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-          <i class="fas fa-award" aria-hidden="true"></i> Certifications
-        </a>
-        <a href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
-          <i class="fab fa-github" aria-hidden="true"></i> GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
-          <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
-        </a>
-        <a href="mailto:timur.djigkaev@gmail.com">
-          <i class="fas fa-envelope" aria-hidden="true"></i> Contact
-        </a>
-      </nav>
+    <div class="widgets">
+      <div class="widget glass"><div class="num">5+</div><div class="lbl">Years in Production</div></div>
+      <div class="widget glass"><div class="num">30%</div><div class="lbl">Cloud Cost Reduction</div></div>
+      <div class="widget glass"><div class="num">50%</div><div class="lbl">Faster Deployments</div></div>
+    </div>
 
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open mobile menu" aria-expanded="false">
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
+    <!-- ===== About ===== -->
+    <section class="intro-about" aria-labelledby="about-h">
+      <div class="section-head"><h2 class="section-title" id="about-h">About</h2></div>
+      <div class="card about">
+        <p><strong>5+ years building and running production infrastructure on AWS:</strong> Kubernetes on EKS, Terraform, and CI/CD.</p>
+        <p class="about-more">I build CI/CD pipelines with GitHub Actions and Jenkins, operate EKS clusters, and automate infrastructure with Terraform and Helm. Security is part of the daily work: least-privilege IAM, Kubernetes RBAC, Secrets Manager, and TLS across all environments. I monitor with Prometheus and Grafana, keep cloud costs in check, and use AI tooling (GitHub Copilot, Claude Code, MCP integrations) in real infrastructure workflows.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== Core Expertise (Settings-style list) ===== -->
+  <section id="expertise" aria-labelledby="exp-h">
+    <div class="section-head"><h2 class="section-title" id="exp-h">Core Expertise</h2></div>
+    <div class="list">
+      <div class="row top">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div>
+        <div class="row-body">
+          <h3 class="row-title">Platform &amp; DevOps Engineering</h3>
+          <p class="row-sub">EKS cluster operations and Terraform-based infrastructure with GitOps delivery through GitHub Actions. Helm for workload packaging, Argo CD and Argo Rollouts for blue/green and canary releases on high-traffic services.</p>
         </div>
+      </div>
+      <div class="row top">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="row-body">
+          <h3 class="row-title">Security &amp; Observability</h3>
+          <p class="row-sub">Least-privilege IAM, Kubernetes RBAC, AWS Secrets Manager with External Secrets, TLS across all environments, and WAF. Monitoring with Prometheus, Grafana, and Datadog, plus on-call on the SEV team, triaging and resolving SEV-1 to SEV-3 production incidents.</p>
+        </div>
+      </div>
+      <div class="row top">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
+        <div class="row-body">
+          <h3 class="row-title">AI-Assisted Engineering</h3>
+          <p class="row-sub">GitHub Copilot and Claude Code in day-to-day development, plus custom MCP integrations for troubleshooting and documentation. AI tooling applied to real infrastructure work, with a human reviewing every change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects ===== -->
+  <section id="projects" aria-labelledby="proj-h">
+    <div class="section-head"><h2 class="section-title" id="proj-h">Projects</h2></div>
+    <div class="projects">
+
+      <article class="project">
+        <p class="eyebrow">Kubernetes · Delivery</p>
+        <h3><button class="project-open" type="button" aria-haspopup="dialog">EKS Autoscaling &amp; Progressive Delivery</button></h3>
+        <p class="summary">Replaced CloudWatch node scaling with Cluster Autoscaler on EKS and set up blue/green and canary releases for high-traffic services.</p>
+        <ul class="chips" aria-label="Stack"><li class="chip">EKS</li><li class="chip">Cluster Autoscaler</li><li class="chip">Argo Rollouts</li><li class="chip">Helm</li><li class="chip">+2<span class="sr-only"> more</span></li></ul>
+        <div class="more" aria-hidden="true"><span>Read case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+        <div class="project-details">
+          <div class="card"><p class="label">Problem</p><p>Node scaling driven by CloudWatch alarms could not keep up with heavy workloads. Pods sat in Pending while capacity caught up, and releases to high-traffic services carried real risk.</p></div>
+          <div class="card"><p class="label">What I Built</p><p>Replaced CloudWatch-based node scaling with Cluster Autoscaler on EKS. Set up blue/green and canary deployments for high-traffic services, and automated the release path with GitHub Actions, AWS ECR, and Helm. Infrastructure changes go through Terraform modules and GitOps, not manual steps.</p></div>
+          <div class="card outcome"><p class="label">Outcome</p><p>Pending-pod issues resolved for heavy workloads, and fewer release issues.</p></div>
+          <div class="card"><p class="label">Stack</p><ul class="chips"><li class="chip">EKS</li><li class="chip">Cluster Autoscaler</li><li class="chip">Argo Rollouts</li><li class="chip">Helm</li><li class="chip">AWS ECR</li><li class="chip">GitHub Actions</li></ul></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <p class="eyebrow">Infrastructure as Code</p>
+        <h3><button class="project-open" type="button" aria-haspopup="dialog">3-Tier Service Review System on AWS</button></h3>
+        <div class="metrics"><div class="metric"><b>80%</b><span>less manual build time</span></div><div class="metric"><b>50%</b><span>faster deployments</span></div></div>
+        <ul class="chips" aria-label="Stack"><li class="chip">Terraform</li><li class="chip">VPC</li><li class="chip">ALB</li><li class="chip">ASG</li><li class="chip">+2<span class="sr-only"> more</span></li></ul>
+        <div class="more" aria-hidden="true"><span>Read case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+        <div class="project-details">
+          <div class="card"><p class="label">Problem</p><p>Environments were built by hand: slow, inconsistent, and drifting apart between dev, stage, and prod. Frontend and backend deployments were manual and error-prone.</p></div>
+          <div class="card"><p class="label">What I Built</p><p>Reusable Terraform modules for the full stack (VPC, ALB, Auto Scaling, RDS, S3), so every environment is rebuilt from the same code, with no drift between them. Jenkins CI/CD pipelines for frontend and backend services.</p></div>
+          <div class="card outcome"><p class="label">Results</p><div class="metrics"><div class="metric"><b>80%</b><span>less manual build time</span></div><div class="metric"><b>50%</b><span>faster deployments</span></div></div></div>
+          <div class="card"><p class="label">Stack</p><ul class="chips"><li class="chip">Terraform</li><li class="chip">VPC</li><li class="chip">ALB</li><li class="chip">ASG</li><li class="chip">RDS</li><li class="chip">Jenkins</li></ul></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <p class="eyebrow">Observability · FinOps</p>
+        <h3><button class="project-open" type="button" aria-haspopup="dialog">Monitoring Migration &amp; Cloud Cost Reduction</button></h3>
+        <div class="metrics"><div class="metric"><b>30%</b><span>lower cloud costs</span></div></div>
+        <ul class="chips" aria-label="Stack"><li class="chip">Prometheus</li><li class="chip">Grafana</li><li class="chip">Helm</li><li class="chip">EKS</li><li class="chip">+2<span class="sr-only"> more</span></li></ul>
+        <div class="more" aria-hidden="true"><span>Read case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+        <div class="project-details">
+          <div class="card"><p class="label">Problem</p><p>Datadog licensing costs grew with the fleet, and the AWS bill carried obvious waste: oversized instances and autoscaling groups that were never tuned.</p></div>
+          <div class="card"><p class="label">What I Built</p><p>Migrated monitoring from Datadog to Prometheus and Grafana on EKS using custom Helm charts. Rightsized AWS resources and tuned ASG autoscaling policies across environments.</p></div>
+          <div class="card outcome"><p class="label">Results</p><div class="metrics"><div class="metric"><b>30%</b><span>lower cloud costs</span></div></div></div>
+          <div class="card"><p class="label">Stack</p><ul class="chips"><li class="chip">Prometheus</li><li class="chip">Grafana</li><li class="chip">Helm</li><li class="chip">EKS</li><li class="chip">Datadog</li><li class="chip">ASG</li></ul></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== Skills ===== -->
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="section-head"><h2 class="section-title" id="skills-h">Skills</h2></div>
+    <div class="segmented-scroll">
+      <div class="segmented" id="segmented" role="tablist" aria-label="Skill areas">
+        <button class="seg" type="button" role="tab" id="tab-aws" aria-controls="panel-aws" aria-selected="true">AWS</button>
+        <button class="seg" type="button" role="tab" id="tab-k8s" aria-controls="panel-k8s" aria-selected="false" tabindex="-1">Kubernetes</button>
+        <button class="seg" type="button" role="tab" id="tab-iac" aria-controls="panel-iac" aria-selected="false" tabindex="-1">IaC &amp; CI/CD</button>
+        <button class="seg" type="button" role="tab" id="tab-obs" aria-controls="panel-obs" aria-selected="false" tabindex="-1">Observability</button>
+        <button class="seg" type="button" role="tab" id="tab-sec" aria-controls="panel-sec" aria-selected="false" tabindex="-1">Security</button>
+        <button class="seg" type="button" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="false" tabindex="-1">Scripting &amp; AI</button>
+      </div>
+    </div>
+    <div class="card skills-panel is-active" id="panel-aws" role="tabpanel" aria-labelledby="tab-aws" tabindex="0">
+      <h3>AWS</h3>
+      <ul class="chips"><li class="chip">EC2</li><li class="chip">S3</li><li class="chip">RDS</li><li class="chip">Aurora PostgreSQL</li><li class="chip">VPC</li><li class="chip">ALB</li><li class="chip">Lambda</li><li class="chip">API Gateway</li><li class="chip">ECR</li><li class="chip">CloudFormation</li><li class="chip">CloudWatch</li><li class="chip">SSM</li><li class="chip">IAM</li><li class="chip">WAF</li><li class="chip">Cost optimization</li></ul>
+    </div>
+    <div class="card skills-panel" id="panel-k8s" role="tabpanel" aria-labelledby="tab-k8s" tabindex="0">
+      <h3>Kubernetes</h3>
+      <ul class="chips"><li class="chip">EKS</li><li class="chip">Docker</li><li class="chip">Helm</li><li class="chip">Argo CD</li><li class="chip">Argo Rollouts</li><li class="chip">Cluster Autoscaler</li><li class="chip">HPA</li><li class="chip">RBAC</li><li class="chip">External Secrets</li></ul>
+    </div>
+    <div class="card skills-panel" id="panel-iac" role="tabpanel" aria-labelledby="tab-iac" tabindex="0">
+      <h3>IaC &amp; CI/CD</h3>
+      <ul class="chips"><li class="chip">Terraform</li><li class="chip">Terraform Cloud</li><li class="chip">CloudFormation</li><li class="chip">Ansible</li><li class="chip">GitHub Actions</li><li class="chip">Jenkins</li><li class="chip">Git</li><li class="chip">Blue/green &amp; canary</li></ul>
+    </div>
+    <div class="card skills-panel" id="panel-obs" role="tabpanel" aria-labelledby="tab-obs" tabindex="0">
+      <h3>Observability</h3>
+      <ul class="chips"><li class="chip">Prometheus</li><li class="chip">Grafana</li><li class="chip">Datadog</li><li class="chip">Kibana</li><li class="chip">CloudWatch</li><li class="chip">Alerting</li><li class="chip">Production troubleshooting</li></ul>
+    </div>
+    <div class="card skills-panel" id="panel-sec" role="tabpanel" aria-labelledby="tab-sec" tabindex="0">
+      <h3>Security</h3>
+      <ul class="chips"><li class="chip">IAM least-privilege</li><li class="chip">Kubernetes RBAC</li><li class="chip">AWS Secrets Manager</li><li class="chip">External Secrets</li><li class="chip">TLS</li><li class="chip">WAF</li></ul>
+    </div>
+    <div class="card skills-panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" tabindex="0">
+      <h3>Scripting &amp; AI</h3>
+      <ul class="chips"><li class="chip">Python</li><li class="chip">Bash</li><li class="chip">SQL</li><li class="chip">Java</li><li class="chip">Linux</li><li class="chip">GitHub Copilot</li><li class="chip">Claude Code</li><li class="chip">MCP integrations</li></ul>
+    </div>
+  </section>
+
+  <!-- ===== Certifications ===== -->
+  <section id="certifications" aria-labelledby="cert-h">
+    <div class="section-head"><h2 class="section-title" id="cert-h">Certifications</h2></div>
+    <div class="list">
+      <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="row-body"><div class="row-title">CKAD: Certified Kubernetes Application Developer</div><div class="row-sub">Cloud Native Computing Foundation · 2025</div></div>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="row-body"><div class="row-title">HashiCorp Certified: Terraform Associate (003)</div><div class="row-sub">HashiCorp · 2025</div></div>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="row-body"><div class="row-title">AWS Certified Solutions Architect - Associate</div><div class="row-sub">Amazon Web Services · 2023</div></div>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="section-head"><h2 class="section-title" id="contact-h">Get in Touch</h2></div>
+    <div class="list">
+      <a class="row" href="mailto:timur.djigkaev@gmail.com">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <div class="row-body"><div class="row-title">Contact Me</div><div class="row-sub">timur.djigkaev@gmail.com</div></div>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a class="row" href="https://t.me/Djigkaev" target="_blank" rel="noopener">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.8 2.5 11.2l6.1 2.2 1.9 6.2 3-3.4 4.7 3.6z"/><path d="M8.6 13.4 18 7"/></svg></div>
+        <div class="row-body"><div class="row-title">Telegram</div><div class="row-sub">@Djigkaev</div></div>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a class="row" href="resume/TimurDjigkaevDevopsCV.pdf" download>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div>
+        <div class="row-body"><div class="row-title">Download Resume</div><div class="row-sub">PDF</div></div>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="row-body"><div class="row-title">View Certifications</div><div class="row-sub">Credly</div></div>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a class="row" href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div>
+        <div class="row-body"><div class="row-title">GitHub Profile</div><div class="row-sub">github.com/dzhigkaev</div></div>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a class="row" href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
+        <div class="row-body"><div class="row-title">LinkedIn</div><div class="row-sub">in/djigkaev</div></div>
+        <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">© 2026 Timur Djigkaev. All rights reserved.</footer>
+
+<!-- ===== Project details: bottom sheet (native modal dialog) ===== -->
+<dialog class="sheet" id="sheet" aria-labelledby="sheetTitle">
+  <div class="sheet-inner">
+    <div class="grabber" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="sheetTitle" tabindex="-1">Project details</h2>
+      <button class="close" id="closeSheet" type="button" aria-label="Close">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
     </div>
-  </header>
+    <div id="sheetBody"></div>
+  </div>
+</dialog>
 
-  <main id="main-content" role="main">
+<script>
+(() => {
+  'use strict';
+  // Browsers without <dialog> (set in <head>) keep the plain static page
+  if (!document.documentElement.classList.contains('js')) return;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const scrollBehavior = () => (reduceMotion.matches ? 'auto' : 'smooth');
 
-    <!-- ─── HERO ─── -->
-    <div class="hero-section">
-      <div class="avatar-container">
-        <div class="avatar">
-          <div class="avatar-placeholder">
-            <i class="fas fa-user"></i>
-          </div>
-          <img src="/assets/profile.png"
-               alt="Timur Djigkaev - DevOps and Platform Engineer"
-               loading="eager"
-               onload="this.classList.add('loaded')">
-        </div>
-      </div>
+  // iOS Safari only applies :active (press feedback) when a touch listener exists
+  document.addEventListener('touchstart', () => {}, { passive: true });
 
-      <h1>DevOps &amp; Platform Engineer</h1>
+  // Sliding pills (tab bar, segmented control) are pseudo-elements driven by CSS variables
+  function movePill(container, el) {
+    container.style.setProperty('--pill-x', el.offsetLeft + 'px');
+    container.style.setProperty('--pill-w', el.offsetWidth + 'px');
+  }
 
-      <div class="subtitle">
-        Five years building and running production infrastructure on AWS: Kubernetes on EKS, Terraform, and CI/CD.
-      </div>
+  // ===== Nav bar: glass once the large title scrolls away =====
+  const nav = document.getElementById('navbar');
+  const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 140);
 
-      <p class="description">
-        I build CI/CD pipelines with GitHub Actions and Jenkins, operate EKS clusters, and automate
-        infrastructure with Terraform and Helm. Security is part of the daily work: least-privilege IAM,
-        Kubernetes RBAC, Secrets Manager, and TLS across all environments. I monitor with Prometheus and
-        Grafana, keep cloud costs in check, and use AI tooling (GitHub Copilot, Claude Code, MCP
-        integrations) in real infrastructure workflows.
-      </p>
+  // ===== Tab bar: active state + scroll-spy =====
+  const tabbar = document.getElementById('tabbar');
+  const tabs = [...tabbar.querySelectorAll('.tab')];
+  const targets = tabs.map((t) => document.querySelector(t.hash));
+  let currentTab = -1;
 
-      <div class="stats-section">
-        <div class="stat-item">
-          <span class="stat-number">5+</span>
-          <span class="stat-label">Years in Production</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">30%</span>
-          <span class="stat-label">Cloud Cost Reduction</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">50%</span>
-          <span class="stat-label">Faster Deployments</span>
-        </div>
-      </div>
-    </div>
+  function setTab(i) {
+    if (i === currentTab) return;
+    currentTab = i;
+    tabs.forEach((t, j) => (j === i ? t.setAttribute('aria-current', 'true') : t.removeAttribute('aria-current')));
+    movePill(tabbar, tabs[i]);
+  }
 
-    <!-- ─── CORE EXPERTISE ─── -->
-    <div class="section-block">
-      <h3 class="section-title">Core Expertise</h3>
-      <div class="services-grid">
+  function spy() {
+    const line = window.innerHeight * 0.35;
+    let i = 0;
+    targets.forEach((s, j) => { if (s.getBoundingClientRect().top <= line) i = j; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) i = targets.length - 1;
+    setTab(i);
+  }
 
-        <div class="service-card">
-          <i class="fas fa-layer-group service-icon" aria-hidden="true"></i>
-          <div class="service-title">Platform &amp; DevOps Engineering</div>
-          <div class="service-desc">
-            EKS cluster operations and Terraform-based infrastructure with GitOps delivery through
-            GitHub Actions. Helm for workload packaging, Argo CD and Argo Rollouts for blue/green
-            and canary releases on high-traffic services.
-          </div>
-        </div>
+  // After a tab click, hold the clicked state until the smooth scroll settles
+  let spyPaused = false, resumeTimer;
+  function pauseSpy(ms) {
+    spyPaused = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { spyPaused = false; }, ms);
+  }
+  tabs.forEach((t, i) => t.addEventListener('click', () => { setTab(i); pauseSpy(400); }));
 
-        <div class="service-card">
-          <i class="fas fa-shield-alt service-icon" aria-hidden="true"></i>
-          <div class="service-title">Security &amp; Observability</div>
-          <div class="service-desc">
-            Least-privilege IAM, Kubernetes RBAC, AWS Secrets Manager with External Secrets, TLS
-            everywhere, and WAF in front of public endpoints. Monitoring with Prometheus, Grafana,
-            and Datadog, plus on-call incident response on the SEV team, triaging and resolving
-            SEV-1 and SEV-3 production incidents across internal and external applications.
-          </div>
-        </div>
-
-        <div class="service-card">
-          <i class="fas fa-brain service-icon" aria-hidden="true"></i>
-          <div class="service-title">AI-Assisted Engineering</div>
-          <div class="service-desc">
-            GitHub Copilot and Claude Code in day-to-day development, plus custom MCP integrations
-            for troubleshooting and documentation. AI tooling applied to real infrastructure work,
-            with a human reviewing every change.
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ─── PROJECTS ─── -->
-    <div class="section-block" id="projects">
-      <h3 class="section-title">Projects</h3>
-      <div class="projects-grid">
-
-        <!-- Project 1: Meta -->
-        <div class="project-card">
-          <div class="project-title">EKS Autoscaling &amp; Progressive Delivery</div>
-          <div class="project-tags">
-            <span class="project-tag">EKS</span>
-            <span class="project-tag">Cluster Autoscaler</span>
-            <span class="project-tag">Argo Rollouts</span>
-            <span class="project-tag">Helm</span>
-            <span class="project-tag">AWS ECR</span>
-            <span class="project-tag">GitHub Actions</span>
-            <span class="project-tag">Aurora PostgreSQL</span>
-          </div>
-          <div class="project-body">
-            <div>
-              <div class="project-row-label">Problem</div>
-              <div class="project-text">
-                Node scaling driven by CloudWatch alarms could not keep up with heavy workloads.
-                Pods sat in Pending while capacity caught up, and releases to high-traffic
-                services carried real risk.
-              </div>
-            </div>
-            <div>
-              <div class="project-row-label">What I Built</div>
-              <div class="project-text">
-                Replaced CloudWatch-based node scaling with Cluster Autoscaler on EKS. Set up
-                blue/green and canary deployments for high-traffic services, and automated the
-                release path with GitHub Actions, AWS ECR, and Helm. Migrated single-instance RDS
-                databases to Aurora PostgreSQL multi-AZ for higher availability and automated
-                backups. Infrastructure changes go through Terraform modules and GitOps, not
-                manual steps.
-              </div>
-            </div>
-          </div>
-          <div class="project-impact">
-            <div class="project-text">
-              Outcome: pending-pod issues resolved, fewer failed releases, a multi-AZ database
-              tier with automated backups, and canary or blue/green as the default path for
-              high-traffic services.
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2: McKesson 3-tier -->
-        <div class="project-card">
-          <div class="project-title">3-Tier Service Review System on AWS</div>
-          <div class="project-tags">
-            <span class="project-tag">Terraform</span>
-            <span class="project-tag">VPC</span>
-            <span class="project-tag">ALB</span>
-            <span class="project-tag">ASG</span>
-            <span class="project-tag">RDS</span>
-            <span class="project-tag">Jenkins</span>
-          </div>
-          <div class="project-body">
-            <div>
-              <div class="project-row-label">Problem</div>
-              <div class="project-text">
-                Environments were built by hand: slow, inconsistent, and drifting apart between
-                dev, stage, and prod. Frontend and backend deployments were manual and
-                error-prone.
-              </div>
-            </div>
-            <div>
-              <div class="project-row-label">What I Built</div>
-              <div class="project-text">
-                Reusable Terraform modules for the full stack (VPC, ALB, Auto Scaling, RDS, S3),
-                so any environment can be rebuilt from code. Jenkins CI/CD pipelines for frontend
-                and backend services.
-              </div>
-            </div>
-          </div>
-          <div class="project-impact">
-            <div class="project-metric">
-              <span class="project-metric-number">80%</span>
-              <div class="project-metric-label">less manual<br>build time</div>
-            </div>
-            <div class="project-metric">
-              <span class="project-metric-number">50%</span>
-              <div class="project-metric-label">faster<br>deployments</div>
-            </div>
-            <div class="project-metric">
-              <span class="project-metric-number">0</span>
-              <div class="project-metric-label">environment<br>drift</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3: McKesson monitoring + cost -->
-        <div class="project-card">
-          <div class="project-title">Monitoring Migration &amp; Cloud Cost Reduction</div>
-          <div class="project-tags">
-            <span class="project-tag">Prometheus</span>
-            <span class="project-tag">Grafana</span>
-            <span class="project-tag">Helm</span>
-            <span class="project-tag">EKS</span>
-            <span class="project-tag">Datadog</span>
-            <span class="project-tag">ASG</span>
-          </div>
-          <div class="project-body">
-            <div>
-              <div class="project-row-label">Problem</div>
-              <div class="project-text">
-                Datadog licensing costs grew with the fleet, and the AWS bill carried obvious
-                waste: oversized instances and autoscaling groups that were never tuned.
-              </div>
-            </div>
-            <div>
-              <div class="project-row-label">What I Built</div>
-              <div class="project-text">
-                Migrated monitoring from Datadog to Prometheus and Grafana on EKS using custom
-                Helm charts. Rightsized AWS resources and tuned ASG autoscaling policies across
-                environments.
-              </div>
-            </div>
-          </div>
-          <div class="project-impact">
-            <div class="project-metric">
-              <span class="project-metric-number">30%</span>
-              <div class="project-metric-label">monthly AWS<br>cost reduction</div>
-            </div>
-            <div class="project-metric">
-              <span class="project-metric-number">2→1</span>
-              <div class="project-metric-label">monitoring stacks<br>after migration</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ─── TECHNICAL DEPTH ─── -->
-    <div class="section-block">
-      <h3 class="section-title">Technical Depth</h3>
-      <div class="skills-table">
-
-        <div class="skill-row">
-          <div class="skill-name"><i class="fab fa-aws" aria-hidden="true"></i> AWS</div>
-          <div class="skill-tools">EC2, S3, RDS, Aurora PostgreSQL, VPC, ALB, Lambda, API Gateway, ECR, CloudFormation, CloudWatch, SSM, WAF, cost optimization</div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-name"><i class="fas fa-cube" aria-hidden="true"></i> Kubernetes</div>
-          <div class="skill-tools">EKS, Docker, Helm, Argo CD, Argo Rollouts, Cluster Autoscaler, HPA, RBAC, External Secrets, network policies</div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-name"><i class="fas fa-code-branch" aria-hidden="true"></i> IaC &amp; CI/CD</div>
-          <div class="skill-tools">Terraform, Terraform Cloud, CloudFormation, Ansible, GitHub Actions, Jenkins, Git</div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-name"><i class="fas fa-chart-line" aria-hidden="true"></i> Observability</div>
-          <div class="skill-tools">Prometheus, Grafana, Datadog, Kibana, CloudWatch, alerting and production troubleshooting</div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-name"><i class="fas fa-shield-alt" aria-hidden="true"></i> Security</div>
-          <div class="skill-tools">IAM least-privilege, Kubernetes RBAC, AWS Secrets Manager, External Secrets, TLS, WAF</div>
-        </div>
-
-        <div class="skill-row">
-          <div class="skill-name"><i class="fas fa-terminal" aria-hidden="true"></i> Scripting &amp; AI</div>
-          <div class="skill-tools">Python, Bash, SQL, Java, Linux, GitHub Copilot, Claude Code, MCP integrations</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ─── CERTIFICATIONS ─── -->
-    <div class="section-block" id="certifications">
-      <h3 class="section-title">Certifications</h3>
-      <div class="cert-grid">
-
-        <a class="cert-card" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-          <div class="cert-icon-wrap">
-            <i class="fas fa-cube"></i>
-          </div>
-          <div class="cert-name">CKAD: Certified Kubernetes Application Developer</div>
-          <div class="cert-issuer">Cloud Native Computing Foundation · 2025</div>
-        </a>
-
-        <a class="cert-card" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-          <div class="cert-icon-wrap">
-            <i class="fas fa-code-branch"></i>
-          </div>
-          <div class="cert-name">HashiCorp Certified: Terraform Associate (003)</div>
-          <div class="cert-issuer">HashiCorp · 2025</div>
-        </a>
-
-        <a class="cert-card" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-          <div class="cert-icon-wrap">
-            <i class="fab fa-aws"></i>
-          </div>
-          <div class="cert-name">AWS Certified Solutions Architect - Associate</div>
-          <div class="cert-issuer">Amazon Web Services · 2023</div>
-        </a>
-
-      </div>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <!-- ─── CTA BUTTONS ─── -->
-    <div class="cta-buttons">
-      <a class="btn btn-resume" href="/resume/TimurDjigkaevDevopsCV.pdf" download>
-        <i class="fas fa-download"></i>
-        Download Resume
-      </a>
-      <a class="btn btn-certifications" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-        <i class="fas fa-award"></i>
-        View Certifications
-      </a>
-      <a class="btn btn-github" href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
-        <i class="fab fa-github"></i>
-        GitHub Profile
-      </a>
-      <a class="btn btn-linkedin" href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
-        <i class="fab fa-linkedin"></i>
-        LinkedIn
-      </a>
-      <a class="btn btn-contact" href="mailto:timur.djigkaev@gmail.com">
-        <i class="fas fa-envelope"></i>
-        Contact Me
-      </a>
-    </div>
-
-  </main>
-
-  <footer>
-    <div class="footer-text">© 2026 Timur Djigkaev. All rights reserved.</div>
-  </footer>
-
-  <script>
-    // Mobile menu
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const closeMenuBtn  = document.getElementById('closeMenu');
-    const mobileNav     = document.getElementById('mobileNav');
-
-    function toggleMobileMenu() {
-      const isOpen = mobileNav.classList.contains('active');
-      mobileNav.classList.toggle('active');
-      mobileMenuBtn.classList.toggle('active');
-      mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
-      mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Open mobile menu' : 'Close mobile menu');
-      document.body.style.overflow = !isOpen ? 'hidden' : '';
-      if (!isOpen) { closeMenuBtn.focus(); } else { mobileMenuBtn.focus(); }
-    }
-
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    closeMenuBtn.addEventListener('click', toggleMobileMenu);
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileNav.classList.contains('active')) toggleMobileMenu();
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      updateNav();
+      if (spyPaused) pauseSpy(150); else spy();
     });
+  }, { passive: true });
 
-    mobileNav.addEventListener('click', (e) => {
-      if (e.target === mobileNav) toggleMobileMenu();
+  // ===== Segmented control (WAI-ARIA tabs, automatic activation) =====
+  const seg = document.getElementById('segmented');
+  const segScroll = seg.parentElement;
+  const segTabs = [...seg.querySelectorAll('[role="tab"]')];
+  const panels = segTabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+  let currentSkill = 0;
+
+  // Scroll only the horizontal strip so the page itself never jumps
+  function revealInStrip(el) {
+    const box = segScroll.getBoundingClientRect(), r = el.getBoundingClientRect(), pad = 16;
+    let dx = 0;
+    if (r.left < box.left + pad) dx = r.left - box.left - pad;
+    else if (r.right > box.right - pad) dx = r.right - box.right + pad;
+    if (dx) segScroll.scrollBy({ left: dx, behavior: scrollBehavior() });
+  }
+
+  function selectSkill(i, focus) {
+    currentSkill = i;
+    segTabs.forEach((t, j) => {
+      t.setAttribute('aria-selected', String(j === i));
+      t.tabIndex = j === i ? 0 : -1;
+      panels[j].classList.toggle('is-active', j === i);
     });
+    movePill(seg, segTabs[i]);
+    if (focus) segTabs[i].focus({ preventScroll: true });
+    revealInStrip(segTabs[i]);
+  }
 
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', toggleMobileMenu);
+  segTabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectSkill(i));
+    t.addEventListener('keydown', (e) => {
+      const last = segTabs.length - 1;
+      const next = { ArrowRight: i === last ? 0 : i + 1, ArrowLeft: i === 0 ? last : i - 1, Home: 0, End: last }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      selectSkill(next, true);
     });
+  });
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
+  // ===== Project sheet =====
+  const sheet = document.getElementById('sheet');
+  const sheetTitle = document.getElementById('sheetTitle');
+  const sheetBody = document.getElementById('sheetBody');
+  const closeBtn = document.getElementById('closeSheet');
+  const phone = matchMedia('(max-width: 767px)');
+  let opener = null;
 
-    // Avatar image load handler
-    const avatarImg       = document.querySelector('.avatar img');
-    const avatarContainer = document.querySelector('.avatar');
+  function openSheet(article, btn) {
+    if (sheet.open) return;
+    opener = btn;
+    sheetTitle.textContent = btn.textContent;
+    sheetBody.replaceChildren(...[...article.querySelector('.project-details').children].map((n) => n.cloneNode(true)));
+    sheet.showModal();
+    sheet.scrollTop = 0;
+    document.documentElement.classList.add('sheet-open');
+    void sheet.offsetWidth; // commit the off-screen position so the slide-in animates
+    sheet.classList.add('is-open');
+    // Start at the title: screen readers read the case study from the top, and Safari
+    // doesn't draw a focus ring on the close button after a tap or click
+    sheetTitle.focus();
+  }
 
-    if (avatarImg && avatarContainer) {
-      avatarImg.addEventListener('load', function() {
-        this.classList.add('loaded');
-        avatarContainer.classList.add('image-loaded');
-      });
-      avatarImg.addEventListener('error', function() {
-        this.style.display = 'none';
-      });
-      if (avatarImg.complete && avatarImg.naturalHeight !== 0) {
-        avatarImg.classList.add('loaded');
-        avatarContainer.classList.add('image-loaded');
-      }
-    }
-  </script>
+  function closeSheet() {
+    if (!sheet.open || !sheet.classList.contains('is-open')) return;
+    sheet.classList.remove('is-open');
+    const ms = parseFloat(getComputedStyle(sheet).transitionDuration) * 1000 || 0;
+    if (!ms) { sheet.close(); return; }
+    const done = () => { clearTimeout(timer); sheet.removeEventListener('transitionend', onEnd); sheet.close(); };
+    const onEnd = (e) => { if (e.target === sheet && !e.pseudoElement) done(); };
+    const timer = setTimeout(done, ms + 80);
+    sheet.addEventListener('transitionend', onEnd);
+  }
+
+  // Single cleanup path for every way the dialog can close
+  sheet.addEventListener('close', () => {
+    sheet.classList.remove('is-open');
+    sheet.style.transform = sheet.style.transition = '';
+    document.documentElement.classList.remove('sheet-open');
+    if (opener) opener.focus({ preventScroll: true });
+    opener = null;
+  });
+  sheet.addEventListener('cancel', (e) => { e.preventDefault(); closeSheet(); }); // Esc, animated
+  closeBtn.addEventListener('click', closeSheet);
+
+  // Backdrop click lands on the <dialog> itself (content lives in .sheet-inner)
+  let downOnBackdrop = false;
+  sheet.addEventListener('pointerdown', (e) => { downOnBackdrop = e.target === sheet; });
+  sheet.addEventListener('click', (e) => { if (downOnBackdrop && e.target === sheet) closeSheet(); });
+
+  // Swipe down to dismiss (bottom sheet only, when scrolled to the top)
+  let startY = null, dy = 0;
+  sheet.addEventListener('touchstart', (e) => {
+    startY = phone.matches && sheet.scrollTop <= 0 ? e.touches[0].clientY : null;
+    dy = 0;
+  }, { passive: true });
+  sheet.addEventListener('touchmove', (e) => {
+    if (startY === null) return;
+    dy = e.touches[0].clientY - startY;
+    if (dy < -4) { startY = null; sheet.style.transform = sheet.style.transition = ''; return; }
+    if (dy <= 0) return;
+    if (e.cancelable) e.preventDefault();
+    sheet.style.transition = 'none';
+    sheet.style.transform = `translateY(${dy}px)`;
+  }, { passive: false });
+  const endDrag = (e) => {
+    if (startY === null) return;
+    startY = null;
+    sheet.style.transform = sheet.style.transition = '';
+    if (e.type === 'touchend' && dy > Math.min(120, sheet.offsetHeight / 4)) closeSheet();
+  };
+  sheet.addEventListener('touchend', endDrag);
+  sheet.addEventListener('touchcancel', endDrag);
+
+  document.querySelectorAll('.project').forEach((article) => {
+    const btn = article.querySelector('.project-open');
+    btn.addEventListener('click', () => openSheet(article, btn));
+  });
+
+  // ===== Init =====
+  updateNav();
+  spy();
+  movePill(seg, segTabs[currentSkill]);
+  new ResizeObserver(() => {
+    movePill(tabbar, tabs[currentTab]);
+    movePill(seg, segTabs[currentSkill]);
+  }).observe(document.documentElement);
+  requestAnimationFrame(() => {
+    tabbar.classList.add('ready');
+    seg.classList.add('ready');
+  });
+})();
+</script>
 </body>
 </html>
