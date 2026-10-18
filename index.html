@@ -58,17 +58,12 @@
     --separator:rgba(60,60,67,.18);
     --fill:rgba(120,120,128,.12);
     --blue:#007AFF;
-    --green:#34C759;
-    --orange:#FF9500;
-    --purple:#AF52DE;
-    --indigo:#5856D6;
-    --red:#FF3B30;
-    --teal:#30B0C7;
-    /* text-safe accents (WCAG AA); the vivid system colors above are for fills */
-    --tint:#0066CC; --green-ink:#1F7A35; --orange-ink:#B25000;
+    /* text-safe accent (WCAG AA); the vivid --blue above is for fills */
+    --tint:#0066CC;
     --glass:rgba(255,255,255,.72);
     --glass-solid:rgba(255,255,255,.94);   /* when blur is unavailable or unwanted */
     --tab-pill:rgba(120,120,128,.12); --tab-active:#005FC2; /* selected tab sits on the pill, over glass */
+    --seg-active:#0066CC; /* selected skill segment: white text on it stays above 4.5:1 */
     --glass-strong:rgba(255,255,255,.78);
     --glass-edge:rgba(255,255,255,.85);
     --glass-shadow:0 10px 40px rgba(0,0,0,.10), 0 1px 3px rgba(0,0,0,.06);
@@ -87,9 +82,8 @@
       --bg:#000000; --card:#1C1C1E; --label:#FFFFFF;
       --secondary:rgba(235,235,245,.62); --secondary-strong:rgba(235,235,245,.75); --tertiary:rgba(235,235,245,.3);
       --separator:rgba(84,84,88,.55); --fill:rgba(120,120,128,.24);
-      --blue:#0A84FF; --green:#30D158; --orange:#FF9F0A; --purple:#BF5AF2;
-      --indigo:#5E5CE6; --red:#FF453A; --teal:#40C8E0;
-      --tint:#409CFF; --green-ink:#30D158; --orange-ink:#FF9F0A; --tab-pill:rgba(120,120,128,.16); --tab-active:#7AB8FF;
+      --blue:#0A84FF;
+      --tint:#409CFF; --tab-pill:rgba(120,120,128,.16); --tab-active:#7AB8FF; --seg-active:#0071E3;
       --glass:rgba(38,38,42,.72); --glass-strong:rgba(44,44,48,.78); --glass-solid:rgba(44,44,48,.96);
       --glass-edge:rgba(255,255,255,.14);
       --glass-shadow:0 10px 40px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.4);
@@ -186,7 +180,7 @@
     display:inline-flex;align-items:center;gap:6px;margin-top:12px;
     font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;color:var(--secondary)
   }
-  .status .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(52,199,89,.25)}
+  .status .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(0,122,255,.25)}
 
   /* Contacts-style quick actions */
   .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
@@ -201,15 +195,13 @@
   /* ===== Widgets ===== */
   .widgets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
   .widget{border-radius:var(--radius-lg);padding:14px;text-align:left}
-  .widget .num{font-family:var(--rounded);font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1}
+  .widget .num{font-family:var(--rounded);font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--tint)}
   .widget .lbl{font-size:12px;color:var(--secondary);margin-top:6px;font-weight:500;line-height:1.25}
-  .w-blue .num{color:var(--tint)} .w-green .num{color:var(--green-ink)} .w-orange .num{color:var(--orange-ink)}
 
   /* ===== Sections ===== */
   section{margin-top:36px}
   .section-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 4px 10px}
   .section-title{font-size:22px;font-weight:700;letter-spacing:-.015em}
-  .section-note{font-size:15px;color:var(--secondary-strong)}
 
   .card{background:var(--card);border-radius:var(--radius-lg)}
   .about{padding:16px 18px;font-size:16px;line-height:1.5}
@@ -224,12 +216,9 @@
   a.row:active{background-image:linear-gradient(var(--fill),var(--fill))}
   .row + .row::before{content:"";position:absolute;top:0;right:0;left:60px;height:.5px;background:var(--separator)}
   .icon{
-    width:32px;height:32px;border-radius:8px;flex:none;display:grid;place-items:center;color:#fff;
+    width:32px;height:32px;border-radius:8px;flex:none;display:grid;place-items:center;color:#fff;background:var(--blue);
   }
   .icon svg{width:19px;height:19px}
-  .icon.blue{background:var(--blue)} .icon.green{background:var(--green)} .icon.purple{background:var(--purple)}
-  .icon.indigo{background:var(--indigo)} .icon.orange{background:var(--orange)} .icon.red{background:var(--red)}
-  .icon.teal{background:var(--teal)} .icon.graphite{background:#3A3A3C} .icon.telegram{background:#2AABEE}
   .row-body{flex:1;min-width:0}
   .row-title{font-size:17px;font-weight:400;line-height:1.25}
   .row-sub{font-size:14px;color:var(--secondary);margin-top:2px;line-height:1.35}
@@ -238,9 +227,6 @@
   .row.top .icon{margin-top:2px}
 
   /* ===== Project cards ===== */
-  [data-accent="blue"]{--accent:var(--tint)}
-  [data-accent="green"]{--accent:var(--green-ink)}
-  [data-accent="orange"]{--accent:var(--orange-ink)}
   .projects{display:grid;gap:12px}
   .project{
     position:relative;display:flex;flex-direction:column;
@@ -248,14 +234,14 @@
     transition:transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s;
   }
   .js .project:active{transform:scale(.98)}
-  .project .eyebrow{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--accent)}
+  .project .eyebrow{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tint)}
   .project h3{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.25;margin-top:4px}
   .project-open{border:0;background:none;padding:0;font:inherit;letter-spacing:inherit;color:inherit;text-align:left;cursor:pointer}
   .js .project-open::after{content:"";position:absolute;inset:0;border-radius:var(--radius-xl)}
   .project .summary{font-size:15px;color:var(--secondary);margin-top:10px;line-height:1.45}
   .metrics{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
   .metric{background:var(--fill);border-radius:12px;padding:8px 12px}
-  .metric b{font-family:var(--rounded);font-size:20px;display:block;line-height:1.1;color:var(--accent)}
+  .metric b{font-family:var(--rounded);font-size:20px;display:block;line-height:1.1;color:var(--tint)}
   .metric span{font-size:11px;color:var(--secondary);font-weight:500}
   .more{display:none;align-items:center;justify-content:space-between;margin-top:auto;padding-top:14px;color:var(--tint);font-size:15px;font-weight:500}
   .js .more{display:flex}
@@ -276,7 +262,7 @@
     position:relative;white-space:nowrap
   }
   .segmented::before{ /* sliding pill, positioned by JS */
-    content:"";position:absolute;z-index:0;top:3px;bottom:3px;left:0;border-radius:999px;background:var(--card);
+    content:"";position:absolute;z-index:0;top:3px;bottom:3px;left:0;border-radius:999px;background:var(--seg-active);
     width:var(--pill-w,0px);transform:translateX(var(--pill-x,0px));
     box-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);
   }
@@ -285,11 +271,15 @@
     position:relative;z-index:1;border:0;background:none;font:inherit;font-size:14px;font-weight:500;
     padding:7px 14px;border-radius:999px;color:var(--label);cursor:pointer;transition:color .2s
   }
+  .seg[aria-selected="true"]{color:#fff}
   .skills-panel{padding:18px;margin-top:10px}
   .js .skills-panel:not(.is-active){display:none}
   .js .skills-panel.is-active{animation:fade .35s ease}
   .skills-panel h3{font-size:15px;font-weight:600;color:var(--secondary)}
   .skills-panel .chips{margin-top:12px}
+  /* with JS, the selected segment already names the group */
+  .js .skills-panel h3{display:none}
+  .js .skills-panel .chips{margin-top:0}
   .skills-panel .chip{font-size:15px;padding:7px 13px}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
@@ -339,12 +329,13 @@
   .label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--secondary);margin-bottom:6px}
   .sheet .card p:not(.label){font-size:16px;line-height:1.5}
   .sheet .metrics{margin-top:6px}
-  .outcome{border-left:3px solid var(--green)}
+  .outcome .label{color:var(--tint)}
 
   .footer{max-width:calc(var(--content) + 2 * var(--gutter));margin:36px auto 0;padding:0 var(--pad-r) 0 var(--pad-l);text-align:center;color:var(--secondary-strong);font-size:13px}
 
   :focus-visible{outline:2px solid var(--tint);outline-offset:2px}
   .row:focus-visible,.seg:focus-visible{outline-offset:-3px}
+  .seg[aria-selected="true"]:focus-visible{outline-color:#fff} /* the ring sits on the blue pill */
   .project-open:focus-visible{outline:none}
   .project-open:focus-visible::after{outline:2px solid var(--tint);outline-offset:2px}
   @media (prefers-reduced-motion: reduce){
@@ -490,7 +481,7 @@
       </a>
     </nav>
 
-    <a class="nav-btn glass" href="mailto:timur.djigkaev@gmail.com" aria-label="Contact by email">Contact</a>
+    <a class="nav-btn glass" href="resume/TimurDjigkaevDevopsCV.pdf" target="_blank" rel="noopener">Resume</a>
   </div>
 </header>
 
@@ -524,16 +515,16 @@
     </div>
 
     <div class="widgets">
-      <div class="widget glass w-blue"><div class="num">5+</div><div class="lbl">Years in Production</div></div>
-      <div class="widget glass w-green"><div class="num">30%</div><div class="lbl">Cloud Cost Reduction</div></div>
-      <div class="widget glass w-orange"><div class="num">50%</div><div class="lbl">Faster Deployments</div></div>
+      <div class="widget glass"><div class="num">5+</div><div class="lbl">Years in Production</div></div>
+      <div class="widget glass"><div class="num">30%</div><div class="lbl">Cloud Cost Reduction</div></div>
+      <div class="widget glass"><div class="num">50%</div><div class="lbl">Faster Deployments</div></div>
     </div>
 
     <!-- ===== About ===== -->
     <section class="intro-about" aria-labelledby="about-h">
       <div class="section-head"><h2 class="section-title" id="about-h">About</h2></div>
       <div class="card about">
-        <p><strong>Five years building and running production infrastructure on AWS:</strong> Kubernetes on EKS, Terraform, and CI/CD.</p>
+        <p><strong>5+ years building and running production infrastructure on AWS:</strong> Kubernetes on EKS, Terraform, and CI/CD.</p>
         <p class="about-more">I build CI/CD pipelines with GitHub Actions and Jenkins, operate EKS clusters, and automate infrastructure with Terraform and Helm. Security is part of the daily work: least-privilege IAM, Kubernetes RBAC, Secrets Manager, and TLS across all environments. I monitor with Prometheus and Grafana, keep cloud costs in check, and use AI tooling (GitHub Copilot, Claude Code, MCP integrations) in real infrastructure workflows.</p>
       </div>
     </section>
@@ -544,21 +535,21 @@
     <div class="section-head"><h2 class="section-title" id="exp-h">Core Expertise</h2></div>
     <div class="list">
       <div class="row top">
-        <div class="icon blue"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div>
         <div class="row-body">
           <h3 class="row-title">Platform &amp; DevOps Engineering</h3>
           <p class="row-sub">EKS cluster operations and Terraform-based infrastructure with GitOps delivery through GitHub Actions. Helm for workload packaging, Argo CD and Argo Rollouts for blue/green and canary releases on high-traffic services.</p>
         </div>
       </div>
       <div class="row top">
-        <div class="icon green"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <div class="row-body">
           <h3 class="row-title">Security &amp; Observability</h3>
-          <p class="row-sub">Least-privilege IAM, Kubernetes RBAC, AWS Secrets Manager with External Secrets, TLS everywhere, and WAF in front of public endpoints. Monitoring with Prometheus, Grafana, and Datadog, plus on-call incident response on the SEV team, triaging and resolving SEV-1 and SEV-3 production incidents across internal and external applications.</p>
+          <p class="row-sub">Least-privilege IAM, Kubernetes RBAC, AWS Secrets Manager with External Secrets, TLS across all environments, and WAF. Monitoring with Prometheus, Grafana, and Datadog, plus on-call on the SEV team, triaging and resolving SEV-1 to SEV-3 production incidents.</p>
         </div>
       </div>
       <div class="row top">
-        <div class="icon purple"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
         <div class="row-body">
           <h3 class="row-title">AI-Assisted Engineering</h3>
           <p class="row-sub">GitHub Copilot and Claude Code in day-to-day development, plus custom MCP integrations for troubleshooting and documentation. AI tooling applied to real infrastructure work, with a human reviewing every change.</p>
@@ -569,47 +560,47 @@
 
   <!-- ===== Projects ===== -->
   <section id="projects" aria-labelledby="proj-h">
-    <div class="section-head"><h2 class="section-title" id="proj-h">Projects</h2><span class="section-note" aria-hidden="true">3</span></div>
+    <div class="section-head"><h2 class="section-title" id="proj-h">Projects</h2></div>
     <div class="projects">
 
-      <article class="project" data-accent="blue">
+      <article class="project">
         <p class="eyebrow">Kubernetes · Delivery</p>
         <h3><button class="project-open" type="button" aria-haspopup="dialog">EKS Autoscaling &amp; Progressive Delivery</button></h3>
-        <p class="summary">Pending-pod issues resolved, fewer failed releases, a multi-AZ database tier with automated backups, and canary or blue/green as the default path for high-traffic services.</p>
-        <ul class="chips" aria-label="Stack"><li class="chip">EKS</li><li class="chip">Cluster Autoscaler</li><li class="chip">Argo Rollouts</li><li class="chip">Helm</li><li class="chip">+3<span class="sr-only"> more</span></li></ul>
+        <p class="summary">Replaced CloudWatch node scaling with Cluster Autoscaler on EKS and set up blue/green and canary releases for high-traffic services.</p>
+        <ul class="chips" aria-label="Stack"><li class="chip">EKS</li><li class="chip">Cluster Autoscaler</li><li class="chip">Argo Rollouts</li><li class="chip">Helm</li><li class="chip">+2<span class="sr-only"> more</span></li></ul>
         <div class="more" aria-hidden="true"><span>Read case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
         <div class="project-details">
           <div class="card"><p class="label">Problem</p><p>Node scaling driven by CloudWatch alarms could not keep up with heavy workloads. Pods sat in Pending while capacity caught up, and releases to high-traffic services carried real risk.</p></div>
-          <div class="card"><p class="label">What I Built</p><p>Replaced CloudWatch-based node scaling with Cluster Autoscaler on EKS. Set up blue/green and canary deployments for high-traffic services, and automated the release path with GitHub Actions, AWS ECR, and Helm. Migrated single-instance RDS databases to Aurora PostgreSQL multi-AZ for higher availability and automated backups. Infrastructure changes go through Terraform modules and GitOps, not manual steps.</p></div>
-          <div class="card outcome"><p class="label">Outcome</p><p>Pending-pod issues resolved, fewer failed releases, a multi-AZ database tier with automated backups, and canary or blue/green as the default path for high-traffic services.</p></div>
-          <div class="card"><p class="label">Stack</p><ul class="chips"><li class="chip">EKS</li><li class="chip">Cluster Autoscaler</li><li class="chip">Argo Rollouts</li><li class="chip">Helm</li><li class="chip">AWS ECR</li><li class="chip">GitHub Actions</li><li class="chip">Aurora PostgreSQL</li></ul></div>
+          <div class="card"><p class="label">What I Built</p><p>Replaced CloudWatch-based node scaling with Cluster Autoscaler on EKS. Set up blue/green and canary deployments for high-traffic services, and automated the release path with GitHub Actions, AWS ECR, and Helm. Infrastructure changes go through Terraform modules and GitOps, not manual steps.</p></div>
+          <div class="card outcome"><p class="label">Outcome</p><p>Pending-pod issues resolved for heavy workloads, and fewer release issues.</p></div>
+          <div class="card"><p class="label">Stack</p><ul class="chips"><li class="chip">EKS</li><li class="chip">Cluster Autoscaler</li><li class="chip">Argo Rollouts</li><li class="chip">Helm</li><li class="chip">AWS ECR</li><li class="chip">GitHub Actions</li></ul></div>
         </div>
       </article>
 
-      <article class="project" data-accent="green">
+      <article class="project">
         <p class="eyebrow">Infrastructure as Code</p>
         <h3><button class="project-open" type="button" aria-haspopup="dialog">3-Tier Service Review System on AWS</button></h3>
-        <div class="metrics"><div class="metric"><b>80%</b><span>less manual build time</span></div><div class="metric"><b>50%</b><span>faster deployments</span></div><div class="metric"><b>0</b><span>environment drift</span></div></div>
+        <div class="metrics"><div class="metric"><b>80%</b><span>less manual build time</span></div><div class="metric"><b>50%</b><span>faster deployments</span></div></div>
         <ul class="chips" aria-label="Stack"><li class="chip">Terraform</li><li class="chip">VPC</li><li class="chip">ALB</li><li class="chip">ASG</li><li class="chip">+2<span class="sr-only"> more</span></li></ul>
         <div class="more" aria-hidden="true"><span>Read case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
         <div class="project-details">
           <div class="card"><p class="label">Problem</p><p>Environments were built by hand: slow, inconsistent, and drifting apart between dev, stage, and prod. Frontend and backend deployments were manual and error-prone.</p></div>
-          <div class="card"><p class="label">What I Built</p><p>Reusable Terraform modules for the full stack (VPC, ALB, Auto Scaling, RDS, S3), so any environment can be rebuilt from code. Jenkins CI/CD pipelines for frontend and backend services.</p></div>
-          <div class="card"><p class="label">Results</p><div class="metrics"><div class="metric"><b>80%</b><span>less manual build time</span></div><div class="metric"><b>50%</b><span>faster deployments</span></div><div class="metric"><b>0</b><span>environment drift</span></div></div></div>
+          <div class="card"><p class="label">What I Built</p><p>Reusable Terraform modules for the full stack (VPC, ALB, Auto Scaling, RDS, S3), so every environment is rebuilt from the same code, with no drift between them. Jenkins CI/CD pipelines for frontend and backend services.</p></div>
+          <div class="card outcome"><p class="label">Results</p><div class="metrics"><div class="metric"><b>80%</b><span>less manual build time</span></div><div class="metric"><b>50%</b><span>faster deployments</span></div></div></div>
           <div class="card"><p class="label">Stack</p><ul class="chips"><li class="chip">Terraform</li><li class="chip">VPC</li><li class="chip">ALB</li><li class="chip">ASG</li><li class="chip">RDS</li><li class="chip">Jenkins</li></ul></div>
         </div>
       </article>
 
-      <article class="project" data-accent="orange">
+      <article class="project">
         <p class="eyebrow">Observability · FinOps</p>
         <h3><button class="project-open" type="button" aria-haspopup="dialog">Monitoring Migration &amp; Cloud Cost Reduction</button></h3>
-        <div class="metrics"><div class="metric"><b>30%</b><span>monthly AWS cost reduction</span></div><div class="metric"><b>2→1</b><span>monitoring stacks after migration</span></div></div>
+        <div class="metrics"><div class="metric"><b>30%</b><span>lower cloud costs</span></div></div>
         <ul class="chips" aria-label="Stack"><li class="chip">Prometheus</li><li class="chip">Grafana</li><li class="chip">Helm</li><li class="chip">EKS</li><li class="chip">+2<span class="sr-only"> more</span></li></ul>
         <div class="more" aria-hidden="true"><span>Read case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
         <div class="project-details">
           <div class="card"><p class="label">Problem</p><p>Datadog licensing costs grew with the fleet, and the AWS bill carried obvious waste: oversized instances and autoscaling groups that were never tuned.</p></div>
           <div class="card"><p class="label">What I Built</p><p>Migrated monitoring from Datadog to Prometheus and Grafana on EKS using custom Helm charts. Rightsized AWS resources and tuned ASG autoscaling policies across environments.</p></div>
-          <div class="card"><p class="label">Results</p><div class="metrics"><div class="metric"><b>30%</b><span>monthly AWS cost reduction</span></div><div class="metric"><b>2→1</b><span>monitoring stacks after migration</span></div></div></div>
+          <div class="card outcome"><p class="label">Results</p><div class="metrics"><div class="metric"><b>30%</b><span>lower cloud costs</span></div></div></div>
           <div class="card"><p class="label">Stack</p><ul class="chips"><li class="chip">Prometheus</li><li class="chip">Grafana</li><li class="chip">Helm</li><li class="chip">EKS</li><li class="chip">Datadog</li><li class="chip">ASG</li></ul></div>
         </div>
       </article>
@@ -617,47 +608,42 @@
     </div>
   </section>
 
-  <!-- ===== Technical Depth ===== -->
+  <!-- ===== Skills ===== -->
   <section id="skills" aria-labelledby="skills-h">
-    <div class="section-head"><h2 class="section-title" id="skills-h">Technical Depth</h2></div>
+    <div class="section-head"><h2 class="section-title" id="skills-h">Skills</h2></div>
     <div class="segmented-scroll">
       <div class="segmented" id="segmented" role="tablist" aria-label="Skill areas">
         <button class="seg" type="button" role="tab" id="tab-aws" aria-controls="panel-aws" aria-selected="true">AWS</button>
         <button class="seg" type="button" role="tab" id="tab-k8s" aria-controls="panel-k8s" aria-selected="false" tabindex="-1">Kubernetes</button>
         <button class="seg" type="button" role="tab" id="tab-iac" aria-controls="panel-iac" aria-selected="false" tabindex="-1">IaC &amp; CI/CD</button>
         <button class="seg" type="button" role="tab" id="tab-obs" aria-controls="panel-obs" aria-selected="false" tabindex="-1">Observability</button>
-        <button class="seg" type="button" role="tab" id="tab-db" aria-controls="panel-db" aria-selected="false" tabindex="-1">Databases</button>
         <button class="seg" type="button" role="tab" id="tab-sec" aria-controls="panel-sec" aria-selected="false" tabindex="-1">Security</button>
         <button class="seg" type="button" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="false" tabindex="-1">Scripting &amp; AI</button>
       </div>
     </div>
     <div class="card skills-panel is-active" id="panel-aws" role="tabpanel" aria-labelledby="tab-aws" tabindex="0">
-      <h3>AWS · 14 skills</h3>
-      <ul class="chips"><li class="chip">EC2</li><li class="chip">S3</li><li class="chip">VPC</li><li class="chip">ALB</li><li class="chip">Lambda</li><li class="chip">API Gateway</li><li class="chip">ECR</li><li class="chip">CloudFormation</li><li class="chip">CloudWatch</li><li class="chip">SSM</li><li class="chip">IAM</li><li class="chip">AWS Organizations</li><li class="chip">WAF</li><li class="chip">Cost optimization</li></ul>
+      <h3>AWS</h3>
+      <ul class="chips"><li class="chip">EC2</li><li class="chip">S3</li><li class="chip">RDS</li><li class="chip">Aurora PostgreSQL</li><li class="chip">VPC</li><li class="chip">ALB</li><li class="chip">Lambda</li><li class="chip">API Gateway</li><li class="chip">ECR</li><li class="chip">CloudFormation</li><li class="chip">CloudWatch</li><li class="chip">SSM</li><li class="chip">IAM</li><li class="chip">WAF</li><li class="chip">Cost optimization</li></ul>
     </div>
     <div class="card skills-panel" id="panel-k8s" role="tabpanel" aria-labelledby="tab-k8s" tabindex="0">
-      <h3>Kubernetes · 10 skills</h3>
-      <ul class="chips"><li class="chip">EKS</li><li class="chip">Docker</li><li class="chip">Helm</li><li class="chip">Argo CD</li><li class="chip">Argo Rollouts</li><li class="chip">Cluster Autoscaler</li><li class="chip">HPA</li><li class="chip">RBAC</li><li class="chip">External Secrets</li><li class="chip">Network policies</li></ul>
+      <h3>Kubernetes</h3>
+      <ul class="chips"><li class="chip">EKS</li><li class="chip">Docker</li><li class="chip">Helm</li><li class="chip">Argo CD</li><li class="chip">Argo Rollouts</li><li class="chip">Cluster Autoscaler</li><li class="chip">HPA</li><li class="chip">RBAC</li><li class="chip">External Secrets</li></ul>
     </div>
     <div class="card skills-panel" id="panel-iac" role="tabpanel" aria-labelledby="tab-iac" tabindex="0">
-      <h3>IaC &amp; CI/CD · 9 skills</h3>
-      <ul class="chips"><li class="chip">Terraform</li><li class="chip">Terraform Cloud</li><li class="chip">CloudFormation</li><li class="chip">Ansible</li><li class="chip">GitHub Actions</li><li class="chip">Jenkins</li><li class="chip">Git</li><li class="chip">GitHub</li><li class="chip">Blue/green &amp; canary</li></ul>
+      <h3>IaC &amp; CI/CD</h3>
+      <ul class="chips"><li class="chip">Terraform</li><li class="chip">Terraform Cloud</li><li class="chip">CloudFormation</li><li class="chip">Ansible</li><li class="chip">GitHub Actions</li><li class="chip">Jenkins</li><li class="chip">Git</li><li class="chip">Blue/green &amp; canary</li></ul>
     </div>
     <div class="card skills-panel" id="panel-obs" role="tabpanel" aria-labelledby="tab-obs" tabindex="0">
-      <h3>Observability · 7 skills</h3>
+      <h3>Observability</h3>
       <ul class="chips"><li class="chip">Prometheus</li><li class="chip">Grafana</li><li class="chip">Datadog</li><li class="chip">Kibana</li><li class="chip">CloudWatch</li><li class="chip">Alerting</li><li class="chip">Production troubleshooting</li></ul>
     </div>
-    <div class="card skills-panel" id="panel-db" role="tabpanel" aria-labelledby="tab-db" tabindex="0">
-      <h3>Databases · 4 skills</h3>
-      <ul class="chips"><li class="chip">Aurora PostgreSQL</li><li class="chip">Amazon RDS</li><li class="chip">PostgreSQL</li><li class="chip">MySQL</li></ul>
-    </div>
     <div class="card skills-panel" id="panel-sec" role="tabpanel" aria-labelledby="tab-sec" tabindex="0">
-      <h3>Security · 8 skills</h3>
-      <ul class="chips"><li class="chip">IAM least-privilege</li><li class="chip">Kubernetes RBAC</li><li class="chip">AWS Secrets Manager</li><li class="chip">HashiCorp Vault</li><li class="chip">External Secrets</li><li class="chip">TLS</li><li class="chip">WAF</li><li class="chip">Cloud security</li></ul>
+      <h3>Security</h3>
+      <ul class="chips"><li class="chip">IAM least-privilege</li><li class="chip">Kubernetes RBAC</li><li class="chip">AWS Secrets Manager</li><li class="chip">External Secrets</li><li class="chip">TLS</li><li class="chip">WAF</li></ul>
     </div>
     <div class="card skills-panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" tabindex="0">
-      <h3>Scripting &amp; AI · 9 skills</h3>
-      <ul class="chips"><li class="chip">Python</li><li class="chip">Bash</li><li class="chip">SQL</li><li class="chip">Java</li><li class="chip">Linux</li><li class="chip">GitHub Copilot</li><li class="chip">Claude Code</li><li class="chip">MCP integrations</li><li class="chip">AI-assisted development</li></ul>
+      <h3>Scripting &amp; AI</h3>
+      <ul class="chips"><li class="chip">Python</li><li class="chip">Bash</li><li class="chip">SQL</li><li class="chip">Java</li><li class="chip">Linux</li><li class="chip">GitHub Copilot</li><li class="chip">Claude Code</li><li class="chip">MCP integrations</li></ul>
     </div>
   </section>
 
@@ -666,17 +652,17 @@
     <div class="section-head"><h2 class="section-title" id="cert-h">Certifications</h2></div>
     <div class="list">
       <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-        <div class="icon indigo"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
         <div class="row-body"><div class="row-title">CKAD: Certified Kubernetes Application Developer</div><div class="row-sub">Cloud Native Computing Foundation · 2025</div></div>
         <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-        <div class="icon purple"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
         <div class="row-body"><div class="row-title">HashiCorp Certified: Terraform Associate (003)</div><div class="row-sub">HashiCorp · 2025</div></div>
         <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-        <div class="icon orange"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
         <div class="row-body"><div class="row-title">AWS Certified Solutions Architect - Associate</div><div class="row-sub">Amazon Web Services · 2023</div></div>
         <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
@@ -688,32 +674,32 @@
     <div class="section-head"><h2 class="section-title" id="contact-h">Get in Touch</h2></div>
     <div class="list">
       <a class="row" href="mailto:timur.djigkaev@gmail.com">
-        <div class="icon blue"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg></div>
         <div class="row-body"><div class="row-title">Contact Me</div><div class="row-sub">timur.djigkaev@gmail.com</div></div>
         <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://t.me/Djigkaev" target="_blank" rel="noopener">
-        <div class="icon telegram"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.8 2.5 11.2l6.1 2.2 1.9 6.2 3-3.4 4.7 3.6z"/><path d="M8.6 13.4 18 7"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.8 2.5 11.2l6.1 2.2 1.9 6.2 3-3.4 4.7 3.6z"/><path d="M8.6 13.4 18 7"/></svg></div>
         <div class="row-body"><div class="row-title">Telegram</div><div class="row-sub">@Djigkaev</div></div>
         <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="resume/TimurDjigkaevDevopsCV.pdf" download>
-        <div class="icon red"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div>
         <div class="row-body"><div class="row-title">Download Resume</div><div class="row-sub">PDF</div></div>
         <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://www.credly.com/users/timur-dzhigkaev/badges#credly" target="_blank" rel="noopener">
-        <div class="icon indigo"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 21l5-3 5 3-1.5-7"/></svg></div>
         <div class="row-body"><div class="row-title">View Certifications</div><div class="row-sub">Credly</div></div>
         <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://github.com/dzhigkaev" target="_blank" rel="noopener">
-        <div class="icon graphite"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div>
         <div class="row-body"><div class="row-title">GitHub Profile</div><div class="row-sub">github.com/dzhigkaev</div></div>
         <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
       <a class="row" href="https://www.linkedin.com/in/djigkaev" target="_blank" rel="noopener">
-        <div class="icon teal"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
+        <div class="icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
         <div class="row-body"><div class="row-title">LinkedIn</div><div class="row-sub">in/djigkaev</div></div>
         <svg class="chev" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
       </a>
@@ -851,7 +837,6 @@
     if (sheet.open) return;
     opener = btn;
     sheetTitle.textContent = btn.textContent;
-    sheet.dataset.accent = article.dataset.accent;
     sheetBody.replaceChildren(...[...article.querySelector('.project-details').children].map((n) => n.cloneNode(true)));
     sheet.showModal();
     sheet.scrollTop = 0;

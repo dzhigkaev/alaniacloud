@@ -21,6 +21,19 @@ async function watchForProblems(page) {
   return problems;
 }
 
+// WCAG contrast ratio of two opaque computed colors, e.g. "rgb(0, 102, 204)"
+function contrast(a, b) {
+  const luminance = (color) => {
+    const [r, g, bl] = (color.match(/[\d.]+/g) || []).slice(0, 3).map((v) => {
+      const c = Number(v) / 255;
+      return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * bl;
+  };
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+}
+
 async function waitForScrollEnd(page) {
   await expect.poll(async () => {
     const a = await page.evaluate(() => window.scrollY);
@@ -67,6 +80,34 @@ test.describe('page health', () => {
       expect(result.offenders, `elements past the edge at ${width}px`).toEqual([]);
     }
   });
+
+  // One accent color: every icon tile and every accent number or label uses the same blue
+  for (const colorScheme of /** @type {const} */ (['light', 'dark'])) {
+    test(`icons and accent text share one color in ${colorScheme} mode`, async ({ page }) => {
+      await page.emulateMedia({ colorScheme });
+      await page.goto('/');
+      const distinct = (selector, property) => page.$$eval(selector, (els, prop) =>
+        [...new Set(els.map((el) => getComputedStyle(el).getPropertyValue(prop)))], property);
+      expect(await distinct('.icon', 'background-color')).toHaveLength(1);
+      expect(await distinct('.widget .num, .project .eyebrow, .metric b, .outcome .label', 'color')).toHaveLength(1);
+    });
+
+    // The selected skill area has to be obvious, or the other segments don't read as clickable
+    test(`the selected skill tab stands out in ${colorScheme} mode`, async ({ page }) => {
+      await page.emulateMedia({ colorScheme });
+      await page.goto('/');
+      const { pill, card, label } = await page.evaluate(() => {
+        const seg = document.getElementById('segmented');
+        return {
+          pill: getComputedStyle(seg, '::before').backgroundColor,
+          card: getComputedStyle(document.querySelector('.skills-panel')).backgroundColor,
+          label: getComputedStyle(seg.querySelector('[aria-selected="true"]')).color,
+        };
+      });
+      expect(pill, 'selected pill blends into the cards').not.toBe(card);
+      expect(contrast(label, pill), 'selected label on the pill').toBeGreaterThanOrEqual(4.5);
+    });
+  }
 });
 
 for (const [layout, options] of /** @type {const} */ ([['phone', PHONE], ['tablet', TABLET], ['desktop', DESKTOP]])) {
@@ -147,7 +188,7 @@ for (const [layout, options] of /** @type {const} */ ([['phone', PHONE], ['table
       const tab = (name) => tablist.getByRole('tab', { name, exact: true });
       const visiblePanels = page.locator('[role="tabpanel"]:visible');
 
-      await expect(tablist.getByRole('tab')).toHaveCount(7);
+      await expect(tablist.getByRole('tab')).toHaveCount(6);
       await expect(visiblePanels).toHaveCount(1);
       await expect(page.locator('#panel-aws')).toBeVisible();
 
@@ -333,7 +374,7 @@ test.describe('content and links', () => {
     test('case studies and every skill group stay readable', async ({ page }) => {
       await page.goto('/');
       await expect(page.getByText('Node scaling driven by CloudWatch alarms')).toBeVisible();
-      await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(7);
+      await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(6);
     });
   });
 });
