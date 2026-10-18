@@ -147,7 +147,7 @@ for (const [layout, options] of /** @type {const} */ ([['phone', PHONE], ['table
       const tab = (name) => tablist.getByRole('tab', { name, exact: true });
       const visiblePanels = page.locator('[role="tabpanel"]:visible');
 
-      await expect(tablist.getByRole('tab')).toHaveCount(6);
+      await expect(tablist.getByRole('tab')).toHaveCount(7);
       await expect(visiblePanels).toHaveCount(1);
       await expect(page.locator('#panel-aws')).toBeVisible();
 
@@ -286,7 +286,7 @@ test.describe('content and links', () => {
       links.map((a) => ({ href: a.href, target: a.target, rel: a.rel })));
     expect([...new Set(external.map((l) => l.href))].sort()).toEqual([
       'https://github.com/dzhigkaev',
-      'https://t.me/osgrusa',
+      'https://t.me/Djigkaev',
       'https://www.credly.com/users/timur-dzhigkaev/badges#credly',
       'https://www.linkedin.com/in/djigkaev',
     ]);
@@ -301,8 +301,8 @@ test.describe('content and links', () => {
   test('Get in Touch lists Telegram', async ({ page }) => {
     await page.goto('/');
     const telegram = page.locator('#contact').getByRole('link', { name: /Telegram/ });
-    await expect(telegram).toHaveAttribute('href', 'https://t.me/osgrusa');
-    await expect(telegram).toContainText('@osgrusa');
+    await expect(telegram).toHaveAttribute('href', 'https://t.me/Djigkaev');
+    await expect(telegram).toContainText('@Djigkaev');
   });
 
   test('keeps the profile facts from the previous site', async ({ page }) => {
@@ -323,7 +323,7 @@ test.describe('content and links', () => {
     test('case studies and every skill group stay readable', async ({ page }) => {
       await page.goto('/');
       await expect(page.getByText('Node scaling driven by CloudWatch alarms')).toBeVisible();
-      await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(6);
+      await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(7);
     });
   });
 });
