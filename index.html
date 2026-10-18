@@ -41,8 +41,9 @@
   "knowsAbout": ["AWS", "Kubernetes", "EKS", "Terraform", "Docker", "Helm", "CI/CD", "GitHub Actions", "Jenkins", "Prometheus", "Grafana", "DevOps", "Platform Engineering", "Cloud Security"]
 }
 </script>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='devopsGrad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23007ACC;stop-opacity:1' /><stop offset='50%' style='stop-color:%231E3A8A;stop-opacity:1' /><stop offset='100%' style='stop-color:%23FF6B35;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23devopsGrad)'/><text x='50' y='80' font-family='Arial, sans-serif' font-size='150' font-weight='900' text-anchor='middle' fill='white' stroke='%23000000' stroke-width='1'>∞</text></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='devopsGrad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23007ACC;stop-opacity:1' /><stop offset='50%' style='stop-color:%231E3A8A;stop-opacity:1' /><stop offset='100%' style='stop-color:%23FF6B35;stop-opacity:1' /></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23devopsGrad)'/><text x='50' y='80' font-family='Arial, sans-serif' font-size='150' font-weight='900' text-anchor='middle' fill='white' stroke='%23000000' stroke-width='1'>∞</text></svg>">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <style>
   /* ===== iOS system tokens ===== */
   :root{
@@ -322,7 +323,10 @@
 
   <!-- ===== Profile ===== -->
   <section class="hero" id="profile" style="margin-top:0">
-    <img class="avatar" src="assets/profile.png" alt="Timur Djigkaev - DevOps and Platform Engineer">
+    <picture>
+      <source type="image/webp" srcset="assets/profile-160.webp 160w, assets/profile-320.webp 320w, assets/profile-480.webp 480w" sizes="116px">
+      <img class="avatar" src="assets/profile-320.jpg" width="116" height="116" alt="Timur Djigkaev - DevOps and Platform Engineer" fetchpriority="high" decoding="async">
+    </picture>
     <h1 class="large-title">Timur Djigkaev</h1>
     <div class="subtitle">DevOps &amp; Platform Engineer</div>
     <div class="status glass"><i></i>AWS · Kubernetes · Terraform</div>
